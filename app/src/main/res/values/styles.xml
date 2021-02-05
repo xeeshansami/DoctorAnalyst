@@ -12,4 +12,9 @@
         <item name="android:fontFamily">@font/imprima_regular</item>
         <item name="android:textStyle">bold</item>
     </style>
+    <style name="NestedScrollBarStyle">
+        <item name="android:scrollbarThumbVertical">@color/white</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:fillViewport">true</item>
+    </style>
 </resources>

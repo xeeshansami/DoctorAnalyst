@@ -7,8 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
+
 
 /**
  * An example full-screen fragment that shows and hides the system UI (i.e.
@@ -41,9 +45,9 @@ class SplashScreen : Fragment() {
     private var fullscreenContentControls: View? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_splash_screen, container, false)
     }
@@ -51,6 +55,7 @@ class SplashScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fullscreenContent = view.findViewById(R.id.fullscreen_content)
+        sendToScreen()
     }
 
     override fun onResume() {
@@ -64,6 +69,16 @@ class SplashScreen : Fragment() {
         // Clear the systemUiVisibility flag
         activity?.window?.decorView?.systemUiVisibility = 0
         show()
+    }
+    fun sendToScreen(){
+        Handler().postDelayed({
+            findNavController().navigate(
+                R.id.action_splashScreen_to_signin, null,
+                NavOptions.Builder().setPopUpTo(R.id.splashScreen, true).build()
+            )
+
+        }, 1500)
+
     }
 
     override fun onDestroy() {

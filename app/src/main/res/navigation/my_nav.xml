@@ -12,7 +12,10 @@
         tools:layout="@layout/fragment_splash_screen" >
         <action
             android:id="@+id/action_splashScreen_to_signin"
-            app:destination="@id/signin" />
+            app:destination="@id/signin"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/cycle_interpolator"
+            app:popEnterAnim="@anim/fragment_fast_out_extra_slow_in" />
     </fragment>
     <fragment
         android:id="@+id/signin"
@@ -21,7 +24,8 @@
         tools:layout="@layout/fragment_signin" >
         <action
             android:id="@+id/action_signin_to_signup"
-            app:destination="@id/signup" />
+            app:destination="@id/signup"
+            app:enterAnim="@anim/fragment_fade_enter" />
         <action
             android:id="@+id/action_signin_to_dashboard"
             app:destination="@id/dashboard" />
