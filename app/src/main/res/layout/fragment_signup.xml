@@ -197,7 +197,7 @@
 
 
         <Button
-            android:id="@+id/signInBtn"
+            android:id="@+id/registerBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
@@ -225,10 +225,10 @@
             android:textColor="@color/white"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/signInBtn" />
+            app:layout_constraintTop_toBottomOf="@+id/registerBtn" />
 
         <Button
-            android:id="@+id/signUpBtn"
+            android:id="@+id/signInBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 
 
-class Signin() : Fragment() {
+class Signin : Fragment() {
 
 
     override fun onCreateView(
@@ -20,6 +20,7 @@ class Signin() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
     }
 
 }
