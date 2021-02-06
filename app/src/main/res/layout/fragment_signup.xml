@@ -128,7 +128,7 @@
             android:layout_marginRight="24dp"
             android:background="@drawable/bottom_line"
             android:hint="MOBILE"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:text=""
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
@@ -136,64 +136,94 @@
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/emailTv" />
 
-        <EditText
+        <TextView
             android:id="@+id/dateOfBirthTv"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:background="@drawable/bottom_line"
-            android:hint="DATE OF BIRTH"
+            android:hint="DATE: --/--/----"
             android:inputType="textPersonName"
             android:text=""
+            android:textSize="20sp"
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/mobileTv" />
 
-        <EditText
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:background="@drawable/bottom_line"
             android:id="@+id/passwordTv"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/dateOfBirthTv"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:background="@drawable/bottom_line"
-            android:hint="PASSWORD"
-            android:inputType="textPersonName"
-            android:text=""
-            android:textColor="@color/white"
-            android:textColorHint="@color/hint"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/dateOfBirthTv" />
+            app:hintTextColor="@color/hint"
+            app:passwordToggleEnabled="true"
+            style="@style/EdittextTheme"
+            app:passwordToggleTint="@color/hint"
+            >
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:textColorHint="@color/hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="PASSWORD"
+                android:textColor="@color/white"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text=""
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/confirmPasswordTv"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/passwordTv"
+            android:background="@drawable/bottom_line"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:background="@drawable/bottom_line"
-            android:hint="CONFIRM PASSWORD"
-            android:inputType="textPersonName"
-            android:text=""
-            android:textColor="@color/white"
-            android:textColorHint="@color/hint"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/passwordTv" />
+            app:hintTextColor="@color/hint"
+            app:passwordToggleEnabled="true"
+            style="@style/EdittextTheme"
+            app:passwordToggleTint="@color/hint"
+            >
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirmEPassword"
+                android:textColorHint="@color/hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="CONFIRM PASWORD"
+                android:textColor="@color/white"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text=""
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button

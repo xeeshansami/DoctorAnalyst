@@ -80,25 +80,43 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/header" />
-    <EditText
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/bottom_line"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/username"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
-        android:background="@drawable/bottom_line"
-        android:hint="Password"
-        android:password="true"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textColor="@color/white"
-        android:textColorHint="@color/hint"
-        app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/username" />
+        app:hintTextColor="@color/hint"
+        app:passwordToggleEnabled="true"
+        style="@style/EdittextTheme"
+        app:passwordToggleTint="@color/hint"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:textColorHint="@color/hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="PASSWORD"
+            android:textColor="@color/white"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text=""
+          />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/forgetPwdTxt"

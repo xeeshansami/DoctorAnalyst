@@ -17,4 +17,11 @@
         <item name="android:scrollbars">vertical</item>
         <item name="android:fillViewport">true</item>
     </style>
+    <style name="EdittextTheme" parent="Widget.Design.TextInputLayout">
+        <item name="hintEnabled">@color/hint</item>
+    </style>
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/themeColor</item>
+    </style>
+
 </resources>
