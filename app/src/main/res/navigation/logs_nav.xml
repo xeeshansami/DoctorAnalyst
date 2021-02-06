@@ -13,9 +13,10 @@
         <action
             android:id="@+id/action_splashScreen_to_signin"
             app:destination="@id/signin"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/cycle_interpolator"
-            app:popEnterAnim="@anim/fragment_fast_out_extra_slow_in" />
+            app:enterAnim="@android:anim/cycle_interpolator"
+            app:exitAnim="@android:anim/decelerate_interpolator"
+            app:popEnterAnim="@android:anim/anticipate_overshoot_interpolator"
+            app:popExitAnim="@android:anim/linear_interpolator" />
     </fragment>
     <fragment
         android:id="@+id/signin"
@@ -25,13 +26,24 @@
         <action
             android:id="@+id/action_signin_to_signup"
             app:destination="@id/signup"
-            app:enterAnim="@anim/fragment_fade_enter" />
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_signin_to_dashboard"
-            app:destination="@id/dashboard" />
+            app:destination="@id/dashboard"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_signin_to_fragmentForgetPassword"
-            app:destination="@id/fragmentForgetPassword" />
+            app:destination="@id/fragmentForgetPassword"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/signup"
@@ -40,7 +52,11 @@
         tools:layout="@layout/fragment_signup" >
         <action
             android:id="@+id/action_signup_to_signin"
-            app:destination="@id/signin" />
+            app:destination="@id/signin"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <activity
         android:id="@+id/dashboard"

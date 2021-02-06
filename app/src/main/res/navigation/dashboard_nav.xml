@@ -11,10 +11,18 @@
         tools:layout="@layout/fragment_dashboard">
         <action
             android:id="@+id/action_dashboard_to_fragmentQuestions"
-            app:destination="@id/fragmentQuestions" />
+            app:destination="@id/fragmentQuestions"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_dashboard_to_fragmentRehabilitation"
-            app:destination="@id/fragmentRehabilitation" />
+            app:destination="@id/fragmentRehabilitation"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/fragmentQuestions"
@@ -22,7 +30,11 @@
         android:label="FragmentQuestions">
         <action
             android:id="@+id/action_fragmentQuestions_to_dashboard"
-            app:destination="@id/dashboard" />
+            app:destination="@id/dashboard"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/fragmentRehabilitation"
@@ -30,13 +42,25 @@
         android:label="FragmentRehabilitation">
         <action
             android:id="@+id/action_fragmentRehabilitation_to_fragmentUpperLibRehabilition"
-            app:destination="@id/fragmentUpperLibRehabilition" />
+            app:destination="@id/fragmentUpperLibRehabilition"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_fragmentRehabilitation_to_fragmentMobilityTraning"
-            app:destination="@id/fragmentMobilityTraning" />
+            app:destination="@id/fragmentMobilityTraning"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_fragmentRehabilitation_to_fragmentGetAndBalance"
-            app:destination="@id/fragmentGetAndBalance" />
+            app:destination="@id/fragmentGetAndBalance"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/fragmentUpperLibRehabilition"
@@ -64,13 +88,25 @@
         android:label="FragmentMyAccount" >
         <action
             android:id="@+id/action_fragmentMyAccount_to_fragmentForgetPassword2"
-            app:destination="@id/fragmentForgetPassword2" />
+            app:destination="@id/fragmentForgetPassword2"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_fragmentMyAccount_to_fragmentUpdate"
-            app:destination="@id/fragmentUpdate" />
+            app:destination="@id/fragmentUpdate"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_fragmentMyAccount_to_fragmentChangePassword"
-            app:destination="@id/fragmentChangePassword" />
+            app:destination="@id/fragmentChangePassword"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/fragmentChangePassword"
