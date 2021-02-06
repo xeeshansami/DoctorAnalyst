@@ -4,4 +4,14 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <array name="questions_array">
+        <item>What is a stroke?</item>
+        <item>What are the type of stroke?</item>
+        <item>Who is at risk for stroke?</item>
+        <item>What are the symptoms of stroke?</item>
+        <item>How are strokes diagnosed?</item>
+        <item>What are the treatment for stroke?</item>
+        <item>Can strokes be prevented?</item>
+        <item>what disabilities can result from a stroke?</item>
+    </array>
 </resources>

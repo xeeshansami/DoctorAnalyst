@@ -1,4 +1,4 @@
-package com.fyp
+package com.fyp.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.fyp.R
 import kotlinx.android.synthetic.main.fragment_signin.*
 
 
-class Signin() : Fragment(), View.OnClickListener {
+class FragmentSignin() : Fragment(), View.OnClickListener {
 
 
     override fun onCreateView(
@@ -28,10 +29,10 @@ class Signin() : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.signInBtn->{
+            R.id.signInBtn ->{
                 findNavController().navigate(R.id.action_signin_to_dashboard)
             }
-            R.id.signUpBtn->{
+            R.id.signUpBtn ->{
                 findNavController().navigate(R.id.action_signin_to_signup)
             }
         }

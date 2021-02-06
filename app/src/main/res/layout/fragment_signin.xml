@@ -12,7 +12,7 @@
     android:layout_height="match_parent"
     android:background="?attr/fullscreenBackgroundColor"
     android:theme="@style/ThemeOverlay.FYP.FullscreenContainer"
-    tools:context=".SplashScreen">
+    tools:context=".fragments.FragmentSplashScreen">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"

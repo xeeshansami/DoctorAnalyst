@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashScreen"
-        android:name="com.fyp.SplashScreen"
+        android:name="com.fyp.fragments.FragmentSplashScreen"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/signin"
-        android:name="com.fyp.Signin"
+        android:name="com.fyp.fragments.FragmentSignin"
         android:label="fragment_signin"
         tools:layout="@layout/fragment_signin" >
         <action
@@ -32,16 +32,16 @@
     </fragment>
     <fragment
         android:id="@+id/signup"
-        android:name="com.fyp.Signup"
+        android:name="com.fyp.fragments.FragmentSignup"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup" >
         <action
             android:id="@+id/action_signup_to_signin"
             app:destination="@id/signin" />
     </fragment>
-    <fragment
+    <activity
         android:id="@+id/dashboard"
-        android:name="com.fyp.Dashboard"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="com.fyp.activities.ActivityDashboard"
+        android:label="activity_dashboard"
+        tools:layout="@layout/activity_dashboard" />
 </navigation>
