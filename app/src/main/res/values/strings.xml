@@ -4,6 +4,7 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="para">aksljdklasdlkasjd</string>
     <array name="questions_array">
         <item>What is a stroke?</item>
         <item>What are the type of stroke?</item>
@@ -13,5 +14,26 @@
         <item>What are the treatment for stroke?</item>
         <item>Can strokes be prevented?</item>
         <item>what disabilities can result from a stroke?</item>
+    </array>
+    <array name="questions_desc_array">
+        <item>series of related sentences developing a central idea, called the topic.
+            Try to think about paragraphs in terms of thematic unity:
+            a paragraph is a sentence </item>
+        <item>
+            a paragraph is a sentence or a group of sentences that supports one central,
+            unified idea. Paragraphs add one idea at a time to your broader argument.</item>
+        <item> Paragraphs add one idea at a time to your broader argument.</item>
+        <item>Try to think about paragraphs in terms of thematic unity:
+            a paragraph is a sentence or a group of sentences that supports one central,
+            unified idea. Paragraphs add one idea at a time to your broader argument.</item>
+        <item> developing a central idea, called the topic.
+            Try to think about paragraphs in terms of thematic unity:
+            a paragraph is a sentence or a group of sentences that supports one central,
+            unified idea. Paragraphs add one idea at a time to your broader argument.</item>
+        <item>group of sentences that supports one central,
+            unified idea. Paragraphs add one idea at a time to your broader argument.</item>
+        <item>idea. Paragraphs add one idea at a time to your broader argument.</item>
+        <item>supports one central,
+            unified idea. Paragraphs add one idea at a time to your broader argument.</item>
     </array>
 </resources>

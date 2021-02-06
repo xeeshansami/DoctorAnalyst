@@ -9,5 +9,17 @@
         android:id="@+id/dashboard"
         android:name="com.fyp.fragments.FragmentDashboard"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboard_to_fragmentQuestions"
+            app:destination="@id/fragmentQuestions" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentQuestions"
+        android:name="com.fyp.fragments.FragmentQuestions"
+        android:label="FragmentQuestions" >
+        <action
+            android:id="@+id/action_fragmentQuestions_to_dashboard"
+            app:destination="@id/dashboard" />
+    </fragment>
 </navigation>

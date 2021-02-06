@@ -6,12 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fyp.R
+import com.fyp.interfaces.iOnItemClickListner
 import kotlinx.android.synthetic.main.quest_list_view.view.*
 
-class QuestionAdapters(context: Context,private val mList:ArrayList<String>) :
+class QuestionAdapters(context: Context,private val mList:ArrayList<String>,val onItemClickListner: iOnItemClickListner) :
     RecyclerView.Adapter<QuestionAdapters.MyViewHolder>() {
     var context=context
-
+    var itemClickListner:iOnItemClickListner?=null
+    init {
+        itemClickListner=onItemClickListner
+    }
     open inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val questTv = view.questTv!!
     }
@@ -28,5 +32,9 @@ class QuestionAdapters(context: Context,private val mList:ArrayList<String>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.questTv.setText(mList.get(position))
+        holder.questTv.setOnClickListener {
+            itemClickListner?.onItemClick(holder.questTv, mList[position], position)
+        }
     }
+
 }
