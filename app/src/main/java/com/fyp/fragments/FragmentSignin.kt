@@ -25,6 +25,7 @@ class FragmentSignin() : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         signInBtn.setOnClickListener(this)
         signUpBtn.setOnClickListener(this)
+        forgetPwdTxt.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -34,6 +35,9 @@ class FragmentSignin() : Fragment(), View.OnClickListener {
             }
             R.id.signUpBtn ->{
                 findNavController().navigate(R.id.action_signin_to_signup)
+            }
+            R.id.forgetPwdTxt ->{
+                findNavController().navigate(R.id.action_signin_to_fragmentForgetPassword)
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.fyp
+package com.fyp.models
 
 import android.os.Parcel
 import android.os.Parcelable

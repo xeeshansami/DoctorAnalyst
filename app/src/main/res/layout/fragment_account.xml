@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/NestedScrollBarStyle"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_end="54dp" />
+            app:layout_constraintGuide_end="24dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/center"
@@ -57,7 +57,7 @@
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
             android:gravity="center"
-            android:text="REHABLIATION"
+            android:text="MY ACCOUNT"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -76,7 +76,7 @@
             app:layout_constraintTop_toBottomOf="@+id/header"></View>
 
         <TextView
-            android:id="@+id/upperLibRehTv"
+            android:id="@+id/updateAnAccountTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -84,7 +84,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:background="@drawable/bottom_line"
-            android:text="UPPER LIB REHABLIATION"
+            android:text="UPDATE AN ACCOUNT"
             android:textColor="@color/white"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="@+id/guideline7"
@@ -92,17 +92,38 @@
             app:layout_constraintTop_toBottomOf="@+id/header"
             tools:listitem="@layout/quest_list_view" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvExercise"
+        <TextView
+            android:id="@+id/changePasswordTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
+            android:background="@drawable/bottom_line"
+            android:text="CHANGE PASSWORD"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/upperLibRehTv"
+            app:layout_constraintTop_toBottomOf="@+id/updateAnAccountTv"
             tools:listitem="@layout/quest_list_view" />
 
+        <TextView
+            android:id="@+id/logoutTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/bottom_line"
+            android:text="LOGOUT"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="@+id/guideline7"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/changePasswordTv"
+            tools:listitem="@layout/quest_list_view" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -62,6 +62,18 @@
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toTopOf="@+id/guideAbove" />
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/bottom_line"
+            app:layout_constraintEnd_toEndOf="@+id/guideline7"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/header"></View>
 
         <TextView
             android:id="@+id/questTv"
@@ -71,12 +83,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
             android:textColor="@color/white"
+            android:background="@drawable/bottom_line"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/header"
+            app:layout_constraintTop_toBottomOf="@+id/view"
             tools:listitem="@layout/quest_list_view" />
         <TextView
             android:id="@+id/descTv"

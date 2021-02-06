@@ -5,15 +5,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.fyp.R
 import com.fyp.interfaces.iOnBackPressed
+import kotlinx.android.synthetic.main.fragment_account.*
 import kotlinx.android.synthetic.main.fragment_rehabilation.*
+import kotlinx.android.synthetic.main.fragment_rehabilation.gaitAndBalTv
+import kotlinx.android.synthetic.main.fragment_rehabilation.mobTraTv
+import kotlinx.android.synthetic.main.fragment_rehabilation.upperLibRehTv
 
 
-class FragmentRehabilitation : Fragment(), View.OnClickListener, iOnBackPressed {
+class FragmentMyAccount : Fragment(), View.OnClickListener, iOnBackPressed {
     var list = ArrayList<String>()
     var myView: View? = null
     override fun onCreateView(
@@ -21,7 +26,7 @@ class FragmentRehabilitation : Fragment(), View.OnClickListener, iOnBackPressed 
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        myView = inflater.inflate(R.layout.fragment_rehabilation, container, false)
+        myView = inflater.inflate(R.layout.fragment_account, container, false)
         return myView
     }
 
@@ -31,9 +36,9 @@ class FragmentRehabilitation : Fragment(), View.OnClickListener, iOnBackPressed 
     }
 
     private fun init() {
-        upperLibRehTv.setOnClickListener(this)
-        mobTraTv.setOnClickListener(this)
-        gaitAndBalTv.setOnClickListener(this)
+        updateAnAccountTv.setOnClickListener(this)
+        changePasswordTv.setOnClickListener(this)
+        logoutTv.setOnClickListener(this)
         addQuestInRv()
     }
 
@@ -43,12 +48,12 @@ class FragmentRehabilitation : Fragment(), View.OnClickListener, iOnBackPressed 
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.upperLibRehTv -> {
-                findNavController().navigate(R.id.action_fragmentRehabilitation_to_fragmentUpperLibRehabilition)
-            }R.id.mobTraTv -> {
-                findNavController().navigate(R.id.action_fragmentRehabilitation_to_fragmentMobilityTraning)
-            }R.id.gaitAndBalTv -> {
-                findNavController().navigate(R.id.action_fragmentRehabilitation_to_fragmentGetAndBalance)
+            R.id.updateAnAccountTv -> {
+                findNavController().navigate(R.id.action_fragmentMyAccount_to_fragmentUpdate)
+            }R.id.changePasswordTv -> {
+                findNavController().navigate(R.id.action_fragmentMyAccount_to_fragmentChangePassword)
+            }R.id.logoutTv -> {
+                Toast.makeText(activity,"Log out",Toast.LENGTH_LONG).show()
             }
         }
     }

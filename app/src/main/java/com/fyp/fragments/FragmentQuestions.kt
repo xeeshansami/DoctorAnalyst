@@ -10,7 +10,7 @@ import androidx.navigation.findNavController
 import com.fyp.R
 import com.fyp.activities.ActivityDashboard
 import com.fyp.interfaces.iOnBackPressed
-import com.fyp.mQuestions
+import com.fyp.models.mQuestions
 import com.fyp.utils.Constant
 import kotlinx.android.synthetic.main.fragment_questions.*
 

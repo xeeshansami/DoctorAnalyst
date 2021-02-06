@@ -23,6 +23,7 @@
         app:layout_constraintGuide_end="54dp" />
 
     <LinearLayout
+        android:background="@drawable/button_bg"
         android:weightSum="3"
         android:layout_width="match_parent"
         android:layout_height="54dp"
@@ -36,7 +37,7 @@
             android:layout_weight="1"
             android:textStyle="bold"
             android:textSize="15dp"
-            android:textColor="@color/white"
+            android:textColor="@color/themeColor"
             android:padding="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +48,7 @@
             android:layout_weight="1"
             android:textStyle="bold"
             android:textSize="15dp"
-            android:textColor="@color/white"
+            android:textColor="@color/themeColor"
             android:padding="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,7 +59,7 @@
             android:layout_weight="1"
             android:textStyle="bold"
             android:textSize="15dp"
-            android:textColor="@color/white"
+            android:textColor="@color/themeColor"
             android:padding="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

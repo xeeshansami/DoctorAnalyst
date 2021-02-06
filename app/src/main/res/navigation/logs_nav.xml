@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_signin_to_dashboard"
             app:destination="@id/dashboard" />
+        <action
+            android:id="@+id/action_signin_to_fragmentForgetPassword"
+            app:destination="@id/fragmentForgetPassword" />
     </fragment>
     <fragment
         android:id="@+id/signup"
@@ -44,4 +47,8 @@
         android:name="com.fyp.activities.ActivityDashboard"
         android:label="activity_dashboard"
         tools:layout="@layout/activity_dashboard" />
+    <fragment
+        android:id="@+id/fragmentForgetPassword"
+        android:name="com.fyp.fragments.FragmentForgetPassword"
+        android:label="FragmentForgetPassword" />
 </navigation>

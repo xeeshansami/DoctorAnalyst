@@ -15,7 +15,6 @@
     <style name="NestedScrollBarStyle">
         <item name="android:scrollbarThumbVertical">@color/white</item>
         <item name="android:scrollbars">vertical</item>
-        <item name="android:fillViewport">true</item>
     </style>
     <style name="EdittextTheme" parent="Widget.Design.TextInputLayout">
         <item name="hintEnabled">@color/hint</item>

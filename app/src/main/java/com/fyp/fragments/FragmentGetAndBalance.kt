@@ -1,35 +1,35 @@
 package com.fyp.fragments
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
+import android.webkit.WebChromeClient
+import android.webkit.WebSettings
+import android.webkit.WebSettings.PluginState
+import android.widget.MediaController
+import android.widget.VideoView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fyp.R
 import com.fyp.activities.ActivityDashboard
 import com.fyp.adapters.ExerciseAdapters
-import com.fyp.adapters.QuestionAdapters
 import com.fyp.interfaces.iOnBackPressed
-import com.fyp.interfaces.iOnItemClickListner
-import com.fyp.mQuestions
-import com.fyp.utils.Constant
+import com.fyp.interfaces.iOnVideoItemClickListner
+import com.fyp.models.mExercise
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlinx.android.synthetic.main.fragment_questions.*
 import kotlinx.android.synthetic.main.fragment_upper_lib_rehabilation.*
 
 
 class FragmentGetAndBalance : Fragment(), View.OnClickListener ,iOnBackPressed,
-    iOnItemClickListner {
-    var list = ArrayList<String>()
+    iOnVideoItemClickListner {
+    var list = ArrayList<mExercise>()
     var myView: View? = null
+    var videoPlay=true
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,10 +52,19 @@ class FragmentGetAndBalance : Fragment(), View.OnClickListener ,iOnBackPressed,
         val questions = (activity as ActivityDashboard).resources!!.getStringArray(R.array.exercise_array)
         list.clear()
         for (element in questions) {
-            list?.add(element)
+            var execise= mExercise()
+            execise.apply {
+                videoName=element
+                videoUrl="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4?_=1"
+            }
+            list.add(execise)
         }
         rvExercise.apply {
-            layoutManager = LinearLayoutManager((activity as ActivityDashboard))
+            layoutManager = LinearLayoutManager(
+                (activity as ActivityDashboard),
+                LinearLayoutManager.VERTICAL,
+                true
+            )
             adapter = ExerciseAdapters(
                 activity as ActivityDashboard,
                 list!!,
@@ -65,8 +74,14 @@ class FragmentGetAndBalance : Fragment(), View.OnClickListener ,iOnBackPressed,
         }
     }
 
-    override fun onItemClick(view: View, question: String, position: Int) {
-
+    override fun onItemClick(view: VideoView, question: String, position: Int) {
+        if(videoPlay) {
+            videoPlay=false
+            view.start()
+        }else{
+            videoPlay=true
+            view.pause()
+        }
     }
 
     override fun onClick(v: View?) {

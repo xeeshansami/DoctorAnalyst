@@ -15,7 +15,7 @@ import com.fyp.activities.ActivityDashboard
 import com.fyp.adapters.QuestionAdapters
 import com.fyp.interfaces.iOnBackPressed
 import com.fyp.interfaces.iOnItemClickListner
-import com.fyp.mQuestions
+import com.fyp.models.mQuestions
 import com.fyp.utils.Constant
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 
@@ -60,7 +60,7 @@ class FragmentDashboard : Fragment(), iOnItemClickListner,iOnBackPressed, View.O
 
     override fun onItemClick(view: View, question: String, position: Int) {
         val bundle = Bundle()
-        var quest=mQuestions()
+        var quest= mQuestions()
         quest.position=position
         quest.questions=question
         bundle.putParcelable(Constant.QUESTIONS, quest)

@@ -54,4 +54,26 @@
         android:id="@+id/fragmentMobilityTraning"
         android:name="com.fyp.fragments.FragmentMobilityTraning"
         android:label="FragmentMobilityTraning" />
+    <fragment
+        android:id="@+id/fragmentForgetPassword2"
+        android:name="com.fyp.fragments.FragmentForgetPassword"
+        android:label="FragmentForgetPassword" />
+    <fragment
+        android:id="@+id/fragmentMyAccount"
+        android:name="com.fyp.fragments.FragmentMyAccount"
+        android:label="FragmentMyAccount" >
+        <action
+            android:id="@+id/action_fragmentMyAccount_to_fragmentForgetPassword2"
+            app:destination="@id/fragmentForgetPassword2" />
+        <action
+            android:id="@+id/action_fragmentMyAccount_to_fragmentUpdate"
+            app:destination="@id/fragmentUpdate" />
+        <action
+            android:id="@+id/action_fragmentMyAccount_to_fragmentChangePassword"
+            app:destination="@id/fragmentChangePassword" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentChangePassword"
+        android:name="com.fyp.fragments.FragmentChangePassword"
+        android:label="FragmentChangePassword" />
 </navigation>
