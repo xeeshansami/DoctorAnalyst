@@ -4,22 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
     app:startDestination="@id/dashboard">
-
     <fragment
         android:id="@+id/dashboard"
         android:name="com.fyp.fragments.FragmentDashboard"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" >
+        tools:layout="@layout/fragment_dashboard">
         <action
             android:id="@+id/action_dashboard_to_fragmentQuestions"
             app:destination="@id/fragmentQuestions" />
+        <action
+            android:id="@+id/action_dashboard_to_fragmentRehabilitation"
+            app:destination="@id/fragmentRehabilitation" />
     </fragment>
     <fragment
         android:id="@+id/fragmentQuestions"
         android:name="com.fyp.fragments.FragmentQuestions"
-        android:label="FragmentQuestions" >
+        android:label="FragmentQuestions">
         <action
             android:id="@+id/action_fragmentQuestions_to_dashboard"
             app:destination="@id/dashboard" />
     </fragment>
+    <fragment
+        android:id="@+id/fragmentRehabilitation"
+        android:name="com.fyp.fragments.FragmentRehabilitation"
+        android:label="FragmentRehabilitation">
+        <action
+            android:id="@+id/action_fragmentRehabilitation_to_fragmentUpperLibRehabilition"
+            app:destination="@id/fragmentUpperLibRehabilition" />
+        <action
+            android:id="@+id/action_fragmentRehabilitation_to_fragmentMobilityTraning"
+            app:destination="@id/fragmentMobilityTraning" />
+        <action
+            android:id="@+id/action_fragmentRehabilitation_to_fragmentGetAndBalance"
+            app:destination="@id/fragmentGetAndBalance" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentUpperLibRehabilition"
+        android:name="com.fyp.fragments.FragmentUpperLibRehabilition"
+        android:label="FragmentUpperLibRehabilition" />
+    <fragment
+        android:id="@+id/fragmentUpdate"
+        android:name="com.fyp.fragments.FragmentUpdate"
+        android:label="FragmentUpdate" />
+    <fragment
+        android:id="@+id/fragmentGetAndBalance"
+        android:name="com.fyp.fragments.FragmentGetAndBalance"
+        android:label="FragmentGetAndBalance" />
+    <fragment
+        android:id="@+id/fragmentMobilityTraning"
+        android:name="com.fyp.fragments.FragmentMobilityTraning"
+        android:label="FragmentMobilityTraning" />
 </navigation>

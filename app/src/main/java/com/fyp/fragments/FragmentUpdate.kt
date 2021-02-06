@@ -2,16 +2,19 @@ package com.fyp.fragments
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.fyp.R
+import com.fyp.interfaces.iOnBackPressed
 import kotlinx.android.synthetic.main.fragment_signup.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class FragmentUpdate() : Fragment() {
+class FragmentUpdate() : Fragment() ,iOnBackPressed{
     val myCalendar = Calendar.getInstance()
 
     override fun onCreateView(
@@ -56,6 +59,18 @@ class FragmentUpdate() : Fragment() {
         val myFormat = "yyyy-MM-dd"
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         dateOfBirthTv.setText(sdf.format(myCalendar.time))
+    }
+    override fun onBackPressed(): Boolean {
+        val navController = requireActivity().findNavController(R.id.fragment)
+        if (navController.currentDestination?.id != R.id.fragmentUpdate) {
+            Log.i("onBackPress", "Not Up Finish All Fragment")
+            requireActivity().finish()
+            return true
+        } else {
+            Log.i("onBackPress", "Up")
+            navController.popBackStack()
+            return true
+        }
     }
 
 }

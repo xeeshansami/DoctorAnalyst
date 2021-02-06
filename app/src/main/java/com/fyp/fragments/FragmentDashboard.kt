@@ -20,7 +20,7 @@ import com.fyp.utils.Constant
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 
-class FragmentDashboard : Fragment(), iOnItemClickListner,iOnBackPressed {
+class FragmentDashboard : Fragment(), iOnItemClickListner,iOnBackPressed, View.OnClickListener {
     var list=ArrayList<String>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +36,7 @@ class FragmentDashboard : Fragment(), iOnItemClickListner,iOnBackPressed {
     }
 
     private fun init(view: View) {
+        rehabiliationBtn.setOnClickListener(this)
         addQuestInRv()
         onBackPressed(view)
     }
@@ -61,7 +62,7 @@ class FragmentDashboard : Fragment(), iOnItemClickListner,iOnBackPressed {
         val bundle = Bundle()
         var quest=mQuestions()
         quest.position=position
-        quest.questions=question.toString()
+        quest.questions=question
         bundle.putParcelable(Constant.QUESTIONS, quest)
         findNavController().navigate(R.id.action_dashboard_to_fragmentQuestions, bundle)
     }
@@ -85,7 +86,7 @@ class FragmentDashboard : Fragment(), iOnItemClickListner,iOnBackPressed {
         }
     }
 
-    override fun doBack(): Boolean {
+    override fun onBackPressed(): Boolean {
         val navController = requireActivity().findNavController(R.id.fragment)
         if (navController.currentDestination?.id != R.id.dashboard) {
             Log.i("onBackPress", "Not Up Finish All Fragment")
@@ -95,6 +96,14 @@ class FragmentDashboard : Fragment(), iOnItemClickListner,iOnBackPressed {
             Log.i("onBackPress", "Up")
             navController.popBackStack()
             return true
+        }
+    }
+
+    override fun onClick(v: View?) {
+        when(v!!.id){
+            R.id.rehabiliationBtn->{
+                findNavController().navigate(R.id.action_dashboard_to_fragmentRehabilitation)
+            }
         }
     }
 }
