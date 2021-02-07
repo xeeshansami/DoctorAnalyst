@@ -211,7 +211,7 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
                 Toast.makeText(
                     activity,
                     e.message,
-                    Toast.LENGTH_SHORT
+                    Toast.LENGTH_LONG
                 ).show()
             }
     }

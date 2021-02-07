@@ -1,5 +1,7 @@
 package com.fyp.fragments
 
+import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,17 +12,18 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.fyp.R
+import com.fyp.activities.ActivityDashboard
+import com.fyp.activities.LogActivity
 import com.fyp.interfaces.iOnBackPressed
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_account.*
 import kotlinx.android.synthetic.main.fragment_rehabilation.*
-import kotlinx.android.synthetic.main.fragment_rehabilation.gaitAndBalTv
-import kotlinx.android.synthetic.main.fragment_rehabilation.mobTraTv
-import kotlinx.android.synthetic.main.fragment_rehabilation.upperLibRehTv
 
 
 class FragmentMyAccount : Fragment(), View.OnClickListener, iOnBackPressed {
     var list = ArrayList<String>()
     var myView: View? = null
+    private var firebaseAuth: FirebaseAuth? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,7 +38,8 @@ class FragmentMyAccount : Fragment(), View.OnClickListener, iOnBackPressed {
         init()
     }
 
-    private fun init() {
+    fun init() {
+        firebaseAuth = FirebaseAuth.getInstance()
         updateAnAccountTv.setOnClickListener(this)
         changePasswordTv.setOnClickListener(this)
         logoutTv.setOnClickListener(this)
@@ -50,12 +54,26 @@ class FragmentMyAccount : Fragment(), View.OnClickListener, iOnBackPressed {
         when (v!!.id) {
             R.id.updateAnAccountTv -> {
                 findNavController().navigate(R.id.action_fragmentMyAccount_to_fragmentUpdate)
-            }R.id.changePasswordTv -> {
+            }
+            R.id.changePasswordTv -> {
                 findNavController().navigate(R.id.action_fragmentMyAccount_to_fragmentChangePassword)
-            }R.id.logoutTv -> {
-                Toast.makeText(activity,"Log out",Toast.LENGTH_LONG).show()
+            }
+            R.id.logoutTv -> {
+                logout()
             }
         }
+    }
+
+    private fun logout() {
+        val progressDialog =
+            ProgressDialog.show(activity, "Please wait", "Logging out...", true)
+        Toast.makeText(activity, "Log out", Toast.LENGTH_SHORT).show()
+        firebaseAuth?.signOut()
+        var intent = Intent(activity, LogActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        progressDialog.dismiss()
+        (activity as ActivityDashboard).startActivity(intent)
+        (activity as ActivityDashboard).finish()
     }
 
     override fun onBackPressed(): Boolean {

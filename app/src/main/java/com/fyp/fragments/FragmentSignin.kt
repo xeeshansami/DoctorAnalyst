@@ -86,9 +86,9 @@ class FragmentSignin() : Fragment(), View.OnClickListener {
                 if (task.isSuccessful) {
                     (activity as LogActivity).finish()
                     findNavController().navigate(R.id.action_signin_to_dashboard)
-                    Toast.makeText(activity, "Login successfully...", Toast.LENGTH_LONG).show()
+                    Toast.makeText(activity, "Login successfully...", Toast.LENGTH_SHORT).show()
                 } else {
-                    Log.e("ERROR", task.exception.toString())
+                    Log.e("ERROR", task.exception?.message.toString())
                     Toast.makeText(activity, task.exception!!.message, Toast.LENGTH_LONG)
                         .show()
                 }
