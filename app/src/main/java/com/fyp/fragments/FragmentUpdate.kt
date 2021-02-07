@@ -98,10 +98,10 @@ class FragmentUpdate() : Fragment() ,iOnBackPressed, View.OnClickListener {
         }
     }
 
-    fun updateDB() {
+    private fun updateDB() {
         try {
             var pwd = etPassword.text.toString().trim()
-            var confirmPwd = confirmEPassword.text.toString().trim()
+            var confirmPwd = confirmNewPassword.text.toString().trim()
             updatePwd(pwd,confirmPwd)
         } catch (ex: Exception) {
             Toast.makeText(
@@ -112,7 +112,7 @@ class FragmentUpdate() : Fragment() ,iOnBackPressed, View.OnClickListener {
         }
     }
 
-    fun updatePwd(currPwd: String, newPass: String) {
+    private fun updatePwd(currPwd: String, newPass: String) {
         val progressDialog =
             ProgressDialog.show(
                 activity,
@@ -202,7 +202,7 @@ class FragmentUpdate() : Fragment() ,iOnBackPressed, View.OnClickListener {
             confirmNewPassword.error = "Please enter the confirm new password!"
             confirmNewPassword.requestFocus()
             false
-        } else if (confirmPwd != pwd) {
+        } else if (confirmPwd != newPwdET) {
             newPwd.error = "New and confirm password is not match"
             newPwd.requestFocus()
             confirmNewPassword.setText("")
