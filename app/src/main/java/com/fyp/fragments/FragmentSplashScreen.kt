@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.fyp.R
+import com.google.firebase.auth.FirebaseAuth
 
 
 /**
@@ -20,7 +21,7 @@ import com.fyp.R
  */
 class FragmentSplashScreen : Fragment() {
     private val hideHandler = Handler()
-
+    private var firebaseAuth: FirebaseAuth? = null
     @Suppress("InlinedApi")
     private val hidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
@@ -55,12 +56,20 @@ class FragmentSplashScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fullscreenContent = view.findViewById(R.id.fullscreen_content)
-        sendToScreen()
+        init()
+    }
+    fun init(){
+        firebaseAuth = FirebaseAuth.getInstance()
     }
 
     override fun onResume() {
         super.onResume()
         activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        if(firebaseAuth?.currentUser?.uid!=null){
+            sendToScreen(R.id.action_splashScreen_to_dashboard)
+        }else{
+            sendToScreen(R.id.action_splashScreen_to_signin)
+        }
     }
 
     override fun onPause() {
@@ -70,13 +79,12 @@ class FragmentSplashScreen : Fragment() {
         activity?.window?.decorView?.systemUiVisibility = 0
         show()
     }
-    fun sendToScreen(){
+    fun sendToScreen(id:Int){
         Handler().postDelayed({
             findNavController().navigate(
-                R.id.action_splashScreen_to_signin, null,
+                id, null,
                 NavOptions.Builder().setPopUpTo(R.id.splashScreen, true).build()
             )
-
         }, 1500)
 
     }

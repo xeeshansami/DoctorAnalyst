@@ -73,8 +73,8 @@
             android:layout_marginRight="24dp"
             android:background="@drawable/bottom_line"
             android:hint="FIRST NAME"
+            android:text="FIRST NAME"
             android:inputType="textPersonName"
-            android:text=""
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
@@ -91,8 +91,8 @@
             android:layout_marginRight="24dp"
             android:background="@drawable/bottom_line"
             android:hint="LAST NAME"
+            android:text="LAST NAME"
             android:inputType="textPersonName"
-            android:text=""
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
@@ -109,8 +109,8 @@
             android:layout_marginRight="24dp"
             android:background="@drawable/bottom_line"
             android:hint="EMAIL"
+            android:text="info.paxees@gmail.com"
             android:inputType="textPersonName"
-            android:text=""
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
@@ -128,8 +128,8 @@
             android:layout_marginRight="24dp"
             android:background="@drawable/bottom_line"
             android:hint="MOBILE"
+            android:text="03412030258"
             android:inputType="number"
-            android:text=""
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
@@ -148,7 +148,7 @@
             android:background="@drawable/bottom_line"
             android:hint="DATE OF BIRTH"
             android:inputType="textPersonName"
-            android:text=""
+            android:text="12/2/2000"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
@@ -187,7 +187,7 @@
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text=""
+                android:text="qwerty1234"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -221,7 +221,7 @@
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text=""
+                android:text="qwerty1234"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 

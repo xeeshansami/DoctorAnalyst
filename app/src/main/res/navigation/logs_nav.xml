@@ -17,6 +17,13 @@
             app:exitAnim="@android:anim/decelerate_interpolator"
             app:popEnterAnim="@android:anim/anticipate_overshoot_interpolator"
             app:popExitAnim="@android:anim/linear_interpolator" />
+        <action
+            android:id="@+id/action_splashScreen_to_dashboard"
+            app:destination="@id/dashboard"
+            app:enterAnim="@android:anim/cycle_interpolator"
+            app:exitAnim="@android:anim/decelerate_interpolator"
+            app:popEnterAnim="@android:anim/anticipate_overshoot_interpolator"
+            app:popExitAnim="@android:anim/linear_interpolator" />
     </fragment>
     <fragment
         android:id="@+id/signin"
@@ -53,6 +60,14 @@
         <action
             android:id="@+id/action_signup_to_signin"
             app:destination="@id/signin"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+        <action
+            android:id="@+id/action_signup_to_dashboard"
+            app:destination="@id/dashboard"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
