@@ -1,17 +1,22 @@
 package com.fyp.fragments
 
-import android.app.DatePickerDialog
+import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.fyp.R
-import kotlinx.android.synthetic.main.fragment_signup.*
-import java.text.SimpleDateFormat
+import com.fyp.utils.Util
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.fragment_forget_password.*
 import java.util.*
 
-class FragmentForgetPassword() : Fragment() {
+
+class FragmentForgetPassword() : Fragment(), View.OnClickListener {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,5 +28,60 @@ class FragmentForgetPassword() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        init()
+    }
+
+    fun init() {
+        resetPasswordTv.setOnClickListener(this)
+    }
+
+    private fun validation(): Boolean {
+        var uname = emailTv.text.toString().trim()
+        return if (uname.isNullOrEmpty()) {
+            emailTv.error = "Please enter the email or mobile number"
+            emailTv.requestFocus()
+            false
+        } else if (!Util.isValidEmail(uname)) {
+            emailTv.error = "Please enter the valid email or mobile number"
+            emailTv.requestFocus()
+            false
+        } else {
+            true
+        }
+    }
+
+    @SuppressLint("WrongConstant")
+    fun forgetPwd(email: String) {
+        val progressDialog =
+            ProgressDialog.show(activity, "Please wait", "Reset email emailing...", true)
+        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(
+                        activity,
+                        "Reset password link have sent to your this $email please check",
+                        3000
+                    ).show()
+                    findNavController().popBackStack()
+                } else {
+                    Toast.makeText(
+                        activity,
+                        task.exception!!.message.toString(),
+                        3000
+                    ).show()
+                }
+                progressDialog.dismiss()
+            }
+    }
+
+    override fun onClick(v: View?) {
+        when (v!!.id) {
+            R.id.resetPasswordTv -> {
+                if (validation()) {
+                    var uname = emailTv.text.toString().trim()
+                    forgetPwd(uname)
+                }
+            }
+        }
     }
 }

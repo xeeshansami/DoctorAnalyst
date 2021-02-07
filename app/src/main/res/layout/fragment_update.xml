@@ -193,7 +193,7 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/confirmEPassword"
+                android:id="@+id/newPwd"
                 android:textColorHint="@color/hint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.fyp.R
 import com.fyp.activities.LogActivity
+import com.fyp.utils.Constant
+import com.fyp.utils.SessionManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 import kotlinx.android.synthetic.main.fragment_signin.*
@@ -20,6 +22,7 @@ import kotlinx.android.synthetic.main.fragment_signin.*
 class FragmentSignin() : Fragment(), View.OnClickListener {
 
     private var firebaseAuth: FirebaseAuth? = null
+    private var sessionManager: SessionManager? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,6 +39,7 @@ class FragmentSignin() : Fragment(), View.OnClickListener {
 
     fun init() {
         firebaseAuth = FirebaseAuth.getInstance()
+        sessionManager = SessionManager(activity as LogActivity)
         signInBtn.setOnClickListener(this)
         signUpBtn.setOnClickListener(this)
         forgetPwdTxt.setOnClickListener(this)
@@ -86,6 +90,7 @@ class FragmentSignin() : Fragment(), View.OnClickListener {
                 if (task.isSuccessful) {
                     (activity as LogActivity).finish()
                     findNavController().navigate(R.id.action_signin_to_dashboard)
+                    sessionManager?.setStringVal(Constant.USER_NAME,username)
                     Toast.makeText(activity, "Login successfully...", Toast.LENGTH_SHORT).show()
                 } else {
                     Log.e("ERROR", task.exception?.message.toString())
