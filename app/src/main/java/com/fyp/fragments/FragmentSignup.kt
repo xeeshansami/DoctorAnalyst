@@ -202,6 +202,7 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
             ?.child(firebaseAuth?.uid.toString())
             ?.setValue(hashMap)
             ?.addOnCompleteListener {
+                (activity as LogActivity).finish()
                 findNavController().navigate(R.id.action_signup_to_dashboard)
                 Toast.makeText(
                     activity, "Registration successfully...",
