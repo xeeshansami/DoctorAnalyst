@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.fyp.R
 import com.fyp.interfaces.iOnBackPressed
+import kotlinx.android.synthetic.main.fragment_active_excercise.*
 
 
 class FragmentActiveExcercise : Fragment(), View.OnClickListener, iOnBackPressed {
@@ -31,6 +32,14 @@ class FragmentActiveExcercise : Fragment(), View.OnClickListener, iOnBackPressed
 
     private fun init() {
         button1.setOnClickListener(this)
+        button2.setOnClickListener(this)
+        button3.setOnClickListener(this)
+        button4.setOnClickListener(this)
+        button5.setOnClickListener(this)
+        button6.setOnClickListener(this)
+        button7.setOnClickListener(this)
+        button8.setOnClickListener(this)
+        button9.setOnClickListener(this)
         addQuestInRv()
     }
 
@@ -40,19 +49,31 @@ class FragmentActiveExcercise : Fragment(), View.OnClickListener, iOnBackPressed
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.upperLibRehTv -> {
-                findNavController().navigate(R.id.action_fragmentRehabilitation_to_fragmentUpperLibRehabilition)
-            }R.id.mobTraTv -> {
-                findNavController().navigate(R.id.action_fragmentRehabilitation_to_fragmentMobilityTraning)
-            }R.id.gaitAndBalTv -> {
-                findNavController().navigate(R.id.action_fragmentRehabilitation_to_fragmentGetAndBalance)
+            R.id.button1 -> {
+                findNavController().navigate(R.id.action_fragmentVideo)
+            }R.id.button2 -> {
+                findNavController().navigate(R.id.action_fragmentVideo)
+            }R.id.button3 -> {
+                findNavController().navigate(R.id.action_fragmentVideo)
+            } R.id.button4 -> {
+                findNavController().navigate(R.id.action_fragmentVideo)
+            }R.id.button5 -> {
+                findNavController().navigate(R.id.action_fragmentVideo)
+            }R.id.button6 -> {
+                findNavController().navigate(R.id.action_fragmentVideo)
+            } R.id.button7 -> {
+                findNavController().navigate(R.id.action_fragmentVideo)
+            }R.id.button8 -> {
+                findNavController().navigate(R.id.action_fragmentVideo)
+            }R.id.button9 -> {
+                findNavController().navigate(R.id.action_fragmentVideo)
             }
         }
     }
 
     override fun onBackPressed(): Boolean {
         val navController = requireActivity().findNavController(R.id.fragment)
-        return if (navController.currentDestination?.id != R.id.fragmentRehabilitation) {
+        return if (navController.currentDestination?.id != R.id.fragmentActiveExcercise) {
             Log.i("onBackPress", "Not Up Finish All Fragment")
             requireActivity().finish()
             true

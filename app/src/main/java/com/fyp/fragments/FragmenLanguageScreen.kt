@@ -20,14 +20,14 @@ import com.fyp.utils.Constant
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 
-class FragmentDashboard : Fragment(), iOnItemClickListner,iOnBackPressed, View.OnClickListener {
+class FragmenLanguageScreen : Fragment(), iOnItemClickListner,iOnBackPressed, View.OnClickListener {
     var list=ArrayList<String>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dashboard, container, false)
+        return inflater.inflate(R.layout.fragment_language_screen, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -94,9 +94,9 @@ class FragmentDashboard : Fragment(), iOnItemClickListner,iOnBackPressed, View.O
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.but2->{
-                findNavController().navigate(R.id.action_dashboard_to_fragmentRehabilitation)
+                findNavController().navigate(R.id.action_fragment_language_screen_to_dashboard)
             }R.id.but3->{
-                findNavController().navigate(R.id.action_dashboard_to_ExcerciseScreen)
+                findNavController().navigate(R.id.action_fragment_language_screen_to_dashboard)
             }
         }
     }

@@ -126,7 +126,7 @@
                     android:layout_weight="1"
                     android:id="@+id/backBtn"
                     android:textColor="@color/themeColor"
-                    android:text="<< Back"
+                    android:text="@string/backStr"
                     android:layout_gravity="right"
                     android:background="@drawable/clickable"
                     android:layout_width="wrap_content"
@@ -134,9 +134,10 @@
                    <Button
                        android:layout_alignParentRight="true"
                        android:layout_gravity="right"
-                       android:layout_weight="1"android:id="@+id/nextBtn"
+                       android:layout_weight="1"
+                       android:id="@+id/nextBtn"
                     android:textColor="@color/themeColor"
-                    android:text="NEXT >>"
+                    android:text="@string/nextStr"
                     android:background="@drawable/clickable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"></Button>

@@ -19,9 +19,6 @@ import com.fyp.utils.SessionManager
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.fragment_signup.*
-import kotlinx.android.synthetic.main.fragment_signup.dateOfBirthTv
-import kotlinx.android.synthetic.main.fragment_signup.etPassword
 import kotlinx.android.synthetic.main.fragment_signup.firstNameTv
 import kotlinx.android.synthetic.main.fragment_signup.lastNameTv
 import kotlinx.android.synthetic.main.fragment_signup.mobileTv
@@ -46,7 +43,6 @@ class FragmentUpdate : Fragment() ,iOnBackPressed, View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
-        openDateDialog()
         getDataFromFirebase()
     }
     fun init(){
@@ -55,48 +51,7 @@ class FragmentUpdate : Fragment() ,iOnBackPressed, View.OnClickListener {
         sessionManager = SessionManager(activity as ActivityDashboard)
     }
 
-    private fun openDateDialog() {
-        dateOfBirthTv!!.setOnClickListener {
-            var datePicker =
-                activity?.let {
-                    DatePickerDialog(
-                            it,
-                            R.style.DialogTheme,
-                            date,
-                            myCalendar[Calendar.YEAR],
-                            myCalendar[Calendar.MONTH],
-                            myCalendar[Calendar.DAY_OF_MONTH]
-                    )
-                }
-//            datePicker?.getDatePicker()?.setMaxDate(System.currentTimeMillis())
-            datePicker?.show()
-        }
-    }
 
-    var date = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-        // TODO Auto-generated method stub
-        myCalendar.set(Calendar.YEAR, year)
-        myCalendar.set(Calendar.MONTH, monthOfYear)
-        myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-        myCalendar.add(Calendar.DATE, 0)
-        // Set the Calendar new date as minimum date of date picker
-        //val myFormat = "dd-MMM-yyyy" //In which you need put here
-        val myFormat = "yyyy-MM-dd"
-        val sdf = SimpleDateFormat(myFormat, Locale.US)
-        dateOfBirthTv.text = sdf.format(myCalendar.time)
-    }
-    override fun onBackPressed(): Boolean {
-        val navController = requireActivity().findNavController(R.id.fragment)
-        return if (navController.currentDestination?.id != R.id.fragmentUpdate) {
-            Log.i("onBackPress", "Not Up Finish All Fragment")
-            requireActivity().finish()
-            true
-        } else {
-            Log.i("onBackPress", "Up")
-            navController.popBackStack()
-            true
-        }
-    }
 
     fun getDataFromFirebase(){
         val progressDialog =
@@ -254,5 +209,9 @@ class FragmentUpdate : Fragment() ,iOnBackPressed, View.OnClickListener {
                 }
             }
         }
+    }
+
+    override fun onBackPressed(): Boolean {
+        return true
     }
 }

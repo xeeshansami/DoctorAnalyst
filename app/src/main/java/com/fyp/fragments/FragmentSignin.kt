@@ -41,50 +41,42 @@ class FragmentSignin() : Fragment(), View.OnClickListener {
         firebaseAuth = FirebaseAuth.getInstance()
         sessionManager = SessionManager(activity as LogActivity)
         signInBtn.setOnClickListener(this)
-        signUpBtn.setOnClickListener(this)
-        forgetPwdTxt.setOnClickListener(this)
+        signInAccountDescTxt.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.signInBtn -> {
                 if (validation()) {
-                    var uname = username.text.toString().trim()
-                    var pwd = etPassword.text.toString().trim()
-                    signIn(username = uname, password = pwd)
+//                    var uname = username.text.toString().trim()
+//                    signIn(uname)
+                    findNavController().navigate(R.id.action_signin_to_dashboard)
+//                    sessionManager?.setStringVal(Constant.USER_NAME,username)
+                    Toast.makeText(activity, "Login successfully...", Toast.LENGTH_SHORT).show()
                 }
             }
-            R.id.signUpBtn -> {
+            R.id.signInAccountDescTxt -> {
                 findNavController().navigate(R.id.action_signin_to_signup)
-            }
-            R.id.forgetPwdTxt -> {
-                findNavController().navigate(R.id.action_signin_to_fragmentForgetPassword)
             }
         }
     }
 
     private fun validation(): Boolean {
         var uname = username.text.toString().trim()
-        var pwd = etPassword.text.toString().trim()
         return if (uname.isNullOrEmpty()) {
-            username.error = "Please enter the username"
+            username.error = "Please enter the mobile number"
             username.requestFocus()
             false
-        } else if (pwd.isNullOrEmpty()) {
-            username.error = "Please enter the password"
-            username.requestFocus()
-            false
-        } else {
+        }  else {
             true
         }
     }
 
-    private fun signIn(username: String, password: String) {
+    private fun signIn(username: String) {
         val progressDialog =
             ProgressDialog.show(activity, "Please wait", "Logging in...", true)
         firebaseAuth!!.signInWithEmailAndPassword(
-            username,
-            password
+            username,""
         )
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {

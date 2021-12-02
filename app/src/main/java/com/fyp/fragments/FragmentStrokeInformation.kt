@@ -15,9 +15,6 @@ import com.fyp.adapters.ExerciseAdapters
 import com.fyp.interfaces.iOnBackPressed
 import com.fyp.interfaces.iOnVideoItemClickListner
 import com.fyp.models.mExercise
-import kotlinx.android.synthetic.main.fragment_dashboard.*
-import kotlinx.android.synthetic.main.fragment_questions.*
-import kotlinx.android.synthetic.main.fragment_upper_lib_rehabilation.*
 
 
 class FragmentStrokeInformation : Fragment(), View.OnClickListener ,iOnBackPressed,
@@ -54,19 +51,7 @@ class FragmentStrokeInformation : Fragment(), View.OnClickListener ,iOnBackPress
             }
             list.add(execise)
         }
-        rvExercise.apply {
-            layoutManager = LinearLayoutManager(
-                (activity as ActivityDashboard),
-                LinearLayoutManager.VERTICAL,
-                true
-            )
-            adapter = ExerciseAdapters(
-                activity as ActivityDashboard,
-                list!!,
-                this@FragmentStrokeInformation
-            )
-            adapter?.notifyDataSetChanged()
-        }
+
     }
 
     override fun onItemClick(view: VideoView, question: String, position: Int) {

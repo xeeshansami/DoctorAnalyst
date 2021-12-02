@@ -12,7 +12,7 @@ import com.fyp.activities.ActivityDashboard
 import com.fyp.interfaces.iOnBackPressed
 import com.fyp.models.mQuestions
 import com.fyp.utils.Constant
-import kotlinx.android.synthetic.main.fragment_questions.*
+import kotlinx.android.synthetic.main.fragment_video_screen.*
 
 
 class FragmentVideoScreen : Fragment(), View.OnClickListener ,iOnBackPressed{
@@ -34,7 +34,8 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener ,iOnBackPressed{
 
     private fun init() {
         addQuestInRv()
-        doneBtn.setOnClickListener(this)
+        backBtn.setOnClickListener(this)
+        nextBtn.setOnClickListener(this)
     }
 
     private fun addQuestInRv() {
@@ -43,25 +44,22 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener ,iOnBackPressed{
         for (element in questions) {
             list?.add(element)
         }
-        if(arguments != null) {
-          arguments?.getParcelable<mQuestions>(Constant.QUESTIONS).run {
-              var pos=this!!.position+1
-              questTv.text= pos.toString()+". "+this.questions.toString()
-              descTv.text=list[position]
-            }
-        }
+
     }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.doneBtn -> {
+            R.id.backBtn -> {
+                onBackPressed()
+            }
+            R.id.nextBtn -> {
                 onBackPressed()
             }
         }
     }
     override fun onBackPressed(): Boolean {
         val navController = requireActivity().findNavController(R.id.fragment)
-        return if (navController.currentDestination?.id != R.id.fragmentQuestions) {
+        return if (navController.currentDestination?.id != R.id.fragmentVideo) {
             Log.i("onBackPress", "Not Up Finish All Fragment")
             requireActivity().finish()
             true

@@ -23,9 +23,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_change_password.*
-import kotlinx.android.synthetic.main.fragment_signup.*
-import kotlinx.android.synthetic.main.fragment_signup.confirmEPassword
-import kotlinx.android.synthetic.main.fragment_signup.etPassword
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*

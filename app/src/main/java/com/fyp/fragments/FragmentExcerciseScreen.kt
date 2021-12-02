@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.VideoView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fyp.R
 import com.fyp.activities.ActivityDashboard
@@ -15,9 +16,7 @@ import com.fyp.adapters.ExerciseAdapters
 import com.fyp.interfaces.iOnBackPressed
 import com.fyp.interfaces.iOnVideoItemClickListner
 import com.fyp.models.mExercise
-import kotlinx.android.synthetic.main.fragment_dashboard.*
-import kotlinx.android.synthetic.main.fragment_questions.*
-import kotlinx.android.synthetic.main.fragment_upper_lib_rehabilation.*
+import kotlinx.android.synthetic.main.fragment_excercise_screen.*
 
 
 class FragmentExcerciseScreen : Fragment(), View.OnClickListener ,iOnBackPressed,
@@ -41,6 +40,9 @@ class FragmentExcerciseScreen : Fragment(), View.OnClickListener ,iOnBackPressed
 
     private fun init() {
         addQuestInRv()
+        but2.setOnClickListener(this)
+        but3.setOnClickListener(this)
+        but4.setOnClickListener(this)
     }
 
     private fun addQuestInRv(){
@@ -54,15 +56,7 @@ class FragmentExcerciseScreen : Fragment(), View.OnClickListener ,iOnBackPressed
             }
             list.add(execise)
         }
-        rvExercise.apply {
-            layoutManager = LinearLayoutManager((activity as ActivityDashboard), LinearLayoutManager.VERTICAL, true)
-            adapter = ExerciseAdapters(
-                activity as ActivityDashboard,
-                list!!,
-                this@FragmentExcerciseScreen
-            )
-            adapter?.notifyDataSetChanged()
-        }
+
     }
 
     override fun onItemClick(view: VideoView, question: String, position: Int) {
@@ -76,8 +70,14 @@ class FragmentExcerciseScreen : Fragment(), View.OnClickListener ,iOnBackPressed
     }
 
     override fun onClick(v: View?) {
-        when (v!!.id) {
-
+        when(v!!.id){
+            R.id.but2->{
+                findNavController().navigate(R.id.action_active_excercise)
+            } R.id.but3->{
+                findNavController().navigate(R.id.action_passive_excercise)
+            }R.id.but4->{
+            findNavController().navigate(R.id.action_functional_excercise)
+        }
         }
     }
     override fun onBackPressed(): Boolean {

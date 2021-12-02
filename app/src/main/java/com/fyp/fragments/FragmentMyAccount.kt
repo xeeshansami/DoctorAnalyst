@@ -17,7 +17,6 @@ import com.fyp.activities.LogActivity
 import com.fyp.interfaces.iOnBackPressed
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_account.*
-import kotlinx.android.synthetic.main.fragment_rehabilation.*
 
 
 class FragmentMyAccount : Fragment(), View.OnClickListener, iOnBackPressed {
@@ -78,7 +77,7 @@ class FragmentMyAccount : Fragment(), View.OnClickListener, iOnBackPressed {
 
     override fun onBackPressed(): Boolean {
         val navController = requireActivity().findNavController(R.id.fragment)
-        return if (navController.currentDestination?.id != R.id.fragmentRehabilitation) {
+        return if (navController.currentDestination?.id != R.id.fragmentMyAccount) {
             Log.i("onBackPress", "Not Up Finish All Fragment")
             requireActivity().finish()
             true

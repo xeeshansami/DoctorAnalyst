@@ -3,31 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/dashboard">
+    app:startDestination="@id/language">
+    <fragment
+        android:id="@+id/language"
+        android:name="com.fyp.fragments.FragmenLanguageScreen"
+        android:label="FragmenLanguageScreen"
+        tools:layout="@layout/fragment_language_screen">
+        <action
+            android:id="@+id/action_fragment_language_screen_to_dashboard"
+            app:destination="@id/dashboard"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+    </fragment>
     <fragment
         android:id="@+id/dashboard"
         android:name="com.fyp.fragments.FragmentDashboard"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard">
         <action
-            android:id="@+id/action_dashboard_to_fragmentQuestions"
-            app:destination="@id/fragmentQuestions"
+            android:id="@+id/action_dashboard_to_fragmentRehabilitation"
+            app:destination="@id/fragmentStrokeInformation"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
         <action
-            android:id="@+id/action_dashboard_to_fragmentRehabilitation"
-            app:destination="@id/fragmentRehabilitation"
+            android:id="@+id/action_dashboard_to_ExcerciseScreen"
+            app:destination="@id/fragmentExcerciseScreen"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentQuestions"
-        android:name="com.fyp.fragments.FragmentPassiveExcercise"
-        android:label="FragmentQuestions">
+        android:id="@+id/fragmentStrokeInformation"
+        android:name="com.fyp.fragments.FragmentStrokeInformation"
+        android:label="FragmentStrokeInformation"
+        tools:layout="@layout/fragment_stroke_information">
         <action
             android:id="@+id/action_fragmentQuestions_to_dashboard"
             app:destination="@id/dashboard"
@@ -37,35 +52,78 @@
             app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentRehabilitation"
-        android:name="com.fyp.fragments.FragmentActiveExcercise"
-        android:label="FragmentRehabilitation">
+        android:id="@+id/fragmentExcerciseScreen"
+        android:name="com.fyp.fragments.FragmentExcerciseScreen"
+        android:label="FragmentExcerciseScreen"
+        tools:layout="@layout/fragment_excercise_screen">
         <action
-            android:id="@+id/action_fragmentRehabilitation_to_fragmentUpperLibRehabilition"
-            app:destination="@id/fragmentUpperLibRehabilition"
+            android:id="@+id/action_active_excercise"
+            app:destination="@id/fragmentActiveExcercise"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
         <action
-            android:id="@+id/action_fragmentRehabilitation_to_fragmentMobilityTraning"
-            app:destination="@id/fragmentMobilityTraning"
+            android:id="@+id/action_passive_excercise"
+            app:destination="@id/fragmentPassiveExcercise"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
         <action
-            android:id="@+id/action_fragmentRehabilitation_to_fragmentGetAndBalance"
-            app:destination="@id/fragmentGetAndBalance"
+            android:id="@+id/action_functional_excercise"
+            app:destination="@id/fragmentFunctionalExcercise"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
-        android:id="@+id/fragmentUpperLibRehabilition"
-        android:name="com.fyp.fragments.FragmentUpperLibRehabilition"
-        android:label="FragmentUpperLibRehabilition" />
+        android:id="@+id/fragmentActiveExcercise"
+        android:name="com.fyp.fragments.FragmentActiveExcercise"
+        android:label="fragmentActiveExcercise"
+        tools:layout="@layout/fragment_active_excercise">
+        <action
+            android:id="@+id/action_fragmentVideo"
+            app:destination="@id/fragmentVideo"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentPassiveExcercise"
+        android:name="com.fyp.fragments.FragmentPassiveExcercise"
+        android:label="fragmentPassiveExcercise"
+        tools:layout="@layout/fragment_passive_excercise">
+        <action
+            android:id="@+id/action_fragmentVideo"
+            app:destination="@id/fragmentVideo"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentFunctionalExcercise"
+        android:name="com.fyp.fragments.FragmentFunctionalScreen"
+        android:label="FragmentFunctionalScreen"
+        tools:layout="@layout/fragment_functional_screen">
+        <action
+            android:id="@+id/action_fragmentVideo"
+            app:destination="@id/fragmentVideo"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentVideo"
+        android:name="com.fyp.fragments.FragmentVideoScreen"
+        android:label="FragmentVideoScreen"
+        tools:layout="@layout/fragment_video_screen">
+    </fragment>
+
     <fragment
         android:id="@+id/fragmentUpdate"
         android:name="com.fyp.fragments.FragmentUpdate"
