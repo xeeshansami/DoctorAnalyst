@@ -81,7 +81,7 @@
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/header" />
         <EditText
-            android:id="@+id/lastNameTv"
+            android:id="@+id/age"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginStart="24dp"
@@ -91,31 +91,14 @@
             android:layout_marginRight="24dp"
             android:background="@drawable/border"
             android:hint="Age"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:paddingLeft="10dp"
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/firstNameTv" />
-        <Spinner
-            android:id="@+id/emailTv"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:background="@drawable/border"
-            style="@style/TextAppearance.AppCompat.Widget.DropDownItem"
-            android:inputType="textPersonName"
-            android:textColor="@color/white"
-            android:paddingLeft="10dp"
-            android:textColorHint="@color/hint"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/lastNameTv" />
+
 
         <EditText
             android:paddingLeft="10dp"
@@ -129,12 +112,12 @@
             android:layout_marginRight="24dp"
             android:background="@drawable/border"
             android:hint="City"
-            android:inputType="number"
+            android:inputType="text"
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/emailTv" />
+            app:layout_constraintTop_toBottomOf="@+id/age" />
 
         <EditText
             android:id="@+id/mobileTv"
@@ -153,7 +136,22 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/cityTv" />
-
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/spinner_border"
+            android:inputType="textPersonName"
+            android:dropDownSelector="@drawable/border"
+            android:textColor="@color/themeColor"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/mobileTv" />
 
 
         <Button
@@ -170,23 +168,7 @@
             android:text="Create An Account"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/mobileTv" />
-        <TextView
-            android:id="@+id/signInAccountDescTxt"
-            android:layout_width="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_height="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="- OR -"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/registerBtn" />
-        app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
         <TextView
             android:id="@+id/login"
@@ -199,6 +181,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signInAccountDescTxt" />
+            app:layout_constraintTop_toBottomOf="@+id/registerBtn" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -33,25 +33,6 @@ class FragmentStrokeInformation : Fragment(), View.OnClickListener ,iOnBackPress
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init()
-    }
-
-    private fun init() {
-        addQuestInRv()
-    }
-
-    private fun addQuestInRv(){
-        val questions = (activity as ActivityDashboard).resources!!.getStringArray(R.array.exercise_array)
-        list.clear()
-        for (element in questions) {
-            var execise= mExercise()
-            execise.apply {
-                videoName=element
-                videoUrl="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4?_=1"
-            }
-            list.add(execise)
-        }
-
     }
 
     override fun onItemClick(view: VideoView, question: String, position: Int) {

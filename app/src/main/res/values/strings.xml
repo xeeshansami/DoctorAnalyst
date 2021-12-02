@@ -7,15 +7,10 @@
     <string name="para">aksljdklasdlkasjd</string>
     <string name="backStr"><![CDATA[<< Back]]></string>
     <string name="nextStr"><![CDATA[NEXT >>]]></string>
-    <array name="exercise_array">
-        <item>Exercise No 1</item>
-        <item>Exercise No 2</item>
-        <item>Exercise No 3</item>
-        <item>Exercise No 4</item>
-        <item>Exercise No 5</item>
-        <item>Exercise No 6</item>
-        <item>Exercise No 7</item>
-        <item>Exercise No 8</item>
+    <array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+
     </array>
     <array name="questions_array">
         <item>What is a stroke?</item>

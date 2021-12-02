@@ -1,6 +1,5 @@
 package com.fyp.fragments
 
-import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +7,7 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -21,14 +21,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_signup.*
-import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
     private val myCalendar: Calendar = Calendar.getInstance()
     private var firebaseAuth: FirebaseAuth? = null
     private var mDatabase:DatabaseReference?=null
+    private var list=ArrayList<String>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,22 +45,42 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
 
     fun init() {
         firebaseAuth = FirebaseAuth.getInstance();
+        login.setOnClickListener(this)
         registerBtn.setOnClickListener(this)
+        addQuestInRv()
     }
 
-
+    private fun addQuestInRv(){
+        val questions = (activity as LogActivity).resources!!.getStringArray(R.array.gender)
+        list.clear()
+        for (element in questions) {
+            list.add(element)
+        }
+        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
+            activity as LogActivity,
+           R.layout.quest_list_view,R.id.text1,
+            list
+        )
+        adapter.setDropDownViewResource(R.layout.quest_list_view)
+        spinner.setAdapter(adapter)
+    }
 
     private fun validation(): Boolean {
         var fName = firstNameTv.text.toString().trim()
-        var lName = lastNameTv.text.toString().trim()
+        var ageValue = age.text.toString().trim()
         var mobile = mobileTv.text.toString().trim()
+        var cityTvValue = cityTv.text.toString().trim()
         return if (fName.isNullOrEmpty()) {
-            firstNameTv.error = "Please enter the first name!"
+            firstNameTv.error = "Please enter the full name!"
             firstNameTv.requestFocus()
             false
-        } else if (lName.isNullOrEmpty()) {
-            lastNameTv.error = "Please enter the last name!"
-            lastNameTv.requestFocus()
+        } else if (ageValue.isNullOrEmpty()) {
+            age.error = "Please enter the age name!"
+            age.requestFocus()
+            false
+        } else if (cityTvValue.isNullOrEmpty()) {
+            age.error = "Please enter the city name!"
+            age.requestFocus()
             false
         } else if (mobile.isNullOrEmpty()) {
             mobileTv.error = "Please enter the mobile number!"
@@ -80,12 +101,12 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
             R.id.registerBtn -> {
                 if (validation()) {
                     var fName = firstNameTv.text.toString().trim()
-                    var lName = lastNameTv.text.toString().trim()
+                    var lName = age.text.toString().trim()
                     var mobile = mobileTv.text.toString().trim()
                     signup( fName, lName, mobile)
                 }
             }
-            R.id.signInBtn -> {
+            R.id.login -> {
                 onBackPressed()
             }
         }

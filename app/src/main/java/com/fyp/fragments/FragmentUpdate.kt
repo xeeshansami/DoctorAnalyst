@@ -1,15 +1,12 @@
 package com.fyp.fragments
 
-import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.fyp.R
 import com.fyp.activities.ActivityDashboard
@@ -20,10 +17,9 @@ import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_signup.firstNameTv
-import kotlinx.android.synthetic.main.fragment_signup.lastNameTv
+import kotlinx.android.synthetic.main.fragment_signup.age
 import kotlinx.android.synthetic.main.fragment_signup.mobileTv
 import kotlinx.android.synthetic.main.fragment_update.*
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -70,7 +66,7 @@ class FragmentUpdate : Fragment() ,iOnBackPressed, View.OnClickListener {
                         firstNameTv.setText(data.value.toString())
                     }
                     if (data.key == "lName") {
-                        lastNameTv.setText(data.value.toString())
+                        age.setText(data.value.toString())
                     }
                     if (data.key == "mobile") {
                         mobileTv.setText(data.value.toString())
@@ -119,7 +115,7 @@ class FragmentUpdate : Fragment() ,iOnBackPressed, View.OnClickListener {
                     user.updatePassword(newPass).addOnCompleteListener {
                         if (it.isSuccessful) {
                             var fName = firstNameTv.text.toString().trim()
-                            var lName = lastNameTv.text.toString().trim()
+                            var lName = age.text.toString().trim()
                             var mobile = mobileTv.text.toString().trim()
                             var dateOfBirth = dateOfBirthTv.text.toString().trim()
                             mDatabase = FirebaseDatabase.getInstance().getReference("fyproject-6150d").child("RegisteredUsers").child(firebaseAuth.currentUser!!.uid)
@@ -152,7 +148,7 @@ class FragmentUpdate : Fragment() ,iOnBackPressed, View.OnClickListener {
     }
     private fun validation(): Boolean {
         var fName = firstNameTv.text.toString().trim()
-        var lName = lastNameTv.text.toString().trim()
+        var lName = age.text.toString().trim()
         var mobile = mobileTv.text.toString().trim()
         var dateOfBirth = dateOfBirthTv.text.toString().trim()
         var pwd = etPassword.text.toString().trim()
@@ -163,8 +159,8 @@ class FragmentUpdate : Fragment() ,iOnBackPressed, View.OnClickListener {
             firstNameTv.requestFocus()
             false
         } else if (lName.isNullOrEmpty()) {
-            lastNameTv.error = "Please enter the last name!"
-            lastNameTv.requestFocus()
+            age.error = "Please enter the last name!"
+            age.requestFocus()
             false
         } else if (mobile.isNullOrEmpty()) {
             mobileTv.error = "Please enter the mobile number!"

@@ -17,7 +17,7 @@ class QuestionAdapters(context: Context,private val mList:ArrayList<String>,val 
         itemClickListner=onItemClickListner
     }
     open inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val questTv = view.questTv!!
+        val questTv = view.text1!!
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

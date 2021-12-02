@@ -8,9 +8,9 @@
 
     <TextView
         android:background="@drawable/bottom_line"
-        android:textColor="@color/white"
+        android:textColor="@color/themeColor"
         android:text="sdasdasasdasdasdasdasdasdasd"
-        android:id="@+id/questTv"
+        android:id="@+id/text1"
         android:textSize="15sp"
         android:singleLine="true"
         android:maxLines="2"
