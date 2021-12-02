@@ -9,19 +9,16 @@ import android.widget.VideoView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.fyp.R
-import com.fyp.activities.ActivityDashboard
-import com.fyp.adapters.ExerciseAdapters
 import com.fyp.interfaces.iOnBackPressed
 import com.fyp.interfaces.iOnVideoItemClickListner
-import com.fyp.models.mExercise
+import com.fyp.models.videoObjects
 import kotlinx.android.synthetic.main.fragment_excercise_screen.*
 
 
 class FragmentExcerciseScreen : Fragment(), View.OnClickListener ,iOnBackPressed,
     iOnVideoItemClickListner {
-    var list = ArrayList<mExercise>()
+    var list = ArrayList<videoObjects>()
     var myView: View? = null
     var videoPlay=true
     override fun onCreateView(
