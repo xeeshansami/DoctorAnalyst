@@ -48,49 +48,49 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
-
         <TextView
             android:id="@+id/header"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
-            android:gravity="center"
-            android:text="STOKE INFORMATION"
+            android:text="@string/app_name"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toTopOf="@+id/guideAbove" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvQuestions"
+
+        <TextView
+            android:id="@+id/but2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            app:layout_constraintEnd_toEndOf="@+id/guideline7"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="Stroke Information"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/border"
+            android:textSize="24dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/header"
-            tools:listitem="@layout/quest_list_view" />
-
-        <Button
-            android:layout_marginTop="24dp"
-            android:id="@+id/rehabiliationBtn"
-            android:layout_width="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/header" />
+        <TextView
+            android:padding="5dp"
+            android:id="@+id/but3"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/clickable"
-            android:text="REHABILITATION"
-            android:textColor="@color/themeColor"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintHorizontal_bias="1.0"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="Upper Limb Exercice"
+            android:textColor="@color/white"
+            android:background="@drawable/border"
+            android:textSize="24dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/rvQuestions" />
+            app:layout_constraintTop_toBottomOf="@+id/but2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

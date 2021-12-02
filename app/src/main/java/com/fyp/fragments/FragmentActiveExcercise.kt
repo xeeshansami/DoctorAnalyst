@@ -7,15 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.fyp.R
-import com.fyp.activities.ActivityDashboard
 import com.fyp.interfaces.iOnBackPressed
-import com.fyp.models.mQuestions
-import com.fyp.utils.Constant
-import kotlinx.android.synthetic.main.fragment_questions.*
 
 
-class FragmentQuestions : Fragment(), View.OnClickListener ,iOnBackPressed{
+class FragmentActiveExcercise : Fragment(), View.OnClickListener, iOnBackPressed {
     var list = ArrayList<String>()
     var myView: View? = null
     override fun onCreateView(
@@ -23,7 +20,7 @@ class FragmentQuestions : Fragment(), View.OnClickListener ,iOnBackPressed{
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        myView = inflater.inflate(R.layout.fragment_questions, container, false)
+        myView = inflater.inflate(R.layout.fragment_active_excercise, container, false)
         return myView
     }
 
@@ -33,35 +30,29 @@ class FragmentQuestions : Fragment(), View.OnClickListener ,iOnBackPressed{
     }
 
     private fun init() {
+        button1.setOnClickListener(this)
         addQuestInRv()
-        doneBtn.setOnClickListener(this)
     }
 
     private fun addQuestInRv() {
-        val questions =
-            (activity as ActivityDashboard).resources!!.getStringArray(R.array.questions_desc_array)
-        for (element in questions) {
-            list?.add(element)
-        }
-        if(arguments != null) {
-          arguments?.getParcelable<mQuestions>(Constant.QUESTIONS).run {
-              var pos=this!!.position+1
-              questTv.text= pos.toString()+". "+this.questions.toString()
-              descTv.text=list[position]
-            }
-        }
+
     }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.doneBtn -> {
-                onBackPressed()
+            R.id.upperLibRehTv -> {
+                findNavController().navigate(R.id.action_fragmentRehabilitation_to_fragmentUpperLibRehabilition)
+            }R.id.mobTraTv -> {
+                findNavController().navigate(R.id.action_fragmentRehabilitation_to_fragmentMobilityTraning)
+            }R.id.gaitAndBalTv -> {
+                findNavController().navigate(R.id.action_fragmentRehabilitation_to_fragmentGetAndBalance)
             }
         }
     }
+
     override fun onBackPressed(): Boolean {
         val navController = requireActivity().findNavController(R.id.fragment)
-        return if (navController.currentDestination?.id != R.id.fragmentQuestions) {
+        return if (navController.currentDestination?.id != R.id.fragmentRehabilitation) {
             Log.i("onBackPress", "Not Up Finish All Fragment")
             requireActivity().finish()
             true

@@ -53,12 +53,12 @@
             android:id="@+id/header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
-            android:text="CREATE AN ACCOUNT"
+            android:text="@string/app_name"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toTopOf="@+id/guideAbove" />
 
@@ -71,8 +71,9 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:background="@drawable/bottom_line"
-            android:hint="FIRST NAME"
+            android:background="@drawable/border"
+            android:paddingLeft="10dp"
+            android:hint="Full Name"
             android:inputType="textPersonName"
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
@@ -88,15 +89,16 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:background="@drawable/bottom_line"
-            android:hint="LAST NAME"
+            android:background="@drawable/border"
+            android:hint="Age"
             android:inputType="textPersonName"
+            android:paddingLeft="10dp"
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/firstNameTv" />
-        <EditText
+        <Spinner
             android:id="@+id/emailTv"
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -105,14 +107,34 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:background="@drawable/bottom_line"
-            android:hint="EMAIL"
+            android:background="@drawable/border"
+            style="@style/TextAppearance.AppCompat.Widget.DropDownItem"
             android:inputType="textPersonName"
             android:textColor="@color/white"
+            android:paddingLeft="10dp"
             android:textColorHint="@color/hint"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/lastNameTv" />
+
+        <EditText
+            android:paddingLeft="10dp"
+            android:id="@+id/cityTv"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/border"
+            android:hint="City"
+            android:inputType="number"
+            android:textColor="@color/white"
+            android:textColorHint="@color/hint"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/emailTv" />
 
         <EditText
             android:id="@+id/mobileTv"
@@ -123,100 +145,15 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:background="@drawable/bottom_line"
-            android:hint="MOBILE"
+            android:background="@drawable/border"
+            android:hint="Mobile Number"
             android:inputType="number"
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/emailTv" />
+            app:layout_constraintTop_toBottomOf="@+id/cityTv" />
 
-        <TextView
-            android:id="@+id/dateOfBirthTv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:background="@drawable/bottom_line"
-            android:hint="DATE OF BIRTH"
-            android:inputType="textPersonName"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/hint"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/mobileTv" />
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:background="@drawable/bottom_line"
-            android:id="@+id/passwordTv"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/dateOfBirthTv"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            app:hintTextColor="@color/hint"
-            app:passwordToggleEnabled="true"
-            style="@style/EdittextTheme"
-            app:passwordToggleTint="@color/hint"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPassword"
-                android:textColorHint="@color/hint"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:hint="PASSWORD"
-                android:textColor="@color/white"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:singleLine="true"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/confirmPasswordTv"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/passwordTv"
-            android:background="@drawable/bottom_line"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            app:hintTextColor="@color/hint"
-            app:passwordToggleEnabled="true"
-            style="@style/EdittextTheme"
-            app:passwordToggleTint="@color/hint"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/confirmEPassword"
-                android:textColorHint="@color/hint"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:hint="CONFIRM PASWORD"
-                android:textColor="@color/white"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:singleLine="true"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button
@@ -230,9 +167,10 @@
             android:layout_marginRight="8dp"
             android:background="@drawable/clickable"
             android:textColor="@color/themeColor"
+            android:text="Create An Account"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/confirmPasswordTv" />
+            app:layout_constraintTop_toBottomOf="@+id/mobileTv" />
         <TextView
             android:id="@+id/signInAccountDescTxt"
             android:layout_width="wrap_content"
@@ -248,22 +186,19 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/registerBtn" />
+        app:layout_constraintGuide_percent="0.5" />
 
-        <Button
-            android:id="@+id/signInBtn"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="50dp"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/clickable"
-            android:text="SIGN IN"
-            android:textColor="@color/themeColor"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            android:layout_marginTop="24dp"
+            android:text="Login"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signInAccountDescTxt" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

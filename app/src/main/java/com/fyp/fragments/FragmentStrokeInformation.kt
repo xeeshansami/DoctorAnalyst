@@ -13,7 +13,6 @@ import com.fyp.R
 import com.fyp.activities.ActivityDashboard
 import com.fyp.adapters.ExerciseAdapters
 import com.fyp.interfaces.iOnBackPressed
-import com.fyp.interfaces.iOnItemClickListner
 import com.fyp.interfaces.iOnVideoItemClickListner
 import com.fyp.models.mExercise
 import kotlinx.android.synthetic.main.fragment_dashboard.*
@@ -21,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_questions.*
 import kotlinx.android.synthetic.main.fragment_upper_lib_rehabilation.*
 
 
-class FragmentMobilityTraning : Fragment(), View.OnClickListener ,iOnBackPressed,
+class FragmentStrokeInformation : Fragment(), View.OnClickListener ,iOnBackPressed,
     iOnVideoItemClickListner {
     var list = ArrayList<mExercise>()
     var myView: View? = null
@@ -31,7 +30,7 @@ class FragmentMobilityTraning : Fragment(), View.OnClickListener ,iOnBackPressed
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        myView = inflater.inflate(R.layout.fragment_mobility_traning, container, false)
+        myView = inflater.inflate(R.layout.fragment_stroke_information, container, false)
         return myView
     }
 
@@ -56,11 +55,15 @@ class FragmentMobilityTraning : Fragment(), View.OnClickListener ,iOnBackPressed
             list.add(execise)
         }
         rvExercise.apply {
-            layoutManager = LinearLayoutManager((activity as ActivityDashboard), LinearLayoutManager.VERTICAL, true)
+            layoutManager = LinearLayoutManager(
+                (activity as ActivityDashboard),
+                LinearLayoutManager.VERTICAL,
+                true
+            )
             adapter = ExerciseAdapters(
                 activity as ActivityDashboard,
                 list!!,
-                this@FragmentMobilityTraning
+                this@FragmentStrokeInformation
             )
             adapter?.notifyDataSetChanged()
         }

@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentQuestions"
-        android:name="com.fyp.fragments.FragmentQuestions"
+        android:name="com.fyp.fragments.FragmentPassiveExcercise"
         android:label="FragmentQuestions">
         <action
             android:id="@+id/action_fragmentQuestions_to_dashboard"
@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentRehabilitation"
-        android:name="com.fyp.fragments.FragmentRehabilitation"
+        android:name="com.fyp.fragments.FragmentActiveExcercise"
         android:label="FragmentRehabilitation">
         <action
             android:id="@+id/action_fragmentRehabilitation_to_fragmentUpperLibRehabilition"
@@ -72,11 +72,11 @@
         android:label="FragmentUpdate" />
     <fragment
         android:id="@+id/fragmentGetAndBalance"
-        android:name="com.fyp.fragments.FragmentGetAndBalance"
+        android:name="com.fyp.fragments.FragmentStrokeInformation"
         android:label="FragmentGetAndBalance" />
     <fragment
         android:id="@+id/fragmentMobilityTraning"
-        android:name="com.fyp.fragments.FragmentMobilityTraning"
+        android:name="com.fyp.fragments.FragmentExcerciseScreen"
         android:label="FragmentMobilityTraning" />
     <fragment
         android:id="@+id/fragmentForgetPassword2"

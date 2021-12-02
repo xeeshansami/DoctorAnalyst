@@ -49,19 +49,6 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
-        android:text="SIGN IN"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/guideAbove" />
-
     <EditText
         android:id="@+id/username"
         android:layout_width="0dp"
@@ -71,66 +58,34 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
-        android:background="@drawable/bottom_line"
-        android:hint="EMAIL or PASSWORD"
+        android:background="@drawable/border"
+        android:paddingLeft="10dp"
+        android:hint="Mobile Number"
         android:inputType="textPersonName"
         android:text=""
         android:textColor="@color/white"
         android:textColorHint="@color/hint"
-        app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/header" />
-
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/bottom_line"
-        app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/username"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        app:hintTextColor="@color/hint"
-        app:passwordToggleEnabled="true"
-        style="@style/EdittextTheme"
-        app:passwordToggleTint="@color/hint"
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPassword"
-            android:textColorHint="@color/hint"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:hint="PASSWORD"
-            android:textColor="@color/white"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:text=""
-          />
-    </com.google.android.material.textfield.TextInputLayout>
+      app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+      />
 
     <TextView
-        android:id="@+id/forgetPwdTxt"
+        android:id="@+id/header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="FORGET PASSWORD"
+        android:layout_marginTop="100dp"
+        android:gravity="center_vertical"
+        android:text="@string/app_name"
+        android:textSize="50dp"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/signInAccountDescTxt"
@@ -142,7 +97,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="NEW HERE? REGISTER NOW"
+        android:text="Create New Account"
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -152,8 +107,8 @@
         android:id="@+id/signInBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="50dp"
         android:layout_marginRight="8dp"
@@ -162,23 +117,8 @@
         android:textColor="@color/themeColor"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/forgetPwdTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
-    <Button
-        android:id="@+id/signUpBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="8dp"
-        android:background="@drawable/clickable"
-        android:text="CREATE AN ACCOUNT"
-        android:textColor="@color/themeColor"
-        app:layout_constraintEnd_toStartOf="@+id/guideline7"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/signInAccountDescTxt" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

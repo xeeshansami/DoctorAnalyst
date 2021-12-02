@@ -53,27 +53,18 @@
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
             android:layout_marginTop="24dp"
             android:gravity="center"
-            android:text="REHABLIATION"
+            android:background="@drawable/border"
+            android:text="Stroke Information"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toTopOf="@+id/guideAbove" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:background="@drawable/bottom_line"
-            app:layout_constraintEnd_toEndOf="@+id/guideline7"
-            app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/header"></View>
+
 
         <TextView
             android:id="@+id/upperLibRehTv"
@@ -83,8 +74,7 @@
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
-            android:background="@drawable/bottom_line"
-            android:text="UPPER LIB REHABLIATION"
+            android:text="This is a text"
             android:textColor="@color/white"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="@+id/guideline7"
@@ -92,19 +82,7 @@
             app:layout_constraintTop_toBottomOf="@+id/header"
             tools:listitem="@layout/quest_list_view" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvExercise"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideBottom"
-            app:layout_constraintEnd_toEndOf="@+id/guideline7"
-            app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/upperLibRehTv"
-            tools:listitem="@layout/quest_list_view" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

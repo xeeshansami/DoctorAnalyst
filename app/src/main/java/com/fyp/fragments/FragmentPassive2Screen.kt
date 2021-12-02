@@ -1,15 +1,10 @@
 package com.fyp.fragments
 
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebChromeClient
-import android.webkit.WebSettings
-import android.webkit.WebSettings.PluginState
-import android.widget.MediaController
 import android.widget.VideoView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -25,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_questions.*
 import kotlinx.android.synthetic.main.fragment_upper_lib_rehabilation.*
 
 
-class FragmentGetAndBalance : Fragment(), View.OnClickListener ,iOnBackPressed,
+class FragmentPassive2Screen : Fragment(), View.OnClickListener ,iOnBackPressed,
     iOnVideoItemClickListner {
     var list = ArrayList<mExercise>()
     var myView: View? = null
@@ -35,7 +30,7 @@ class FragmentGetAndBalance : Fragment(), View.OnClickListener ,iOnBackPressed,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        myView = inflater.inflate(R.layout.fragment_get_and_balance, container, false)
+        myView = inflater.inflate(R.layout.fragment_passive_2_screen, container, false)
         return myView
     }
 
@@ -60,15 +55,11 @@ class FragmentGetAndBalance : Fragment(), View.OnClickListener ,iOnBackPressed,
             list.add(execise)
         }
         rvExercise.apply {
-            layoutManager = LinearLayoutManager(
-                (activity as ActivityDashboard),
-                LinearLayoutManager.VERTICAL,
-                true
-            )
+            layoutManager = LinearLayoutManager((activity as ActivityDashboard), LinearLayoutManager.VERTICAL, true)
             adapter = ExerciseAdapters(
                 activity as ActivityDashboard,
                 list!!,
-                this@FragmentGetAndBalance
+                this@FragmentPassive2Screen
             )
             adapter?.notifyDataSetChanged()
         }
