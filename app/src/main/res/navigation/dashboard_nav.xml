@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/language">
-    <fragment
+    app:startDestination="@id/dashboard">
+   <!-- <fragment
         android:id="@+id/language"
         android:name="com.fyp.fragments.FragmenLanguageScreen"
         android:label="FragmenLanguageScreen"
@@ -17,7 +17,7 @@
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
 
-    </fragment>
+    </fragment>-->
     <fragment
         android:id="@+id/dashboard"
         android:name="com.fyp.fragments.FragmentDashboard"
@@ -103,6 +103,27 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_passive_excercise2"
+            app:destination="@id/fragmentPassiveExcercise2"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentPassiveExcercise2"
+        android:name="com.fyp.fragments.FragmentPassiveExcercise2"
+        android:label="FragmentPassiveExcercise2"
+        tools:layout="@layout/fragment_passive_2_excercise">
+        <action
+            android:id="@+id/action_fragmentVideo"
+            app:destination="@id/fragmentVideo"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
     </fragment>
     <fragment
         android:id="@+id/fragmentFunctionalExcercise"

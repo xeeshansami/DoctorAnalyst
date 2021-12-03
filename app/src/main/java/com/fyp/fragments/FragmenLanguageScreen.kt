@@ -1,23 +1,27 @@
 package com.fyp.fragments
 
+import android.app.Activity
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.fyp.R
 import com.fyp.activities.ActivityDashboard
-import com.fyp.adapters.QuestionAdapters
+import com.fyp.activities.AppLang
 import com.fyp.interfaces.iOnBackPressed
 import com.fyp.interfaces.iOnItemClickListner
 import com.fyp.models.mQuestions
 import com.fyp.utils.Constant
 import kotlinx.android.synthetic.main.fragment_dashboard.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class FragmenLanguageScreen : Fragment(), iOnItemClickListner,iOnBackPressed, View.OnClickListener {
@@ -48,6 +52,15 @@ class FragmenLanguageScreen : Fragment(), iOnItemClickListner,iOnBackPressed, Vi
         for (element in questions) {
             list?.add(element)
         }
+    }
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    fun setLocale(activity: Activity, languageCode: String?) {
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+        val resources = activity.resources
+        val config = resources.configuration
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
     }
 
     override fun onItemClick(view: View, question: String, position: Int) {
@@ -91,12 +104,15 @@ class FragmenLanguageScreen : Fragment(), iOnItemClickListner,iOnBackPressed, Vi
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.but2->{
-                findNavController().navigate(R.id.action_fragment_language_screen_to_dashboard)
+                AppLang.AppLang(requireActivity(),"en")
+//                findNavController().navigate(R.id.action_fragment_language_screen_to_dashboard)
             }R.id.but3->{
-                findNavController().navigate(R.id.action_fragment_language_screen_to_dashboard)
+            AppLang.AppLang(requireActivity(),"ur")
+//                findNavController().navigate(R.id.action_fragment_language_screen_to_dashboard)
             }
         }
     }

@@ -19,13 +19,12 @@ import com.fyp.utils.Constant
 import kotlinx.android.synthetic.main.fragment_video_screen.*
 
 
-class FragmentVideoScreen : Fragment(), View.OnClickListener ,iOnBackPressed{
-    var list = ArrayList<String>()
+class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
     var myView: View? = null
     var obj = ArrayList<videoObjects>()
-    var next=0
-    var back=0
-    var text=""
+    var next = 0
+    var back = 0
+    var text = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,10 +40,8 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener ,iOnBackPressed{
     }
 
 
-
-
     @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
-    private fun webview(html: String,heading:String,text:String) {
+    private fun webview(html: String, heading: String, text: String) {
         ivForm.settings.javaScriptEnabled = true;
         ivForm.settings.setDomStorageEnabled(true);
         ivForm.getSettings().builtInZoomControls = true;
@@ -74,6 +71,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener ,iOnBackPressed{
             ) {
                 handler!!.proceed();
             }
+
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
 
@@ -102,52 +100,63 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener ,iOnBackPressed{
         }
 
         ivForm.loadUrl(html)
-        subtitleHeader.text=heading
-        translationText.text=text
+        subtitleHeader.text = heading
+        translationText.text = text
     }
+
     private fun init() {
-        addQuestInRv()
         backBtn.setOnClickListener(this)
         nextBtn.setOnClickListener(this)
         try {
             if (requireArguments() != null && requireArguments().containsKey(Constant.WEBVIEW_LINK)) {
-                requireArguments().getParcelableArrayList<videoObjects>(Constant.WEBVIEW_LINK)?.let {obj=it }
-                requireArguments().getInt(Constant.POSITION)?.let {next=it }
-                requireArguments().getInt(Constant.POSITION)?.let {back=it }
-                webview(obj[next].videoUrl,obj[next].heading,obj[next].text)
+                requireArguments().getParcelableArrayList<videoObjects>(Constant.WEBVIEW_LINK)
+                    ?.let { obj = it }
+                requireArguments().getInt(Constant.POSITION)?.let { next = it }
+                requireArguments().getInt(Constant.POSITION)?.let { back = it }
+                webview(obj[next].videoUrl, obj[next].heading, obj[next].text)
             }
         } catch (e: IllegalStateException) {
         }
 
     }
 
-    private fun addQuestInRv() {
-        val questions =
-            (activity as ActivityDashboard).resources!!.getStringArray(R.array.questions_desc_array)
-        for (element in questions) {
-            list?.add(element)
-        }
-
-    }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.backBtn -> {
-                if(back in 1..8){
+                if (back in 1..8 && obj.size == 9) {
                     back--
-                    next=back
-                    webview(obj[next].videoUrl,obj[next].heading,obj[next].text)
+                    next = back
+                    webview(obj[next].videoUrl, obj[next].heading, obj[next].text)
+                } else if (back in 1..1 && obj.size == 2) {
+                    back--
+                    next = back
+                    webview(obj[next].videoUrl, obj[next].heading, obj[next].text)
+                } else if (back in 1..12 && obj.size == 13) {
+                    back--
+                    next = back
+                    webview(obj[next].videoUrl, obj[next].heading, obj[next].text)
                 }
             }
             R.id.nextBtn -> {
-                if(next in 0..7){
+                if (next in 0..7 && obj.size == 9) {
                     next++
-                    back=next
-                    webview(obj[next].videoUrl,obj[next].heading,obj[next].text)
+                    back = next
+                    webview(obj[next].videoUrl, obj[next].heading, obj[next].text)
+                }else if (next in 0..0 && obj.size == 2) {
+                    next++
+                    back = next
+                    webview(obj[next].videoUrl, obj[next].heading, obj[next].text)
+                }else if (next in 0..11 && obj.size == 13) {
+                    next++
+                    back = next
+                    webview(obj[next].videoUrl, obj[next].heading, obj[next].text)
                 }
+
             }
         }
     }
+
     override fun onBackPressed(): Boolean {
         val navController = requireActivity().findNavController(R.id.fragment)
         return if (navController.currentDestination?.id != R.id.fragmentVideo) {

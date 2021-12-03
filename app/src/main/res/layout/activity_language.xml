@@ -2,11 +2,11 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/NestedScrollBarStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
-
+    style="@style/NestedScrollBarStyle"
+    android:fillViewport="true"
+    >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_end="54dp" />
+            app:layout_constraintGuide_end="24dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/center"
@@ -48,26 +48,33 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
-
-
         <TextView
             android:id="@+id/header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="100dp"
-            android:gravity="center_vertical"
             android:text="@string/app_name"
-            android:textSize="50dp"
+            android:layout_marginTop="100dp"
+            app:layout_constraintTop_toTopOf="parent"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:textSize="50dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+             />
 
-
-
+        <TextView
+            android:id="@+id/but1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Language"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/header" />
         <TextView
             android:id="@+id/but2"
             android:layout_width="match_parent"
@@ -76,14 +83,13 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
-            android:text="@string/active_exercise"
+            android:text="English"
             android:padding="5dp"
             android:textColor="@color/white"
             android:background="@drawable/border"
             android:textSize="24dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/header" />
-
+            app:layout_constraintTop_toBottomOf="@+id/but1" />
         <TextView
             android:padding="5dp"
             android:id="@+id/but3"
@@ -93,28 +99,11 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
-            android:text="@string/passive_exercise"
+            android:text="Urdu"
             android:textColor="@color/white"
             android:background="@drawable/border"
             android:textSize="24dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/but2" />
-
-        <TextView
-            android:padding="5dp"
-            android:id="@+id/but4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:gravity="center"
-            android:text="@string/functional_activities"
-            android:textColor="@color/white"
-            android:background="@drawable/border"
-            android:textSize="24dp"
-            app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/but3" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

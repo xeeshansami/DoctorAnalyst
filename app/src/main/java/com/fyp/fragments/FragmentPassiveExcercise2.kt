@@ -17,7 +17,7 @@ import com.fyp.utils.Constant
 import kotlinx.android.synthetic.main.fragment_passive_excercise.*
 
 
-class FragmentPassiveExcercise : Fragment(), View.OnClickListener, iOnBackPressed {
+class FragmentPassiveExcercise2 : Fragment(), View.OnClickListener, iOnBackPressed {
     var list = ArrayList<videoObjects>()
     var headings = ArrayList<String>()
     var urls = ArrayList<String>()
@@ -28,7 +28,7 @@ class FragmentPassiveExcercise : Fragment(), View.OnClickListener, iOnBackPresse
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        myView = inflater.inflate(R.layout.fragment_passive_excercise, container, false)
+        myView = inflater.inflate(R.layout.fragment_passive_2_excercise, container, false)
         return myView
     }
 
@@ -40,21 +40,20 @@ class FragmentPassiveExcercise : Fragment(), View.OnClickListener, iOnBackPresse
     private fun init() {
         button1.setOnClickListener(this)
         button2.setOnClickListener(this)
-        button3.setOnClickListener(this)
-        headings!!.add("ROMs for Elbow")
-        urls!!.add("https://www.dropbox.com/s/vv8v3ytzaox12fi/03%20ROMs%20for%20Elbow.mp4?dl=0")
+        headings!!.add("Shoulder Flexion")
+        urls!!.add("https://www.dropbox.com/s/58cyuwfz5ox7dgr/01%20Shoulder%20Flexion.mp4?dl=0")
         text!!.add("•\tPatient should be in supine lying position.\n" +
                 "•\tCaregiver should be standing at the side of patient.\n" +
-                "•\tHold the patient’s affected arm from the wrist then bend the elbow and straighten it as demonstrated in the video.\n" +
+                "•\tHold the patient’s arm at the level of elbow and hand as demonstrated in the video.\n" +
+                "•\tPerform the flexion of shoulder as demonstrated in the video.\n" +
                 "•\tRepeat this exercise 10 times.\n")
 
-        headings!!.add("ROMs for Wrist, Fingers and Thumb")
-        urls!!.add("https://www.dropbox.com/s/dzhfrxy7w9qfj94/04%20ROMs%20for%20Wrist%2C%20Fingers%20and%20Thumb.mp4?dl=0")
+        headings!!.add("Shoulder Abduction")
+        urls!!.add("https://www.dropbox.com/s/hop8pyc1ugqdtcp/02%20Shoulder%20Abduction.mp4?dl=0")
         text!!.add("•\tPatient should be in supine lying position.\n" +
                 "•\tCaregiver should be standing at the side of patient.\n" +
-                "•\tHold the patient’s affected arm from the wrist then bend the wrist first then straighten it as demonstrated in the video.\n" +
-                "•\tRepeat this exercise 10 times.\n" +
-                "•\tHold the affected arm from wrist then move the thumb and fingers in all possible directions and return to original position.\n" +
+                "•\tHold the patient’s affected arm at the level of elbow and hand as demonstrated in the video.\n" +
+                "•\tThen abduct the shoulder as demonstrated in the video.\n" +
                 "•\tRepeat this exercise 10 times.\n")
         for (x in 0 until  headings.size) {
             var obj = videoObjects()
@@ -70,22 +69,18 @@ class FragmentPassiveExcercise : Fragment(), View.OnClickListener, iOnBackPresse
         var bundle = Bundle()
         when (v!!.id) {
             R.id.button1 -> {
-                findNavController().navigate(R.id.action_passive_excercise2, bundle)
-            }
-            R.id.button2 -> {
                 //01 Bilateral Shoulder Flexion with both Hands Interlocked
                 bundle.putParcelableArrayList(
                     Constant.WEBVIEW_LINK,
                     list
                 )
-
                 bundle.putInt(
                     Constant.POSITION,
                     0
                 )
                 findNavController().navigate(R.id.action_fragmentVideo, bundle)
             }
-            R.id.button3 -> {
+            R.id.button2 -> {
                 //01 Bilateral Shoulder Flexion with both Hands Interlocked
                 bundle.putParcelableArrayList(
                     Constant.WEBVIEW_LINK,
@@ -97,6 +92,7 @@ class FragmentPassiveExcercise : Fragment(), View.OnClickListener, iOnBackPresse
                 )
                 findNavController().navigate(R.id.action_fragmentVideo, bundle)
             }
+
         }
     }
 

@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_end="54dp" />
+            app:layout_constraintGuide_end="24dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/center"
@@ -48,7 +48,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
-
 
         <TextView
             android:id="@+id/header"
@@ -65,56 +64,52 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-
-
         <TextView
-            android:id="@+id/but2"
+            android:id="@+id/subheader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
-            android:text="@string/active_exercise"
+            android:text="Passive Exercise"
             android:padding="5dp"
             android:textColor="@color/white"
-            android:background="@drawable/border"
             android:textSize="24dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/header" />
 
-        <TextView
-            android:padding="5dp"
-            android:id="@+id/but3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:gravity="center"
-            android:text="@string/passive_exercise"
-            android:textColor="@color/white"
-            android:background="@drawable/border"
-            android:textSize="24dp"
-            app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/but2" />
 
         <TextView
-            android:padding="5dp"
-            android:id="@+id/but4"
+            android:id="@+id/button1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:gravity="center"
-            android:text="@string/functional_activities"
+            android:text="Shoulder Flexion"
+            android:padding="5dp"
             android:textColor="@color/white"
             android:background="@drawable/border"
-            android:textSize="24dp"
+            android:textSize="15dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/but3" />
+            app:layout_constraintTop_toBottomOf="@+id/subheader" />
+
+
+        <TextView
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Shoulder Abduction"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/border"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/button1" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

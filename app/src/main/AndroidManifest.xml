@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.LogActivity"
+        <activity android:name=".activities.LanguageActivity"
             android:theme="@style/AppTheme"
             >
             <intent-filter>
@@ -23,6 +23,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activities.LogActivity"
+            android:theme="@style/AppTheme"
+            >
         </activity>
         <activity android:name=".activities.ActivityDashboard"></activity>
     </application>

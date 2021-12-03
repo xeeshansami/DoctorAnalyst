@@ -1,7 +1,7 @@
 <resources>
     <array name="gender">
-        <item>Male</item>
-        <item>Female</item>
+        <item>مرد</item>
+        <item>عورت</item>
 
     </array>
     <array name="questions_array">
@@ -126,10 +126,16 @@ Emotional problems.\n
 Pain.\n
 Changes in behavior and self-care ability.\n
 </string>
-    <string name="mobile_number">Mobile Number</string>
-    <string name="login">LOGIN</string>
-    <string name="create_new_account">Create New Account</string>
-    <string name="passive_exercise">Passive Exercise</string>
-    <string name="functional_activities">Functional Activities</string>
-    <string name="active_exercise">Active Exercise</string>
+    <string name="mobile_number">موبائل فون کانمبر
+</string>
+    <string name="login">لاگ ان کریں
+</string>
+    <string name="create_new_account">نیا اکاؤنٹ بنانے
+</string>
+    <string name="passive_exercise">غیر فعال ورزش
+</string>
+    <string name="functional_activities">فنکشنل سرگرمیاں
+</string>
+    <string name="active_exercise">فعال ورزش
+</string>
 </resources>

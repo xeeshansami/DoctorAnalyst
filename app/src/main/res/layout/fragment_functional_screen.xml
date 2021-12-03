@@ -79,20 +79,7 @@
             app:layout_constraintTop_toBottomOf="@+id/header" />
 
 
-        <TextView
-            android:id="@+id/subtitleHeader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="ROMs for Shoulder"
-            android:padding="5dp"
-            android:textColor="@color/white"
-            android:textSize="24dp"
-            app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/subheader" />
+
 
         <TextView
             android:id="@+id/button1"
@@ -101,13 +88,13 @@
             android:layout_marginTop="24dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:text="Sholder Flexion"
+            android:text="Lift Can"
             android:padding="5dp"
             android:textColor="@color/white"
             android:background="@drawable/border"
             android:textSize="15dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/subtitleHeader" />
+            app:layout_constraintTop_toBottomOf="@+id/subheader" />
 
 
         <TextView
@@ -117,15 +104,181 @@
             android:layout_marginTop="24dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:text="Shoulder Abduction"
+            android:text="Lift Pencil"
             android:padding="5dp"
             android:textColor="@color/white"
             android:background="@drawable/border"
             android:textSize="15dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/button1" />
-
-
+<!--        <TextView-->
+<!--            android:id="@+id/button3"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="24dp"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:text="Lift Paper Clip"-->
+<!--            android:padding="5dp"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:background="@drawable/border"-->
+<!--            android:textSize="15dp"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/guideline6"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/button2" />-->
+        <TextView
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Stack Checkers"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/border"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/button2" />
+        <TextView
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Flip Cards"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/border"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/button4" />
+        <TextView
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Fold Towel"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/border"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/button5" />
+        <TextView
+            android:id="@+id/button7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Drinking Water from Glass"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/border"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/button6" />
+        <TextView
+            android:id="@+id/button8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Lifting Glass of Water at 90° Shoulder Flexion"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/border"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/button7" />
+        <TextView
+            android:id="@+id/button9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Moving 5 Crystals from Table to Box"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/border"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/button8" />
+        <TextView
+            android:id="@+id/button10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Wiping the Table"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/border"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/button9" />
+        <TextView
+            android:id="@+id/button11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Grasping and Releasing Ball"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/border"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/button10" />
+        <TextView
+            android:id="@+id/button12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Combing Hair"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/border"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/button11" />
+        <TextView
+            android:id="@+id/button13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Eating with Affected Hand"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/border"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/button12" />
+        <TextView
+            android:id="@+id/button14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="Opening and Closing Jar"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/border"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/button13" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
