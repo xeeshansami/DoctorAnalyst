@@ -54,11 +54,12 @@
             android:layout_height="wrap_content"
             android:text="@string/app_name"
             android:layout_marginTop="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:textColor="@color/white"
             android:textSize="50dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+
              />
 
         <TextView
@@ -69,7 +70,7 @@
             android:layout_marginTop="24dp"
             android:gravity="center"
             android:padding="5dp"
-            android:text="Language"
+            android:text="@string/language"
             android:textColor="@color/white"
             android:textSize="30dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +84,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
-            android:text="English"
+            android:text="@string/english"
             android:padding="5dp"
             android:textColor="@color/white"
             android:background="@drawable/border"
@@ -99,7 +100,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:gravity="center"
-            android:text="Urdu"
+            android:text="@string/urdu"
             android:textColor="@color/white"
             android:background="@drawable/border"
             android:textSize="24dp"

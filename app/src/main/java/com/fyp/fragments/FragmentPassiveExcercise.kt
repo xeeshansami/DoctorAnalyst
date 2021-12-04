@@ -41,21 +41,14 @@ class FragmentPassiveExcercise : Fragment(), View.OnClickListener, iOnBackPresse
         button1.setOnClickListener(this)
         button2.setOnClickListener(this)
         button3.setOnClickListener(this)
-        headings!!.add("ROMs for Elbow")
+        headings!!.add(resources.getString(R.string.roms_for_elbow))
         urls!!.add("https://www.dropbox.com/s/vv8v3ytzaox12fi/03%20ROMs%20for%20Elbow.mp4?dl=0")
-        text!!.add("•\tPatient should be in supine lying position.\n" +
-                "•\tCaregiver should be standing at the side of patient.\n" +
-                "•\tHold the patient’s affected arm from the wrist then bend the elbow and straighten it as demonstrated in the video.\n" +
-                "•\tRepeat this exercise 10 times.\n")
+        text!!.add(resources.getString(R.string.roms_for_elbow_str))
 
-        headings!!.add("ROMs for Wrist, Fingers and Thumb")
+
+        headings!!.add(resources.getString(R.string.roms_for_wrist_fingers_and_thumb))
         urls!!.add("https://www.dropbox.com/s/dzhfrxy7w9qfj94/04%20ROMs%20for%20Wrist%2C%20Fingers%20and%20Thumb.mp4?dl=0")
-        text!!.add("•\tPatient should be in supine lying position.\n" +
-                "•\tCaregiver should be standing at the side of patient.\n" +
-                "•\tHold the patient’s affected arm from the wrist then bend the wrist first then straighten it as demonstrated in the video.\n" +
-                "•\tRepeat this exercise 10 times.\n" +
-                "•\tHold the affected arm from wrist then move the thumb and fingers in all possible directions and return to original position.\n" +
-                "•\tRepeat this exercise 10 times.\n")
+        text!!.add(resources.getString(R.string.roms_for_wrist_fingers_and_thumb_str))
         for (x in 0 until  headings.size) {
             var obj = videoObjects()
             obj.heading=headings[x]

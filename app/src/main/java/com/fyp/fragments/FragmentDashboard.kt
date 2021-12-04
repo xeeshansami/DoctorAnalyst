@@ -20,8 +20,8 @@ import com.fyp.utils.Constant
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 
-class FragmentDashboard : Fragment(), iOnItemClickListner,iOnBackPressed, View.OnClickListener {
-    var list=ArrayList<String>()
+class FragmentDashboard : Fragment(), iOnItemClickListner, iOnBackPressed, View.OnClickListener {
+    var list = ArrayList<String>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,8 +42,9 @@ class FragmentDashboard : Fragment(), iOnItemClickListner,iOnBackPressed, View.O
         onBackPressed(view)
     }
 
-    private fun addQuestInRv(){
-        val questions = (activity as ActivityDashboard).resources!!.getStringArray(R.array.questions_array)
+    private fun addQuestInRv() {
+        val questions =
+            (activity as ActivityDashboard).resources!!.getStringArray(R.array.questions_array)
         list.clear()
         for (element in questions) {
             list?.add(element)
@@ -52,12 +53,13 @@ class FragmentDashboard : Fragment(), iOnItemClickListner,iOnBackPressed, View.O
 
     override fun onItemClick(view: View, question: String, position: Int) {
         val bundle = Bundle()
-        var quest= mQuestions()
-        quest.position=position
-        quest.questions=question
+        var quest = mQuestions()
+        quest.position = position
+        quest.questions = question
         bundle.putParcelable(Constant.QUESTIONS, quest)
 //        findNavController().navigate(R.id.action_dashboard_to_fragmentQuestions, bundle)
     }
+
     private fun onBackPressed(view: View) {
         view.isFocusableInTouchMode = true
         view.requestFocus()
@@ -92,12 +94,23 @@ class FragmentDashboard : Fragment(), iOnItemClickListner,iOnBackPressed, View.O
     }
 
     override fun onClick(v: View?) {
-        when(v!!.id){
-            R.id.but2->{
-                findNavController().navigate(R.id.action_dashboard_to_fragmentRehabilitation)
-            }R.id.but3->{
-                findNavController().navigate(R.id.action_dashboard_to_ExcerciseScreen)
+        when (v!!.id) {
+            R.id.but2 -> {
+                switchFragment(R.id.fragmentStrokeInformation)
+            }
+            R.id.but3 -> {
+                switchFragment(R.id.fragmentExcerciseScreen)
             }
         }
+    }
+
+    private fun switchFragment(startDestId: Int) {
+//        val fragmentContainer = view?.findViewById<View>(R.id.nav_host)
+//        val navController = Navigation.findNavController(fragmentContainer!!)
+        val navController = findNavController()
+        val inflater = navController.navInflater
+        val graph = navController.graph
+        graph.startDestination = startDestId
+        navController.graph = graph
     }
 }

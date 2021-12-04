@@ -65,11 +65,11 @@ class FragmentSplashScreen : Fragment() {
     override fun onResume() {
         super.onResume()
         activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-        if(firebaseAuth?.currentUser?.uid!=null){
-            sendToScreen(R.id.action_splashScreen_to_dashboard)
-        }else{
+//        if(firebaseAuth?.currentUser?.uid!=null){
+//            sendToScreen(R.id.action_splashScreen_to_dashboard)
+//        }else{
             sendToScreen(R.id.action_splashScreen_to_signin)
-        }
+//        }
     }
 
     override fun onPause() {

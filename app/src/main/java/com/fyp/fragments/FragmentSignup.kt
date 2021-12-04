@@ -15,6 +15,8 @@ import androidx.navigation.fragment.findNavController
 import com.fyp.R
 import com.fyp.activities.LogActivity
 import com.fyp.interfaces.iOnBackPressed
+import com.fyp.utils.Constant
+import com.fyp.utils.SessionManager
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -29,6 +31,7 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
     private val myCalendar: Calendar = Calendar.getInstance()
     private var firebaseAuth: FirebaseAuth? = null
     private var mDatabase:DatabaseReference?=null
+    private var sessionManager: SessionManager? = null
     private var list=ArrayList<String>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +47,7 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
     }
 
     fun init() {
+        sessionManager = SessionManager(activity as LogActivity)
         firebaseAuth = FirebaseAuth.getInstance();
         login.setOnClickListener(this)
         registerBtn.setOnClickListener(this)
@@ -102,8 +106,11 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
                 if (validation()) {
                     var fName = firstNameTv.text.toString().trim()
                     var lName = age.text.toString().trim()
+                    var age = age.text.toString().trim()
+                    var cityTv = cityTv.text.toString().trim()
+                    var gender = spinner.selectedItem.toString().trim()
                     var mobile = mobileTv.text.toString().trim()
-                    signup( fName, lName, mobile)
+                    addToFirebaseDB( fName, lName, mobile,age,cityTv,gender)
                 }
             }
             R.id.login -> {
@@ -118,7 +125,7 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
         mobile: String,
     ) {
         val progressDialog = ProgressDialog.show(activity, "Please wait", "Registration...", true)
-        firebaseAuth?.createUserWithEmailAndPassword("", "")
+        firebaseAuth?.createUserWithEmailAndPassword(fName, lName)
             ?.addOnCompleteListener(activity as LogActivity,
                 OnCompleteListener<AuthResult?> { task ->
                     Log.d("TAG", "createUserWithEmail:onComplete:" + task.isSuccessful)
@@ -126,7 +133,7 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
                     // the auth state listener will be notified and logic to handle the
                     // signed in user can be handled in the listener.
                     if (task.isSuccessful) {
-                        addToFirebaseDB( fName, lName, mobile)
+//                        addToFirebaseDB(fName, lName, mobile, age, cityTv, gender)
                     }else{
                         Toast.makeText(
                             activity, task.exception?.message.toString(),
@@ -141,16 +148,24 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
         fName: String,
         lName: String,
         mobile: String,
+        age: String,
+        cityTv: String,
+        gender: String,
     ) {
-        mDatabase = FirebaseDatabase.getInstance().getReference("fyproject-6150d");
+        var progressDialog = ProgressDialog.show(activity, "Please wait", "Registration is in process...", true)
+        mDatabase = FirebaseDatabase.getInstance().getReference("upwork-f2a18-default-rtdb");
         val hashMap: HashMap<String, String> = HashMap()
         hashMap["fName"] = fName
         hashMap["lName"] = lName
+        hashMap["city"] = cityTv
+        hashMap["age"] = age
+        hashMap["gender"] = gender
         hashMap["mobile"] = mobile
         mDatabase?.child("RegisteredUsers")
-            ?.child(firebaseAuth?.uid.toString())
+            ?.push()
             ?.setValue(hashMap)
             ?.addOnCompleteListener {
+                sessionManager!!.setStringVal(Constant.MOBILE, mobile)
                 (activity as LogActivity).finish()
                 findNavController().navigate(R.id.action_signup_to_dashboard)
                 Toast.makeText(
@@ -164,6 +179,7 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
                     Toast.LENGTH_LONG
                 ).show()
             }
+
     }
 
     private fun isValidEmail(target: String?): Boolean {

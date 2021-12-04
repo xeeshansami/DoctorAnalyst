@@ -2,6 +2,8 @@ package com.fyp.utils
 
 class Constant {
     companion object{
+        var MOBILE="MOBILE"
+        const  val IS_LANGUAGE_EMPTY="IS_LANGUAGE_EMPTY"
         const val LANGUAGE="LANGUAGE"
         const val  POSITION="POSITION"
         const val  WEBVIEW_LINK="WEBVIEW_LINK"

@@ -1,5 +1,7 @@
 package com.fyp.activities
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -7,16 +9,19 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import com.fyp.R
 import com.fyp.interfaces.iOnBackPressed
+import com.fyp.utils.Constant
+import com.fyp.utils.SessionManager
 import kotlinx.android.synthetic.main.content_dashboard.*
 
 
 class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
     private val hideHandler = Handler()
-
+    private var sessionManager: SessionManager? = null
     @Suppress("InlinedApi")
     private val hidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
@@ -39,11 +44,18 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
     private var fullscreenContent: View? = null
     private var fullscreenContentControls: View? = null
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
         init()
         fullscreenContent = findViewById(R.id.fullscreen_content)
+        sessionManager = SessionManager(this)
+        if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1||sessionManager!!.getIntVal(Constant.LANGUAGE) == 0) {
+            AppLang.AppLang(this, "en")
+        } else {
+            AppLang.AppLang(this, "ur")
+        }
     }
 
 
@@ -119,7 +131,10 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
                 switchFragment(R.id.dashboard)
             }
             R.id.tvUrdu -> {
-                Toast.makeText(this, "App is in urdu language come soon", Toast.LENGTH_LONG).show()
+                finish()
+                var intent=Intent(this, LanguageActivity::class.java)
+                startActivity(intent)
+                sessionManager!!.setIntVal(Constant.LANGUAGE,0)
             }
         }
     }

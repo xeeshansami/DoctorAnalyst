@@ -9,7 +9,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/themeColor</item>
         <item name="colorPrimaryDark">@color/white</item>
-        <item name="android:fontFamily">@font/imprima_regular</item>
+        <item name="android:fontFamily">@font/arial_regular</item>
         <item name="android:textStyle">bold</item>
     </style>
     <style name="NestedScrollBarStyle">

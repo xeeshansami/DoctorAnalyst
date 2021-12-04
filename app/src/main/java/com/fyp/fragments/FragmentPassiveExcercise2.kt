@@ -40,21 +40,14 @@ class FragmentPassiveExcercise2 : Fragment(), View.OnClickListener, iOnBackPress
     private fun init() {
         button1.setOnClickListener(this)
         button2.setOnClickListener(this)
-        headings!!.add("Shoulder Flexion")
+        headings!!.add(resources.getString(R.string.shoulder_flexion))
         urls!!.add("https://www.dropbox.com/s/58cyuwfz5ox7dgr/01%20Shoulder%20Flexion.mp4?dl=0")
-        text!!.add("•\tPatient should be in supine lying position.\n" +
-                "•\tCaregiver should be standing at the side of patient.\n" +
-                "•\tHold the patient’s arm at the level of elbow and hand as demonstrated in the video.\n" +
-                "•\tPerform the flexion of shoulder as demonstrated in the video.\n" +
-                "•\tRepeat this exercise 10 times.\n")
+        text!!.add(resources.getString(R.string.shoulder_flexion_str))
 
-        headings!!.add("Shoulder Abduction")
+        headings!!.add(resources.getString(R.string.shoulder_abduction))
         urls!!.add("https://www.dropbox.com/s/hop8pyc1ugqdtcp/02%20Shoulder%20Abduction.mp4?dl=0")
-        text!!.add("•\tPatient should be in supine lying position.\n" +
-                "•\tCaregiver should be standing at the side of patient.\n" +
-                "•\tHold the patient’s affected arm at the level of elbow and hand as demonstrated in the video.\n" +
-                "•\tThen abduct the shoulder as demonstrated in the video.\n" +
-                "•\tRepeat this exercise 10 times.\n")
+        text!!.add(resources.getString(R.string.shoulder_abduction_str))
+
         for (x in 0 until  headings.size) {
             var obj = videoObjects()
             obj.heading=headings[x]
