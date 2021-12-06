@@ -38,11 +38,11 @@ class FragmentForgetPassword() : Fragment(), View.OnClickListener {
     private fun validation(): Boolean {
         var uname = emailTv.text.toString().trim()
         return if (uname.isNullOrEmpty()) {
-            emailTv.error = "Please enter the email or mobile number"
+            emailTv.error = resources.getString(R.string.mob_err)
             emailTv.requestFocus()
             false
         } else if (!Util.isValidEmail(uname)) {
-            emailTv.error = "Please enter the valid email or mobile number"
+            emailTv.error = resources.getString(R.string.email_err)
             emailTv.requestFocus()
             false
         } else {

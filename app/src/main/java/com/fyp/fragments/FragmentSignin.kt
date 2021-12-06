@@ -64,7 +64,11 @@ class FragmentSignin() : Fragment(), View.OnClickListener {
     private fun validation(): Boolean {
         var uname = username.text.toString().trim()
         return if (uname.isNullOrEmpty()) {
-            username.error = "Please enter the mobile number"
+            username.error = resources.getString(R.string.mob_err)
+            username.requestFocus()
+            false
+        } else if (username.length() != 11) {
+            username.error = resources.getString(R.string.mob_err_digits)
             username.requestFocus()
             false
         } else {
@@ -74,7 +78,12 @@ class FragmentSignin() : Fragment(), View.OnClickListener {
 
     private fun signIn(mobile: String) {
         var check = false
-        var progressDialog = ProgressDialog.show(activity, "Please wait", "Logging in...", true)
+        var progressDialog = ProgressDialog.show(
+            activity,
+            resources.getString(R.string.please_wait),
+            resources.getString(R.string.loading_in),
+            true
+        )
 //        firebaseAuth!!.signInWithEmailAndPassword(
 //            username,password
 //        )
@@ -109,14 +118,13 @@ class FragmentSignin() : Fragment(), View.OnClickListener {
                         (activity as LogActivity).finish()
                         findNavController().navigate(R.id.action_signin_to_dashboard)
                         sessionManager?.setStringVal(Constant.USER_NAME, mobile)
-                        Toast.makeText(activity, "Login successfully...", Toast.LENGTH_SHORT)
+                        Toast.makeText(activity,  resources.getString(R.string.login_success), Toast.LENGTH_SHORT)
                             .show()
                         progressDialog.dismiss()
                     } else {
                         Toast.makeText(
                             activity,
-                            "Login failed, please enter your valid mobile number or register your self",
-                            Toast.LENGTH_LONG
+                            resources.getString(R.string.login_err), Toast.LENGTH_LONG
                         )
                             .show()
                         progressDialog.dismiss()

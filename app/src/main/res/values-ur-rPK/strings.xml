@@ -294,4 +294,24 @@
     <string name="reset_password">پاس ورڈ ری سیٹ</string>
     <string name="home">گھر</string>
     <string name="account">کھاتہ</string>
+    <string name="mob_err">براہ کرم موبائل نمبر درج کریں۔</string>
+    <string name="mob_err_digits">براہ کرم ایموبائل نمبر کے 13 ہندسے درج کریں۔</string>
+    <string name="please_wait">برائے مہربانی انتظار کریں</string>
+    <string name="loading_in">لاگ ان ہو رہا ہے...</string>
+    <string name="login_err">لاگ ان ناکام ہوگیا، براہ کرم اپنا درست موبائل نمبر درج کریں یا خود کو رجسٹر کریں۔</string>
+    <string name="login_success">کامیابی سے لاگ ان کریں...</string>
+    <string name="fname_err">براہ کرم پورا نام درج کریں۔</string>
+    <string name="lname_err">براہ کرم عمر کا نام درج کریں۔</string>
+    <string name="city_err">براہ کرم شہر کا نام درج کریں۔</string>
+    <string name="mobile_err">براہ کرم موبائل نمبر درج کریں۔</string>
+    <string name="mobile_digits_err">براہ کرم موبائل نمبر کے 11 ہندسے درج کریں اور 03xxxxxxxx سے بھی شروع کریں۔</string>
+    <string name="buffering">بفرنگ...</string>
+    <string name="birth_err">براہ کرم تاریخ پیدائش منتخب کریں۔</string>
+    <string name="pwd_err">براہ کرم پرانا پاس ورڈ درج کریں۔</string>
+    <string name="newPwd_err">براہ کرم نیا پاس ورڈ درج کریں۔</string>
+    <string name="confirm_err">براہ کرم تصدیق شدہ نیا پاس ورڈ درج کریں۔</string>
+    <string name="matchPwd_err">نیا اور تصدیق شدہ پاس ورڈ مماثل نہیں ہے۔</string>
+    <string name="login_out_err">لاگ آؤٹ ہو رہا ہے...</string>
+    <string name="email_err">براہ کرم درست ای میل یا موبائل نمبر درج کریں۔</string>
+    <string name="old_pwd_err">براہ کرم پرانا پاس ورڈ درج کریں۔</string>
 </resources>

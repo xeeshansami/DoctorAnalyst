@@ -46,39 +46,39 @@ class FragmentActiveExcercise : Fragment(), View.OnClickListener, iOnBackPressed
         button8.setOnClickListener(this)
         button9.setOnClickListener(this)
         headings!!.add(resources.getString(R.string.bilateral_shoulder_flexion_with_both_hands_interlocked))
-        urls!!.add("https://www.dropbox.com/s/qks0tpz1akfztwv/01%20Bilateral%20Shoulder%20Flexion%20with%20both%20Hands%20Interlocked.mp4?dl=0")
+        urls!!.add("https://strokex.xoqax.com/videos/active-bilateral-shoulder-flexion-with-both-hands-interlocked.mp4")
         text!!.add(resources.getString(R.string.bilateral_shoulder_flexion_with_both_hands_interlocked_Str))
 
         headings!!.add(resources.getString(R.string.shoulder_horizontal_abduction))
-        urls!!.add("https://www.dropbox.com/s/gknm7fgon1srk2j/02%20Shoulder%20Horizontal%20Abduction.mp4?dl=0")
+        urls!!.add("https://strokex.xoqax.com/videos/active-shoulder-horizontal-abduction.mp4")
         text!!.add(resources.getString(R.string.shoulder_horizontal_abduction_str))
 
         headings!!.add(resources.getString(R.string.shoulder_abduction))
-        urls!!.add("https://www.dropbox.com/s/st8mtid468pxhtq/03%20Shoulder%20Abduction.mp4?dl=0")
+        urls!!.add("https://strokex.xoqax.com/videos/active-shoulder-abduction.mp4")
         text!!.add(resources.getString(R.string.shoulder_abduction_str))
 
         headings!!.add(resources.getString(R.string.elbow_flexion_and_extension))
-        urls!!.add("https://www.dropbox.com/s/2y8hwhz62svsfny/04%20Elbow%20Flexion%20and%20Extension.mp4?dl=0")
+        urls!!.add("https://strokex.xoqax.com/videos/active-elbow-flexion-and-extension.mp4")
         text!!.add(resources.getString(R.string.elbow_flexion_and_extension_str))
 
         headings!!.add(resources.getString(R.string.elbow_pronation_and_supination))
-        urls!!.add("https://www.dropbox.com/s/tqto0s786048qy7/05%20Elbow%20Pronation%20and%20Supination.mp4?dl=0")
+        urls!!.add("https://strokex.xoqax.com/videos/active-elbow-pronation-and-supination.mp4")
         text!!.add(resources.getString(R.string.elbow_pronation_and_supination_str))
 
         headings!!.add(resources.getString(R.string.wrist_flexion_and_extension))
-        urls!!.add("https://www.dropbox.com/s/lb7ebx240x1hss1/06%20Wrist%20Flexion%20and%20Extension.mp4?dl=0")
+        urls!!.add("https://strokex.xoqax.com/videos/active-wrist-flexion-and-extension.mp4")
         text!!.add(resources.getString(R.string.wrist_flexion_and_extension_str))
 
         headings!!.add(resources.getString(R.string.extend_elbow))
-        urls!!.add("https://www.dropbox.com/s/mgy6rc815fdalm4/07%20Extend%20Elbow.mp4?dl=0")
+        urls!!.add("https://strokex.xoqax.com/videos/active-extend-elbow.mp4")
         text!!.add(resources.getString(R.string.extend_elbow_str))
 
         headings!!.add(resources.getString(R.string.forearm_to_box))
-        urls!!.add("https://www.dropbox.com/s/ikn39lrhtah1n27/08%20Forearm%20to%20Box.mp4?dl=0")
+        urls!!.add("https://strokex.xoqax.com/videos/active-forearm-to-box.mp4")
         text!!.add(resources.getString(R.string.forearm_to_box_str))
 
         headings!!.add(resources.getString(R.string.hand_to_box))
-        urls!!.add("https://www.dropbox.com/s/fsg967twj1iywaa/09%20Hand%20to%20Box.mp4?dl=0")
+        urls!!.add("https://strokex.xoqax.com/videos/active-hand-to-box.mp4")
         text!!.add(resources.getString(R.string.hand_to_box_str))
         for (x in 0 until  headings.size) {
             var obj = videoObjects()

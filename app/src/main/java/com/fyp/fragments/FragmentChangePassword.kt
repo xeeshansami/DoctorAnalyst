@@ -53,19 +53,19 @@ class FragmentChangePassword() : Fragment(), View.OnClickListener {
         var newPwdET = newPwd.text.toString().trim()
         var confirmNewPasswordET = confirmNewPassword.text.toString().trim()
         return if (oldPwdET.isNullOrEmpty()) {
-            oldPwd.error = "Please enter the old password!"
+            oldPwd.error = resources.getString(R.string.old_pwd_err)
             oldPwd.requestFocus()
             false
         } else if (newPwdET.isNullOrEmpty()) {
-            newPwd.error = "Please enter the new password!"
+            newPwd.error = resources.getString(R.string.newPwd_err)
             newPwd.requestFocus()
             false
         } else if (confirmNewPasswordET.isNullOrEmpty()) {
-            confirmNewPassword.error = "Please enter the confirm password!"
+            confirmNewPassword.error = resources.getString(R.string.confirm_err)
             confirmNewPassword.requestFocus()
             false
         } else if (newPwdET != confirmNewPasswordET) {
-            newPwd.error = "New and confirm password is not match"
+            newPwd.error =resources.getString(R.string.matchPwd_err)
             newPwd.requestFocus()
             confirmNewPassword.setText("")
             false

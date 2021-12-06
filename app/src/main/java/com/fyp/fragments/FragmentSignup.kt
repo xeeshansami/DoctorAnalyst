@@ -75,24 +75,24 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
         var mobile = mobileTv.text.toString().trim()
         var cityTvValue = cityTv.text.toString().trim()
         return if (fName.isNullOrEmpty()) {
-            firstNameTv.error = "Please enter the full name!"
+            firstNameTv.error =resources.getString(R.string.fname_err)
             firstNameTv.requestFocus()
             false
         } else if (ageValue.isNullOrEmpty()) {
-            age.error = "Please enter the age name!"
+            age.error = resources.getString(R.string.lname_err)
             age.requestFocus()
             false
         } else if (cityTvValue.isNullOrEmpty()) {
-            age.error = "Please enter the city name!"
+            age.error =resources.getString(R.string.city_err)
             age.requestFocus()
             false
         } else if (mobile.isNullOrEmpty()) {
-            mobileTv.error = "Please enter the mobile number!"
+            mobileTv.error =resources.getString(R.string.mobile_err)
             mobileTv.requestFocus()
             false
         } else if (mobile.length < 11) {
             mobileTv.error =
-                "Please enter 11 digits of mobile number and also start with 03xxxxxxxxx!"
+                resources.getString(R.string.mobile_digits_err)
             mobileTv.requestFocus()
             false
         } else {

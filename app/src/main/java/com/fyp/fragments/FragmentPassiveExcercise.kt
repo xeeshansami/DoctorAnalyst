@@ -42,12 +42,12 @@ class FragmentPassiveExcercise : Fragment(), View.OnClickListener, iOnBackPresse
         button2.setOnClickListener(this)
         button3.setOnClickListener(this)
         headings!!.add(resources.getString(R.string.roms_for_elbow))
-        urls!!.add("https://www.dropbox.com/s/vv8v3ytzaox12fi/03%20ROMs%20for%20Elbow.mp4?dl=0")
+        urls!!.add("https://strokex.xoqax.com/videos/passive-roms-for-elbow.mp4")
         text!!.add(resources.getString(R.string.roms_for_elbow_str))
 
 
         headings!!.add(resources.getString(R.string.roms_for_wrist_fingers_and_thumb))
-        urls!!.add("https://www.dropbox.com/s/dzhfrxy7w9qfj94/04%20ROMs%20for%20Wrist%2C%20Fingers%20and%20Thumb.mp4?dl=0")
+        urls!!.add("https://strokex.xoqax.com/videos/passive-roms-for-wrist-fingers-and-thumb.mp4")
         text!!.add(resources.getString(R.string.roms_for_wrist_fingers_and_thumb_str))
         for (x in 0 until  headings.size) {
             var obj = videoObjects()

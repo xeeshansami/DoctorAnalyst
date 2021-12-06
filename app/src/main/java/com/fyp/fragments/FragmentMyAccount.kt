@@ -65,7 +65,7 @@ class FragmentMyAccount : Fragment(), View.OnClickListener, iOnBackPressed {
 
     private fun logout() {
         val progressDialog =
-            ProgressDialog.show(activity, "Please wait", "Logging out...", true)
+            ProgressDialog.show(activity, resources.getString(R.string.please_wait) , resources.getString(R.string.login_out_err) , true)
         Toast.makeText(activity, "Log out", Toast.LENGTH_SHORT).show()
         firebaseAuth?.signOut()
         var intent = Intent(activity, LogActivity::class.java)

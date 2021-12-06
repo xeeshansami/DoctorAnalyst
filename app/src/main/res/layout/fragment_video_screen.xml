@@ -119,17 +119,22 @@
                 android:layout_marginRight="40dp"
                 android:visibility="gone"
                 />
-
-            <VideoView
-                android:background="@drawable/border"
-                android:id="@+id/videoview"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_below="@+id/progressBar"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"></VideoView>
+<!--            <LinearLayout-->
+<!--                android:layout_marginLeft="30dp"-->
+<!--                android:layout_marginRight="30dp"-->
+<!--                android:id="@+id/videoviewLayout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+<!--            <VideoView-->
+<!--                android:background="@drawable/border"-->
+<!--                android:id="@+id/videoview"-->
+<!--                android:layout_marginLeft="30dp"-->
+<!--                android:layout_marginRight="30dp"-->
+<!--                android:layout_below="@+id/progressBar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="200dp"></VideoView>-->
+<!--            </LinearLayout>-->
             <WebView
-                android:visibility="gone"
                 android:background="@drawable/border"
                 android:id="@+id/ivForm"
                 android:layout_marginLeft="40dp"
@@ -145,7 +150,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:layout_marginTop="10dp"
-                android:layout_below="@+id/videoview"
+                android:layout_below="@+id/ivForm"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"

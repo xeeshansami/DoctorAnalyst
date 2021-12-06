@@ -41,11 +41,11 @@ class FragmentPassiveExcercise2 : Fragment(), View.OnClickListener, iOnBackPress
         button1.setOnClickListener(this)
         button2.setOnClickListener(this)
         headings!!.add(resources.getString(R.string.shoulder_flexion))
-        urls!!.add("https://www.dropbox.com/s/58cyuwfz5ox7dgr/01%20Shoulder%20Flexion.mp4?dl=0")
+        urls!!.add("https://strokex.xoqax.com/videos/passive-shoulder-flexion.mp4")
         text!!.add(resources.getString(R.string.shoulder_flexion_str))
 
         headings!!.add(resources.getString(R.string.shoulder_abduction))
-        urls!!.add("https://www.dropbox.com/s/hop8pyc1ugqdtcp/02%20Shoulder%20Abduction.mp4?dl=0")
+        urls!!.add("https://strokex.xoqax.com/videos/passive-shoulder-abduction.mp4")
         text!!.add(resources.getString(R.string.shoulder_abduction_str))
 
         for (x in 0 until  headings.size) {

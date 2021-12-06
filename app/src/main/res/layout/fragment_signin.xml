@@ -60,6 +60,7 @@
         android:layout_marginRight="24dp"
         android:background="@drawable/border"
         android:paddingLeft="10dp"
+        android:maxLength="11"
         android:hint="@string/mobile_number"
         android:text=""
         android:textColor="@color/white"

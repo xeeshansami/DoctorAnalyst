@@ -155,40 +155,40 @@ class FragmentUpdate : Fragment() ,iOnBackPressed, View.OnClickListener {
         var newPwdET = newPwd.text.toString().trim()
         var confirmPwd = confirmNewPassword.text.toString().trim()
         return if (fName.isNullOrEmpty()) {
-            firstNameTv.error = "Please enter the first name!"
+            firstNameTv.error =resources.getString(R.string.fname_err)
             firstNameTv.requestFocus()
             false
         } else if (lName.isNullOrEmpty()) {
-            age.error = "Please enter the last name!"
+            age.error = resources.getString(R.string.lname_err)
             age.requestFocus()
             false
         } else if (mobile.isNullOrEmpty()) {
-            mobileTv.error = "Please enter the mobile number!"
+            mobileTv.error = resources.getString(R.string.mob_err)
             mobileTv.requestFocus()
             false
         } else if (mobile.length < 11) {
             mobileTv.error =
-                "Please enter 11 digits of mobile number and also start with 03xxxxxxxxx!"
+                resources.getString(R.string.mobile_digits_err)
             mobileTv.requestFocus()
             false
         } else if (dateOfBirth.isNullOrEmpty()) {
-            dateOfBirthTv.error = "Please select date of birth!"
+            dateOfBirthTv.error = resources.getString(R.string.birth_err)
             dateOfBirthTv.requestFocus()
             false
         } else if (pwd.isNullOrEmpty()) {
-            etPassword.error = "Please enter the old password!"
+            etPassword.error = resources.getString(R.string.pwd_err)
             etPassword.requestFocus()
             false
         } else if (newPwdET.isNullOrEmpty()) {
-            newPwd.error = "Please enter the new password!"
+            newPwd.error = resources.getString(R.string.newPwd_err)
             newPwd.requestFocus()
             false
         } else if (confirmPwd.isNullOrEmpty()) {
-            confirmNewPassword.error = "Please enter the confirm new password!"
+            confirmNewPassword.error =  resources.getString(R.string.confirm_err)
             confirmNewPassword.requestFocus()
             false
         } else if (confirmPwd != newPwdET) {
-            newPwd.error = "New and confirm password is not match"
+            newPwd.error =  resources.getString(R.string.matchPwd_err)
             newPwd.requestFocus()
             confirmNewPassword.setText("")
             false

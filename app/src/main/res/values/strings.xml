@@ -209,4 +209,24 @@ Changes in behavior and self-care ability.\n
     <string name="reset_password">RESET PASSWORD</string>
     <string name="home">HOME</string>
     <string name="account">ACCOUNT</string>
+    <string name="mob_err">Please enter mobile number</string>
+    <string name="mob_err_digits">Please enter the 13 digits of emobile number</string>
+    <string name="please_wait">Please wait</string>
+    <string name="loading_in">Logging in...</string>
+    <string name="login_err">Login failed, please enter your valid mobile number or register your self</string>
+    <string name="login_success">Login successfully...</string>
+    <string name="fname_err">Please enter the full name</string>
+    <string name="lname_err">Please enter the age name</string>
+    <string name="city_err">Please enter the city name</string>
+    <string name="mobile_err">Please enter the mobile number</string>
+    <string name="mobile_digits_err">Please enter 11 digits of mobile number and also start with 03xxxxxxxxx</string>
+    <string name="buffering">Buffering...</string>
+    <string name="birth_err">Please select date of birth</string>
+    <string name="pwd_err">Please enter the old password</string>
+    <string name="newPwd_err">Please enter the new password</string>
+    <string name="confirm_err">Please enter the confirm new password</string>
+    <string name="matchPwd_err">New and confirm password is not match</string>
+    <string name="login_out_err">Logging out...</string>
+    <string name="email_err">Please enter the valid email or mobile number</string>
+    <string name="old_pwd_err">Please enter the old password</string>
 </resources>

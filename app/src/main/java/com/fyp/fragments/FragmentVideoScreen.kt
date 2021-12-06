@@ -1,9 +1,12 @@
 package com.fyp.fragments
 
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
+import android.graphics.Bitmap
 import android.media.MediaPlayer.OnCompletionListener
 import android.media.MediaPlayer.OnPreparedListener
 import android.net.Uri
+import android.net.http.SslError
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -64,120 +67,120 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
         init()
     }
 
-    fun webview(html: String, heading: String, text: String) {
-        var pDialog = ProgressDialog(activity)
-        // Set progressbar message
-        // Set progressbar message
-        pDialog.setMessage("Buffering...")
-        pDialog.setIndeterminate(false)
-        pDialog.setCancelable(false)
-        // Show progressbar
-        // Show progressbar
-        pDialog.show()
-        try {
-            // Start the MediaController
-            val mediacontroller = MediaController(activity)
-            mediacontroller.setAnchorView(videoview)
-            val videoUri =
-                Uri.parse("https://www.dropbox.com/s/huyp8syxxdik0bs/05%20Flip%20Cards.mp4")
-//            videoview.setMediaController(mediacontroller)
+//    fun webview(html: String, heading: String, text: String) {
+//        var pDialog = ProgressDialog(activity)
+//        // Set progressbar message
+//        // Set progressbar message
+//        pDialog.setMessage(resources.getString(R.string.buffering))
+//        pDialog.setIndeterminate(false)
+//        pDialog.setCancelable(false)
+//        // Show progressbar
+//        // Show progressbar
+//        pDialog.show()
+//        try {
+//            // Start the MediaController
+//            val mediacontroller = MediaController(activity)
+//            mediacontroller.setAnchorView(videoview)
+//            val videoUri =
+//                Uri.parse(html)
+////            videoview.setMediaController(mediacontroller)
+////            videoview.setVideoURI(videoUri)
+////            videoview.setBackgroundColor(Color.TRANSPARENT);
+////            videoview.setZOrderOnTop(true);
+//
+//
+////            val uri = Uri.parse("http://techslides.com/demos/sample-videos/small.mp4")
+//            videoview.setMediaController(MediaController(activity))
 //            videoview.setVideoURI(videoUri)
-//            videoview.setBackgroundColor(Color.TRANSPARENT);
-//            videoview.setZOrderOnTop(true);
-
-
-//            val uri = Uri.parse("http://techslides.com/demos/sample-videos/small.mp4")
-            videoview.setMediaController(MediaController(activity))
-            videoview.setVideoURI(videoUri)
-            videoview.requestFocus()
-            videoview.start()
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        videoview.requestFocus()
-        videoview.setOnPreparedListener(OnPreparedListener
-        // Close the progress bar and play the video
-        {
-            pDialog.dismiss()
-            videoview.start()
-        })
-        videoview.setOnCompletionListener(OnCompletionListener {
-            if (pDialog.isShowing()) {
-                pDialog.dismiss()
-            }
-        })
-        subtitleHeader.text = heading
-        subheader.text = heading
-        translationText.text = text
-    }
-
-
-//    @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
-//    private fun webview(html: String, heading: String, text: String) {
-//        ivForm.settings.javaScriptEnabled = true;
-//        ivForm.settings.setDomStorageEnabled(true);
-//        ivForm.getSettings().builtInZoomControls = true;
-//        ivForm.getSettings().displayZoomControls = true;
-//        ivForm.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY;
-//        ivForm.getSettings().setPluginState(WebSettings.PluginState.ON);
-//        ivForm.getSettings().setAllowContentAccess(true);
-//        ivForm.getSettings().setAppCacheEnabled(true);
-//        ivForm.getSettings().setDomStorageEnabled(true);
-//        ivForm.getSettings().setUseWideViewPort(true);
-//        ivForm.setWebViewClient(WebViewClient())
-//        ivForm.webChromeClient = object : WebChromeClient() {
-//            override fun onProgressChanged(view: WebView?, progress: Int) {
-//                try {
-//                    if (progressBar != null) {
-//                        progressBar.progress = progress
-//                    }
-//                } catch (e: java.lang.NullPointerException) {
-//                }
-//            }
-//        }
-//        ivForm.webViewClient = object : WebViewClient() {
-//            override fun onReceivedSslError(
-//                view: WebView?,
-//                handler: SslErrorHandler?,
-//                error: SslError?
-//            ) {
-//                handler!!.proceed();
-//            }
+//            videoview.requestFocus()
+//            videoview.start()
 //
-//            override fun onPageFinished(view: WebView?, url: String?) {
-//                super.onPageFinished(view, url)
-//
-//            }
-//
-//
-//            override fun onLoadResource(view: WebView?, url: String) {
-//                super.onLoadResource(view, url);
-//                Log.i("URLS", url.toString())
-//
-//            }
-//
-//
-//            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-//                super.onPageStarted(view, url, favicon)
-//                progressBar.visibility = View.VISIBLE;
-//            }
-//
-//            override fun onReceivedError(
-//                view: WebView?,
-//                request: WebResourceRequest?,
-//                error: WebResourceError?
-//            ) {
-//                super.onReceivedError(view, request, error)
-//            }
+//        } catch (e: Exception) {
+//            e.printStackTrace()
 //        }
 //
-//        ivForm.loadUrl(html)
+//        videoview.requestFocus()
+//        videoview.setOnPreparedListener(OnPreparedListener
+//        // Close the progress bar and play the video
+//        {
+//            pDialog.dismiss()
+//            videoview.start()
+//        })
+//        videoview.setOnCompletionListener(OnCompletionListener {
+//            if (pDialog.isShowing()) {
+//                pDialog.dismiss()
+//            }
+//        })
 //        subtitleHeader.text = heading
 //        subheader.text = heading
 //        translationText.text = text
 //    }
+
+
+    @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
+    private fun webview(html: String, heading: String, text: String) {
+        ivForm.settings.javaScriptEnabled = true;
+        ivForm.settings.setDomStorageEnabled(true);
+        ivForm.getSettings().builtInZoomControls = true;
+        ivForm.getSettings().displayZoomControls = true;
+        ivForm.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY;
+        ivForm.getSettings().setPluginState(WebSettings.PluginState.ON);
+        ivForm.getSettings().setAllowContentAccess(true);
+        ivForm.getSettings().setAppCacheEnabled(true);
+        ivForm.getSettings().setDomStorageEnabled(true);
+        ivForm.getSettings().setUseWideViewPort(true);
+        ivForm.setWebViewClient(WebViewClient())
+        ivForm.webChromeClient = object : WebChromeClient() {
+            override fun onProgressChanged(view: WebView?, progress: Int) {
+                try {
+                    if (progressBar != null) {
+                        progressBar.progress = progress
+                    }
+                } catch (e: java.lang.NullPointerException) {
+                }
+            }
+        }
+        ivForm.webViewClient = object : WebViewClient() {
+            override fun onReceivedSslError(
+                view: WebView?,
+                handler: SslErrorHandler?,
+                error: SslError?
+            ) {
+                handler!!.proceed();
+            }
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+
+            }
+
+
+            override fun onLoadResource(view: WebView?, url: String) {
+                super.onLoadResource(view, url);
+                Log.i("URLS", url.toString())
+
+            }
+
+
+            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                super.onPageStarted(view, url, favicon)
+                progressBar.visibility = View.VISIBLE;
+            }
+
+            override fun onReceivedError(
+                view: WebView?,
+                request: WebResourceRequest?,
+                error: WebResourceError?
+            ) {
+                super.onReceivedError(view, request, error)
+            }
+        }
+
+        ivForm.loadUrl(html)
+        subtitleHeader.text = heading
+        subheader.text = heading
+        translationText.text = text
+    }
 
     private fun init() {
         sessionManager = SessionManager(activity as ActivityDashboard)
@@ -237,7 +240,8 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
         object : CountDownTimer(30000, 1000) {
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onTick(millisUntilFinished: Long) {
-                finalTime="Time on "+obj[position].heading+" Page | "+LocalTime.ofSecondOfDay(millisUntilFinished / 1000).toString()
+                finalTime="Time on "+obj[position].heading+" Page " +
+                        "| "+LocalTime.ofSecondOfDay(millisUntilFinished / 1000).toString()
             }
 
             override fun onFinish() {
