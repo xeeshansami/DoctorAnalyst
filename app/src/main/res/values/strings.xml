@@ -149,6 +149,8 @@ Changes in behavior and self-care ability.\n
     <string name="forearm_to_box">Forearm to Box</string>
     <string name="hand_to_box">Hand to Box</string>
     <string name="stroke_information">Stroke Information</string>
+    <string name="excercuse_information">Exercise Progression/Repetitions</string>
+    <string name="excercuse_desc">Week 1 : 8-10 repetitions\nWeek 2 : 15 repetitionn\nWeek 3 : 20 repetitions\nWeek 4 : 25-30 repetitions</string>
     <string name="upper_limb_exercise">Upper Limb Exercise</string>
     <string name="lift_can">Lift Can</string>
     <string name="lift_pencil">Lift Pencil</string>

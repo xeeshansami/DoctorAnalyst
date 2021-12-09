@@ -104,6 +104,12 @@
     <string name="forearm_to_box">بازو سے باکس</string>
     <string name="hand_to_box">باکس میں ہاتھ</string>
     <string name="stroke_information">فالج کی معلومات</string>
+    <string name="excercuse_information">ورزش کی دہرائی </string>
+    <string name="excercuse_desc">پہلا ھفتہ : 8 سے 10 دفعہ دہرائیں
+دوسرا ھفتہ : 15 دفعہ دہرائیں
+تیسرا ھفتہ  :  20 دفعہ دہرائیں
+چوتھا ھفتہ : 25 سے 30 دفعہ دہرائیں
+</string>
     <string name="upper_limb_exercise">اوپری اعضاء کی ورزش</string>
     <string name="lift_can">لفٹ کین
 </string>
