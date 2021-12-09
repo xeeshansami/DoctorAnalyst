@@ -62,6 +62,22 @@
 
 
         <TextView
+            android:id="@+id/but1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="@string/exercise_info"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/clickable"
+            android:textSize="24dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/header" />
+
+        <TextView
             android:id="@+id/but2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,10 +88,10 @@
             android:text="@string/stroke_information"
             android:padding="5dp"
             android:textColor="@color/white"
-            android:background="@drawable/border"
+            android:background="@drawable/clickable"
             android:textSize="24dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/header" />
+            app:layout_constraintTop_toBottomOf="@+id/but1" />
         <TextView
             android:padding="5dp"
             android:id="@+id/but3"
@@ -87,7 +103,7 @@
             android:gravity="center"
             android:text="@string/upper_limb_exercise"
             android:textColor="@color/white"
-            android:background="@drawable/border"
+            android:background="@drawable/clickable"
             android:textSize="24dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/but2" />

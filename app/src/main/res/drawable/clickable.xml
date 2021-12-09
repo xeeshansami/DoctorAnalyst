@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true"
-        android:drawable="@drawable/click_button_bg" /> <!-- pressed -->
+        android:drawable="@drawable/border2" /> <!-- pressed -->
     <item android:state_focused="true"
-        android:drawable="@color/white" /> <!-- focused -->
-    <item android:drawable="@drawable/button_bg" /> <!-- default -->
+        android:drawable="@drawable/border" /> <!-- focused -->
+    <item android:drawable="@drawable/border" /> <!-- default -->
 </selector>

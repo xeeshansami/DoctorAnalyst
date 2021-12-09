@@ -56,7 +56,7 @@
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             android:gravity="center"
-            android:background="@drawable/border"
+            android:background="@drawable/clickable"
             android:text="@string/stroke_information"
             android:textColor="@color/white"
             android:textSize="24sp"
@@ -85,8 +85,10 @@
 
         <ImageView
             android:id="@+id/image1"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:layout_height="300dp"
             android:layout_marginTop="10dp"
             android:layout_centerInParent="true"
             android:src="@drawable/image1"
@@ -111,8 +113,10 @@
 
         <ImageView
             android:id="@+id/image2"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:layout_height="300dp"
             android:layout_marginTop="10dp"
             android:layout_centerInParent="true"
             android:src="@drawable/image2"
@@ -137,8 +141,10 @@
 
         <ImageView
             android:id="@+id/image3"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:layout_height="300dp"
             android:layout_marginTop="10dp"
             android:layout_centerInParent="true"
             android:src="@drawable/image3"

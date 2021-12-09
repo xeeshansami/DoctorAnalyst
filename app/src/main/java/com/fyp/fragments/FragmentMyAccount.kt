@@ -15,6 +15,8 @@ import com.fyp.R
 import com.fyp.activities.ActivityDashboard
 import com.fyp.activities.LogActivity
 import com.fyp.interfaces.iOnBackPressed
+import com.fyp.utils.Constant
+import com.fyp.utils.SessionManager
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_account.*
 
@@ -22,6 +24,8 @@ import kotlinx.android.synthetic.main.fragment_account.*
 class FragmentMyAccount : Fragment(), View.OnClickListener, iOnBackPressed {
     var list = ArrayList<String>()
     var myView: View? = null
+    private var sessionManager: SessionManager? = null
+
     private var firebaseAuth: FirebaseAuth? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +42,7 @@ class FragmentMyAccount : Fragment(), View.OnClickListener, iOnBackPressed {
     }
 
     fun init() {
+        sessionManager = SessionManager(activity as ActivityDashboard)
         firebaseAuth = FirebaseAuth.getInstance()
         updateAnAccountTv.setOnClickListener(this)
         changePasswordTv.setOnClickListener(this)
@@ -67,6 +72,7 @@ class FragmentMyAccount : Fragment(), View.OnClickListener, iOnBackPressed {
         val progressDialog =
             ProgressDialog.show(activity, resources.getString(R.string.please_wait) , resources.getString(R.string.login_out_err) , true)
         Toast.makeText(activity, "Log out", Toast.LENGTH_SHORT).show()
+        sessionManager!!.setStringVal(Constant.MOBILE,"")
         firebaseAuth?.signOut()
         var intent = Intent(activity, LogActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

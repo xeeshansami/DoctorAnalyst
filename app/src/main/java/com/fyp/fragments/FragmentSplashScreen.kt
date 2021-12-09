@@ -1,7 +1,9 @@
 package com.fyp.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.fyp.R
+import com.fyp.activities.LanguageActivity
+import com.fyp.activities.LogActivity
+import com.fyp.utils.Constant
+import com.fyp.utils.SessionManager
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -21,7 +27,9 @@ import com.google.firebase.auth.FirebaseAuth
  */
 class FragmentSplashScreen : Fragment() {
     private val hideHandler = Handler()
+    private var sessionManager: SessionManager? = null
     private var firebaseAuth: FirebaseAuth? = null
+
     @Suppress("InlinedApi")
     private val hidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
@@ -46,9 +54,9 @@ class FragmentSplashScreen : Fragment() {
     private var fullscreenContentControls: View? = null
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_splash_screen, container, false)
     }
@@ -58,8 +66,21 @@ class FragmentSplashScreen : Fragment() {
         fullscreenContent = view.findViewById(R.id.fullscreen_content)
         init()
     }
-    fun init(){
+
+    fun init() {
         firebaseAuth = FirebaseAuth.getInstance()
+        sessionManager = SessionManager(activity as LogActivity)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (!sessionManager!!.getStringVal(Constant.MOBILE).isNullOrEmpty()) {
+            var intent = Intent(activity as LogActivity, LanguageActivity::class.java)
+            startActivity(intent)
+            (activity as LogActivity).finish()
+        } else {
+            findNavController().navigate(R.id.action_splashScreen_to_signin)
+        }
     }
 
     override fun onResume() {
@@ -68,7 +89,7 @@ class FragmentSplashScreen : Fragment() {
 //        if(firebaseAuth?.currentUser?.uid!=null){
 //            sendToScreen(R.id.action_splashScreen_to_dashboard)
 //        }else{
-            sendToScreen(R.id.action_splashScreen_to_signin)
+//        sendToScreen(R.id.action_splashScreen_to_signin)
 //        }
     }
 
@@ -79,7 +100,8 @@ class FragmentSplashScreen : Fragment() {
         activity?.window?.decorView?.systemUiVisibility = 0
         show()
     }
-    fun sendToScreen(id:Int){
+
+    fun sendToScreen(id: Int) {
         Handler().postDelayed({
             findNavController().navigate(
                 id, null,
@@ -95,8 +117,6 @@ class FragmentSplashScreen : Fragment() {
         fullscreenContent = null
         fullscreenContentControls = null
     }
-
-
 
 
     @Suppress("InlinedApi")

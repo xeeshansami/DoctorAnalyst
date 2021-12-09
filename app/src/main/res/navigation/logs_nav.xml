@@ -13,10 +13,7 @@
         <action
             android:id="@+id/action_splashScreen_to_signin"
             app:destination="@id/signin"
-            app:enterAnim="@android:anim/cycle_interpolator"
-            app:exitAnim="@android:anim/decelerate_interpolator"
-            app:popEnterAnim="@android:anim/anticipate_overshoot_interpolator"
-            app:popExitAnim="@android:anim/linear_interpolator" />
+           />
         <action
             android:id="@+id/action_splashScreen_to_dashboard"
             app:destination="@id/dashboard"
@@ -39,7 +36,7 @@
             app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_signin_to_dashboard"
-            app:destination="@id/dashboard"
+            app:destination="@id/languageActivity"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
@@ -78,6 +75,11 @@
         android:name="com.fyp.activities.ActivityDashboard"
         android:label="activity_dashboard"
         tools:layout="@layout/activity_dashboard" />
+    <activity
+        android:id="@+id/languageActivity"
+        android:name="com.fyp.activities.LanguageActivity"
+        android:label="LanguageActivity"
+        tools:layout="@layout/activity_language" />
     <fragment
         android:id="@+id/fragmentForgetPassword"
         android:name="com.fyp.fragments.FragmentForgetPassword"

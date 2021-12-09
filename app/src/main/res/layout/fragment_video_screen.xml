@@ -74,7 +74,7 @@
             android:text="Active Exercise"
             android:padding="5dp"
             android:textColor="@color/white"
-            android:textSize="24dp"
+            android:textSize="26dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/header" />
 
@@ -89,8 +89,8 @@
             android:text="Bilateral Shoulder Flexion with both hands interlocked"
             android:padding="5dp"
             android:textColor="@color/white"
-            android:background="@drawable/border"
-            android:textSize="15dp"
+            android:background="@drawable/border3"
+            android:textSize="17dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/subheader" />
 
@@ -126,7 +126,7 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content">-->
 <!--            <VideoView-->
-<!--                android:background="@drawable/border"-->
+<!--                android:background="@drawable/clickable"-->
 <!--                android:id="@+id/videoview"-->
 <!--                android:layout_marginLeft="30dp"-->
 <!--                android:layout_marginRight="30dp"-->
@@ -135,7 +135,7 @@
 <!--                android:layout_height="200dp"></VideoView>-->
 <!--            </LinearLayout>-->
             <WebView
-                android:background="@drawable/border"
+                android:background="@drawable/clickable"
                 android:id="@+id/ivForm"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
@@ -162,7 +162,7 @@
                     android:id="@+id/backBtn"
                     android:textColor="@color/themeColor"
                     android:text="@string/backStr"
-                    android:background="@drawable/clickable"
+                    android:background="@drawable/clickable_2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"></Button>
                    <Button
@@ -171,7 +171,7 @@
                        android:id="@+id/nextBtn"
                     android:textColor="@color/themeColor"
                     android:text="@string/nextStr"
-                    android:background="@drawable/clickable"
+                    android:background="@drawable/clickable_2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"></Button>
             </LinearLayout>
@@ -187,7 +187,7 @@
                 android:text="@string/translation"
                 android:padding="5dp"
                 android:textColor="@color/white"
-                android:textSize="24dp"
+                android:textSize="27dp"
                 />
 
 
@@ -202,7 +202,7 @@
                 android:text="This is a text"
                 android:padding="5dp"
                 android:textColor="@color/white"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 />
 
 

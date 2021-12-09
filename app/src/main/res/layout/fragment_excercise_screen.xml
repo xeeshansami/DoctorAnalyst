@@ -67,21 +67,6 @@
 
 
 
-        <TextView
-            android:id="@+id/but2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:gravity="center"
-            android:text="@string/active_exercise"
-            android:padding="5dp"
-            android:textColor="@color/white"
-            android:background="@drawable/border"
-            android:textSize="24dp"
-            app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/header" />
 
         <TextView
             android:padding="5dp"
@@ -94,10 +79,25 @@
             android:gravity="center"
             android:text="@string/passive_exercise"
             android:textColor="@color/white"
-            android:background="@drawable/border"
+            android:background="@drawable/clickable"
             android:textSize="24dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/but2" />
+            app:layout_constraintTop_toBottomOf="@+id/header" />
+        <TextView
+            android:id="@+id/but2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="@string/active_exercise"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:background="@drawable/clickable"
+            android:textSize="24dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/but3" />
 
         <TextView
             android:padding="5dp"
@@ -110,10 +110,10 @@
             android:gravity="center"
             android:text="@string/functional_activities"
             android:textColor="@color/white"
-            android:background="@drawable/border"
+            android:background="@drawable/clickable"
             android:textSize="24dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/but3" />
+            app:layout_constraintTop_toBottomOf="@+id/but2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

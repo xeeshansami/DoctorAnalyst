@@ -88,7 +88,7 @@
             android:text="@string/shoulder_flexion"
             android:padding="5dp"
             android:textColor="@color/white"
-            android:background="@drawable/border"
+            android:background="@drawable/clickable"
             android:textSize="15dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/subheader" />
@@ -104,7 +104,7 @@
             android:text="@string/shoulder_abduction"
             android:padding="5dp"
             android:textColor="@color/white"
-            android:background="@drawable/border"
+            android:background="@drawable/clickable"
             android:textSize="15dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/button1" />

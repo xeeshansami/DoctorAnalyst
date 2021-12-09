@@ -120,15 +120,15 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
     @SuppressLint("SetJavaScriptEnabled", "JavascriptInterface")
     private fun webview(html: String, heading: String, text: String) {
         ivForm.settings.javaScriptEnabled = true;
-        ivForm.settings.setDomStorageEnabled(true);
+        ivForm.settings.domStorageEnabled = true;
         ivForm.getSettings().builtInZoomControls = true;
         ivForm.getSettings().displayZoomControls = true;
         ivForm.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY;
-        ivForm.getSettings().setPluginState(WebSettings.PluginState.ON);
-        ivForm.getSettings().setAllowContentAccess(true);
+        ivForm.getSettings().pluginState = WebSettings.PluginState.ON;
+        ivForm.getSettings().allowContentAccess = true;
         ivForm.getSettings().setAppCacheEnabled(true);
-        ivForm.getSettings().setDomStorageEnabled(true);
-        ivForm.getSettings().setUseWideViewPort(true);
+        ivForm.getSettings().domStorageEnabled = true;
+        ivForm.getSettings().useWideViewPort = true;
         ivForm.setWebViewClient(WebViewClient())
         ivForm.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView?, progress: Int) {

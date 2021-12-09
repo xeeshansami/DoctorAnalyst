@@ -1,9 +1,5 @@
 <resources>
-    <array name="gender">
-        <item>مرد</item>
-        <item>عورت</item>
 
-    </array>
     <array name="questions_array">
         <item>What is a stroke?</item>
         <item>What are the type of stroke?</item>
@@ -42,14 +38,9 @@
         </item>
     </array>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="app_name">اسٹروکیکس
-</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">Powered By\nNooEd Technology | Pvt.Ltd |\nwww.noodlesTechnology.com</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="para">aksljdklasdlkasjd</string>
-    <string name="backStr"><![CDATA[<< پیچھے]]></string>
-    <string name="nextStr"><![CDATA[اگلے >>]]></string>
     <string name="strokeInfo1">فالج
 فالج دماغ میں خون کی نالی کی بندش یا رساؤ کے باعث ہوتا ہے، جو کہ ناکافی آکسیجن اور غذائیت کی فراہمی کا باعث بنتا ہے اور اس کا نتیجہ دماغی خلیوں کی خرابی یا تباہی ہے۔ یہ مخصوص دماغی فعال جیسا کہ اعضائی حرکات اور گفتار پر اثرانداز ہوتا ہے۔ کچھ مریض اپنی نگہداشت کی اہلیت میں مزید کمی کا سامنا کر سکتے ہیں
 \n</string>
@@ -97,28 +88,11 @@
 	فالج ایک ناقابل برداشت کیفیت ہو سکتی ہے۔ تاہم، مناسب معالجے اور قوتِ ارادی کے ساتھ، کئی مریض اپنے کارآمدہ عضو کو پھر سے قابل استعمال بنا سکتے ہیں۔ مریضوں اور نگہداشت کرنے والوں کی حوصلہ افزائی کی جاتی ہے کہ وہ مناسب مشورے کے لیے پروفیشنلز سے مدد طلب کرے۔
 \n
 </string>
-    <string name="mobile_number">موبائل فون کانمبر
-</string>
-    <string name="login">لاگ ان کریں
-</string>
-    <string name="create_new_account">نیا اکاؤنٹ بنانے
-</string>
     <string name="passive_exercise">غیر فعال ورزش
 </string>
     <string name="functional_activities">فنکشنل سرگرمیاں
 </string>
     <string name="active_exercise">فعال ورزش
-</string>
-    <string name="language">زبان</string>
-    <string name="english">انگریزی</string>
-    <string name="urdu">اردو</string>
-    <string name="my_account">میرا اکاونٹ
-</string>
-    <string name="update_an_account">ایک اکاؤنٹ اپ ڈیٹ کریں۔
-</string>
-    <string name="change_password">پاس ورڈ تبدیل کریں
-</string>
-    <string name="logout">لاگ آوٹ
 </string>
     <string name="bilateral_shoulder_flexion_with_both_hands_interlocked">دو طرفہ کندھے کا موڑ جس میں دونوں ہاتھ آپس میں جڑے ہوئے ہیں۔</string>
     <string name="shoulder_horizontal_abduction">کندھے کا افقی اغوا</string>
@@ -149,10 +123,6 @@
     <string name="roms_for_shoulder">کندھے کے لیے ROMs</string>
     <string name="roms_for_elbow">کہنی کے لیے ROMs</string>
     <string name="roms_for_wrist_fingers_and_thumb">کلائی، انگلیوں اور انگوٹھے کے لیے ROMs</string>
-    <string name="full_name">پورا نام</string>
-    <string name="age">عمر</string>
-    <string name="city">شہر</string>
-    <string name="translation">ترجمہ</string>
     <string name="bilateral_shoulder_flexion_with_both_hands_interlocked_Str">•	 مریض کو سیدھا لٹائیں کہ اس کا منہ چھت کی طرف ھو۔
 •	مریض سے متاثرہ ہاتھ کو غیر متاثرہ ہاتھ کی مدد سے پکڑنے کو کہیں۔
 •	پھر دونوں بازو اوپر کی طرف لے کے جائیں اور آہستہ آہستہ واپس لے آئیں جیسا کہ ویڈیو میں دکھایا گیا ہے۔
@@ -281,37 +251,4 @@
 •	مریض کے بازو کو کہنی اور ہاتھ کی سطح پر پکڑیں جیسا کہ ویڈیو میں دکھایا گیا ہے۔
 •	بازو کو اوپر کی طرف اور پیچھے تک لے کے جائیں اور پھر واپس اپنی جگہ پر لے کر آئیں جیسا کہ ویڈیو میں دکھایا گیا ہے۔
 </string>
-    <string name="first_name">پہلا نام</string>
-    <string name="last_name">آخری نام</string>
-    <string name="mobile">موبائل</string>
-    <string name="date_of_birth">پیدائش کی تاریخ</string>
-    <string name="current_password">موجودہ خفیہ لفظ</string>
-    <string name="new_password">نیا پاس ورڈ</string>
-    <string name="confirm_new_password">نئے پاس ورڈ کی توثیق کریں</string>
-    <string name="update">اپ ڈیٹ</string>
-    <string name="forget_password">پاس ورڈ بھول جانا</string>
-    <string name="email_or_mobile">ای میل یا موبائل</string>
-    <string name="reset_password">پاس ورڈ ری سیٹ</string>
-    <string name="home">گھر</string>
-    <string name="account">کھاتہ</string>
-    <string name="mob_err">براہ کرم موبائل نمبر درج کریں۔</string>
-    <string name="mob_err_digits">براہ کرم ایموبائل نمبر کے 13 ہندسے درج کریں۔</string>
-    <string name="please_wait">برائے مہربانی انتظار کریں</string>
-    <string name="loading_in">لاگ ان ہو رہا ہے...</string>
-    <string name="login_err">لاگ ان ناکام ہوگیا، براہ کرم اپنا درست موبائل نمبر درج کریں یا خود کو رجسٹر کریں۔</string>
-    <string name="login_success">کامیابی سے لاگ ان کریں...</string>
-    <string name="fname_err">براہ کرم پورا نام درج کریں۔</string>
-    <string name="lname_err">براہ کرم عمر کا نام درج کریں۔</string>
-    <string name="city_err">براہ کرم شہر کا نام درج کریں۔</string>
-    <string name="mobile_err">براہ کرم موبائل نمبر درج کریں۔</string>
-    <string name="mobile_digits_err">براہ کرم موبائل نمبر کے 11 ہندسے درج کریں اور 03xxxxxxxx سے بھی شروع کریں۔</string>
-    <string name="buffering">بفرنگ...</string>
-    <string name="birth_err">براہ کرم تاریخ پیدائش منتخب کریں۔</string>
-    <string name="pwd_err">براہ کرم پرانا پاس ورڈ درج کریں۔</string>
-    <string name="newPwd_err">براہ کرم نیا پاس ورڈ درج کریں۔</string>
-    <string name="confirm_err">براہ کرم تصدیق شدہ نیا پاس ورڈ درج کریں۔</string>
-    <string name="matchPwd_err">نیا اور تصدیق شدہ پاس ورڈ مماثل نہیں ہے۔</string>
-    <string name="login_out_err">لاگ آؤٹ ہو رہا ہے...</string>
-    <string name="email_err">براہ کرم درست ای میل یا موبائل نمبر درج کریں۔</string>
-    <string name="old_pwd_err">براہ کرم پرانا پاس ورڈ درج کریں۔</string>
 </resources>

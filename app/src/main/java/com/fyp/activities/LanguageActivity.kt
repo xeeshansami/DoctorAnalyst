@@ -46,16 +46,16 @@ class LanguageActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_language)
         sessionManager = SessionManager(this)
-        if(sessionManager!!.getIntVal(Constant.LANGUAGE)!=0){
-            finish()
-            startActivity(Intent(this, LogActivity::class.java))
-        }else {
-            if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1||sessionManager!!.getIntVal(Constant.LANGUAGE) == 0) {
-                AppLang.AppLang(this, "en")
-            } else {
-                AppLang.AppLang(this, "ur")
-            }
-        }
+//        if(sessionManager!!.getIntVal(Constant.LANGUAGE)!=0){
+//            finish()
+//            startActivity(Intent(this, LogActivity::class.java))
+//        }else {
+//            if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1||sessionManager!!.getIntVal(Constant.LANGUAGE) == 0) {
+//                AppLang.AppLang(this, "en")
+//            } else {
+//                AppLang.AppLang(this, "ur")
+//            }
+//        }
         but2.setOnClickListener(this)
         but3.setOnClickListener(this)
     }
@@ -99,13 +99,13 @@ class LanguageActivity : AppCompatActivity(), View.OnClickListener {
                 AppLang.AppLang(this, "en")
                 sessionManager!!.setIntVal(Constant.LANGUAGE,1)
                 finish()
-                startActivity(Intent(this, LogActivity::class.java))
+                startActivity(Intent(this, ActivityDashboard::class.java))
             }
             R.id.but3 -> {
                 AppLang.AppLang(this, "ur")
                 sessionManager!!.setIntVal(Constant.LANGUAGE,2)
                 finish()
-                startActivity(Intent(this, LogActivity::class.java))
+                startActivity(Intent(this, ActivityDashboard::class.java))
             }
         }
     }

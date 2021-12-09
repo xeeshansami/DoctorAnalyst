@@ -127,7 +127,7 @@ Pain.\n
 Changes in behavior and self-care ability.\n
 </string>
     <string name="mobile_number">Mobile Number</string>
-    <string name="login">LOGIN</string>
+    <string name="login">Login</string>
     <string name="create_new_account">Create New Account</string>
     <string name="passive_exercise">Passive Exercise</string>
     <string name="functional_activities">Functional Activities</string>
@@ -135,10 +135,10 @@ Changes in behavior and self-care ability.\n
     <string name="language">Language</string>
     <string name="english">English</string>
     <string name="urdu">Urdu</string>
-    <string name="my_account">MY ACCOUNT</string>
-    <string name="update_an_account">UPDATE AN ACCOUNT</string>
-    <string name="change_password">CHANGE PASSWORD</string>
-    <string name="logout">LOGOUT</string>
+    <string name="my_account">My Account</string>
+    <string name="update_an_account">Update Account</string>
+    <string name="change_password">Change Password</string>
+    <string name="logout">Logout</string>
     <string name="bilateral_shoulder_flexion_with_both_hands_interlocked">Bilateral Shoulder Flexion with both hands interlocked</string>
     <string name="shoulder_horizontal_abduction">Shoulder Horizontal Abduction</string>
     <string name="shoulder_abduction">Shoulder Abduction</string>
@@ -196,19 +196,19 @@ Changes in behavior and self-care ability.\n
     <string name="roms_for_elbow_str">•\tPatient should be in supine lying position.\n\" +                 \"•\tCaregiver should be standing at the side of patient.\n\" +                 \"•\tHold the patient’s affected arm from the wrist then bend the elbow and straighten it as demonstrated in the video.\n\" +                 \"•\tRepeat this exercise 10 times.\n</string>
     <string name="roms_for_wrist_fingers_and_thumb_str">•\tPatient should be in supine lying position.\n\" +                 \"•\tCaregiver should be standing at the side of patient.\n\" +                 \"•\tHold the patient’s affected arm from the wrist then bend the wrist first then straighten it as demonstrated in the video.\n\" +                 \"•\tRepeat this exercise 10 times.\n\" +                 \"•\tHold the affected arm from wrist then move the thumb and fingers in all possible directions and return to original position.\n\" +                 \"•\tRepeat this exercise 10 times.\n</string>
     <string name="shoulder_flexion_str">•\tPatient should be in supine lying position.\n\" +                 \"•\tCaregiver should be standing at the side of patient.\n\" +                 \"•\tHold the patient’s arm at the level of elbow and hand as demonstrated in the video.\n\" +                 \"•\tPerform the flexion of shoulder as demonstrated in the video.\n\" +                 \"•\tRepeat this exercise 10 times.\n</string>
-    <string name="first_name">FIRST NAME</string>
-    <string name="last_name">LAST NAME</string>
-    <string name="mobile">MOBILE</string>
-    <string name="date_of_birth">DATE OF BIRTH</string>
-    <string name="current_password">CURRENT PASSWORD</string>
-    <string name="new_password">NEW PASSWORD</string>
-    <string name="confirm_new_password">CONFIRM NEW PASSWORD</string>
-    <string name="update">UPDATE</string>
-    <string name="forget_password">FORGET PASSWORD</string>
-    <string name="email_or_mobile">EMAIL or MOBILE</string>
-    <string name="reset_password">RESET PASSWORD</string>
-    <string name="home">HOME</string>
-    <string name="account">ACCOUNT</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="mobile">Mobile</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">COonfirm New Password</string>
+    <string name="update">Update</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="email_or_mobile">Email or Mobile</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="home">Home</string>
+    <string name="account">Account</string>
     <string name="mob_err">Please enter mobile number</string>
     <string name="mob_err_digits">Please enter the 13 digits of emobile number</string>
     <string name="please_wait">Please wait</string>
@@ -229,4 +229,6 @@ Changes in behavior and self-care ability.\n
     <string name="login_out_err">Logging out...</string>
     <string name="email_err">Please enter the valid email or mobile number</string>
     <string name="old_pwd_err">Please enter the old password</string>
+    <string name="exercise_info">Exercise Information</string>
+    <string name="mobile_err_2">Mobile number should be start with 03XXXXXXXXX</string>
 </resources>

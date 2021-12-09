@@ -44,11 +44,11 @@ class LogActivity : AppCompatActivity() {
         setContentView(R.layout.activity_logs)
         fullscreenContent = findViewById(R.id.fullscreen_content)
         sessionManager = SessionManager(this)
-        if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1||sessionManager!!.getIntVal(Constant.LANGUAGE) == 0) {
-            AppLang.AppLang(this, "en")
-        } else {
-            AppLang.AppLang(this, "ur")
-        }
+//        if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1||sessionManager!!.getIntVal(Constant.LANGUAGE) == 0) {
+//            AppLang.AppLang(this, "en")
+//        } else {
+//            AppLang.AppLang(this, "ur")
+//        }
     }
 
     override fun onResume() {

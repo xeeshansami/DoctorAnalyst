@@ -9,13 +9,14 @@
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/strokexapplogo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/strokexapplogo"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.LanguageActivity"
+        <activity android:name=".activities.LogActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             >
             <intent-filter>
@@ -24,10 +25,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.LogActivity"
+        <activity android:name=".activities.LanguageActivity"
             android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"
             >
         </activity>
-        <activity android:name=".activities.ActivityDashboard"></activity>
+        <activity android:name=".activities.ActivityDashboard"
+            android:screenOrientation="portrait"></activity>
     </application>
 </manifest>

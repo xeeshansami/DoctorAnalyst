@@ -63,6 +63,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideAbove" />
 
         <EditText
+            android:paddingLeft="10dp"
             android:id="@+id/firstNameTv"
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -81,6 +82,7 @@
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/header" />
         <EditText
+            android:paddingLeft="10dp"
             android:id="@+id/age"
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -100,6 +102,7 @@
             app:layout_constraintTop_toBottomOf="@+id/firstNameTv" />
 
         <EditText
+            android:paddingLeft="10dp"
             android:id="@+id/mobileTv"
             android:layout_width="0dp"
             android:layout_height="40dp"
@@ -159,6 +162,7 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:paddingLeft="10dp"
                 android:id="@+id/etPassword"
                 android:textColorHint="@color/hint"
                 android:layout_width="match_parent"
@@ -193,6 +197,7 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:paddingLeft="10dp"
                 android:id="@+id/newPwd"
                 android:textColorHint="@color/hint"
                 android:layout_width="match_parent"
@@ -227,6 +232,7 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:paddingLeft="10dp"
                 android:id="@+id/confirmNewPassword"
                 android:textColorHint="@color/hint"
                 android:layout_width="match_parent"

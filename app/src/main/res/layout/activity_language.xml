@@ -87,7 +87,7 @@
             android:text="@string/english"
             android:padding="5dp"
             android:textColor="@color/white"
-            android:background="@drawable/border"
+            android:background="@drawable/clickable"
             android:textSize="24dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/but1" />
@@ -102,7 +102,7 @@
             android:gravity="center"
             android:text="@string/urdu"
             android:textColor="@color/white"
-            android:background="@drawable/border"
+            android:background="@drawable/clickable"
             android:textSize="24dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/but2" />
