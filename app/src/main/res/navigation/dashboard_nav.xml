@@ -24,6 +24,13 @@
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard">
         <action
+            android:id="@+id/action_dashboard_to_FragmentExcerciseInformation"
+            app:destination="@id/FragmentExcerciseInformation"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
             android:id="@+id/action_dashboard_to_fragmentRehabilitation"
             app:destination="@id/fragmentStrokeInformation"
             app:enterAnim="@android:anim/slide_in_left"
@@ -52,6 +59,12 @@
             app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
+        android:id="@+id/FragmentExcerciseInformation"
+        android:name="com.fyp.fragments.FragmentExcerciseInformation"
+        android:label="FragmentExcerciseInformation"
+        tools:layout="@layout/fragment_excercise_information">
+
+    </fragment> <fragment
         android:id="@+id/fragmentExcerciseScreen"
         android:name="com.fyp.fragments.FragmentExcerciseScreen"
         android:label="FragmentExcerciseScreen"

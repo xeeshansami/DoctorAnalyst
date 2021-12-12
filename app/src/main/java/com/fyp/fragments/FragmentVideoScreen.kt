@@ -1,11 +1,8 @@
 package com.fyp.fragments
 
 import android.annotation.SuppressLint
-import android.app.ProgressDialog
 import android.graphics.Bitmap
-import android.media.MediaPlayer.OnCompletionListener
-import android.media.MediaPlayer.OnPreparedListener
-import android.net.Uri
+import android.graphics.BitmapFactory
 import android.net.http.SslError
 import android.os.Build
 import android.os.Bundle
@@ -16,9 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
-import android.widget.LinearLayout
-import android.widget.MediaController
-import android.widget.TextView
+import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -33,11 +28,10 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_video_screen.*
-import java.text.SimpleDateFormat
 import java.time.LocalTime
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
+import kotlin.collections.set
 
 
 class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
@@ -129,8 +123,74 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
         ivForm.getSettings().setAppCacheEnabled(true);
         ivForm.getSettings().domStorageEnabled = true;
         ivForm.getSettings().useWideViewPort = true;
-        ivForm.setWebViewClient(WebViewClient())
+        ivForm.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH)
+        ivForm.getSettings().setAppCacheEnabled(true)
+        ivForm.scrollBarStyle=View.SCROLLBARS_INSIDE_OVERLAY
+        ivForm.settings.domStorageEnabled=true
+        ivForm.settings.layoutAlgorithm=WebSettings.LayoutAlgorithm.NARROW_COLUMNS
+        ivForm.settings.useWideViewPort=true
+        ivForm.settings.saveFormData=true
+        ivForm.settings.savePassword=true
+        ivForm.clearCache(true);
+        ivForm.clearHistory();
+        ivForm.webViewClient = WebViewClient()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            ivForm.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        } else {
+            ivForm.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        }
         ivForm.webChromeClient = object : WebChromeClient() {
+
+
+            private var mCustomView: View? = null
+            private var mCustomViewCallback: CustomViewCallback? = null
+            protected var mFullscreenContainer: FrameLayout? = null
+            private var mOriginalOrientation = 0
+            private var mOriginalSystemUiVisibility = 0
+
+            fun ChromeClient() {}
+
+            override fun getDefaultVideoPoster(): Bitmap? {
+                return if (mCustomView == null) {
+                    null
+                } else BitmapFactory.decodeResource(
+                    (activity as ActivityDashboard).getResources(), 2130837573
+                )
+            }
+
+            override fun onHideCustomView() {
+                ( (activity as ActivityDashboard).getWindow().getDecorView() as FrameLayout).removeView(
+                    mCustomView
+                )
+                mCustomView = null
+              (activity as ActivityDashboard).getWindow().getDecorView().setSystemUiVisibility(
+                    mOriginalSystemUiVisibility
+                )
+                (activity as ActivityDashboard).setRequestedOrientation(mOriginalOrientation)
+                mCustomViewCallback!!.onCustomViewHidden()
+                mCustomViewCallback = null
+            }
+
+            override fun onShowCustomView(
+                paramView: View?,
+                paramCustomViewCallback: CustomViewCallback?
+            ) {
+                if (mCustomView != null) {
+                    onHideCustomView()
+                    return
+                }
+                mCustomView = paramView
+                mOriginalSystemUiVisibility =
+                  (activity as ActivityDashboard).getWindow().getDecorView().getSystemUiVisibility()
+                mOriginalOrientation =  (activity as ActivityDashboard).getRequestedOrientation()
+                mCustomViewCallback = paramCustomViewCallback
+                ( (activity as ActivityDashboard).getWindow().getDecorView() as FrameLayout).addView(
+                    mCustomView,
+                    FrameLayout.LayoutParams(-1, -1)
+                )
+              (activity as ActivityDashboard).getWindow().getDecorView()
+                    .setSystemUiVisibility(3846 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+            }
             override fun onProgressChanged(view: WebView?, progress: Int) {
                 try {
                     if (progressBar != null) {
@@ -139,6 +199,8 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                 } catch (e: java.lang.NullPointerException) {
                 }
             }
+
+           
         }
         ivForm.webViewClient = object : WebViewClient() {
             override fun onReceivedSslError(
@@ -175,7 +237,6 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                 super.onReceivedError(view, request, error)
             }
         }
-
         ivForm.loadUrl(html)
         subtitleHeader.text = heading
         subheader.text = heading

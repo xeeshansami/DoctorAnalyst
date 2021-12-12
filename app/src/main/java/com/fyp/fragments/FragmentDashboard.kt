@@ -36,6 +36,7 @@ class FragmentDashboard : Fragment(), iOnItemClickListner, iOnBackPressed, View.
     }
 
     private fun init(view: View) {
+        but1.setOnClickListener(this)
         but2.setOnClickListener(this)
         but3.setOnClickListener(this)
         addQuestInRv()
@@ -95,6 +96,9 @@ class FragmentDashboard : Fragment(), iOnItemClickListner, iOnBackPressed, View.
 
     override fun onClick(v: View?) {
         when (v!!.id) {
+            R.id.but1 -> {
+                switchFragment(R.id.action_dashboard_to_FragmentExcerciseInformation)
+            }
             R.id.but2 -> {
                 switchFragment(R.id.fragmentStrokeInformation)
             }

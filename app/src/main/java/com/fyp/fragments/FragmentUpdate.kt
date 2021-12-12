@@ -39,7 +39,7 @@ class FragmentUpdate : Fragment() ,iOnBackPressed, View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
-        getDataFromFirebase()
+//        getDataFromFirebase()
     }
     fun init(){
         updateBtn.setOnClickListener(this)
