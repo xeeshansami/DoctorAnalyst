@@ -4,16 +4,15 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
+import android.text.BoringLayout
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.fyp.R
-import com.fyp.interfaces.iOnBackPressed
 import com.fyp.utils.Constant
 import com.fyp.utils.SessionManager
 import kotlinx.android.synthetic.main.content_dashboard.*
@@ -22,6 +21,7 @@ import kotlinx.android.synthetic.main.content_dashboard.*
 class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
     private val hideHandler = Handler()
     private var sessionManager: SessionManager? = null
+
     @Suppress("InlinedApi")
     private val hidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
@@ -51,7 +51,10 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
         init()
         fullscreenContent = findViewById(R.id.fullscreen_content)
         sessionManager = SessionManager(this)
-        if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1||sessionManager!!.getIntVal(Constant.LANGUAGE) == 0) {
+        if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1 || sessionManager!!.getIntVal(
+                Constant.LANGUAGE
+            ) == 0
+        ) {
             AppLang.AppLang(this, "en")
         } else {
             AppLang.AppLang(this, "ur")
@@ -97,20 +100,6 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
         tvUrdu.setOnClickListener(this)
     }
 
-    override fun onBackPressed() {
-        val fragment = this.supportFragmentManager.findFragmentById(R.id.fragment)
-        (fragment as? iOnBackPressed)?.onBackPressed()?.not()?.let {
-            super.onBackPressed()
-        }
-        val navController = findNavController(R.id.fragment)
-        if (!navController.popBackStack()) {
-            Log.i("onBackPress", "Not Up Finish All Fragment")
-            finish()
-        } else {
-            Log.i("onBackPress", "Up")
-            navController.popBackStack()
-        }
-    }
 
     private fun switchFragment(startDestId: Int) {
 //        val fragmentContainer = view?.findViewById<View>(R.id.nav_host)
@@ -128,14 +117,27 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
                 switchFragment(R.id.fragmentMyAccount)
             }
             R.id.tvHome -> {
-                switchFragment(R.id.dashboard)
+                switchFragment(R.id.startdashboard)
             }
             R.id.tvUrdu -> {
                 finish()
-                var intent=Intent(this, LanguageActivity::class.java)
+                var intent = Intent(this, LanguageActivity::class.java)
                 startActivity(intent)
-                sessionManager!!.setIntVal(Constant.LANGUAGE,0)
+                sessionManager!!.setIntVal(Constant.LANGUAGE, 0)
             }
+        }
+    }
+
+    override fun onBackPressed() {
+        val navController = findNavController(R.id.fragment)
+//        val id: Int = navController.currentDestination!!.id
+//        val fragment: Fragment? = supportFragmentManager.findFragmentById(id)
+//        val fragment2=fragment!!.childFragmentManager.popBackStack()
+        if (navController.navigateUp()) {
+//            navController.navigateUp()
+        } else {
+            finish()
+//        }
         }
     }
 }

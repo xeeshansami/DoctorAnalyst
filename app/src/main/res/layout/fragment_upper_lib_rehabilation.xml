@@ -59,7 +59,8 @@
             android:gravity="center"
             android:text="REHABLIATION"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="30sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toTopOf="@+id/guideAbove" />
 

@@ -9,6 +9,8 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Button
 import androidx.annotation.RequiresApi
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.fyp.R
 import com.fyp.utils.Constant
 import com.fyp.utils.SessionManager
@@ -81,5 +83,14 @@ class LogActivity : AppCompatActivity() {
         // Schedule a runnable to display UI elements after a delay
         hideHandler.removeCallbacks(hidePart2Runnable)
         supportActionBar?.show()
+    }
+
+    override fun onBackPressed() {
+        val navController = findNavController(R.id.fragment)
+        if (navController.navigateUp()) {
+//            navController.navigateUp()
+        } else {
+            finish()
+        }
     }
 }

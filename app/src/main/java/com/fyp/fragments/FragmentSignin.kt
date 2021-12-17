@@ -67,11 +67,11 @@ class FragmentSignin() : Fragment(), View.OnClickListener {
             username.error = resources.getString(R.string.mob_err)
             username.requestFocus()
             false
-        } else if (!username.toString().startsWith("03")) {
+        } else if (!uname.toString().startsWith("03")) {
             username.error = resources.getString(R.string.mobile_err_2)
             username.requestFocus()
             false
-        } else if (username.length() != 11) {
+        } else if (uname.length!= 11) {
             username.error = resources.getString(R.string.mob_err_digits)
             username.requestFocus()
             false

@@ -97,13 +97,16 @@ class FragmentDashboard : Fragment(), iOnItemClickListner, iOnBackPressed, View.
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.but1 -> {
-                switchFragment(R.id.action_dashboard_to_FragmentExcerciseInformation)
+                if (findNavController().currentDestination?.id == R.id.startdashboard)
+                    findNavController().navigate(R.id.action_dashboard_to_FragmentExcerciseInformation)
             }
             R.id.but2 -> {
-                switchFragment(R.id.fragmentStrokeInformation)
+                if (findNavController().currentDestination?.id == R.id.startdashboard)
+                    findNavController().navigate(R.id.action_dashboard_fragmentStrokeInformation)
             }
             R.id.but3 -> {
-                switchFragment(R.id.fragmentExcerciseScreen)
+                if (findNavController().currentDestination?.id == R.id.startdashboard)
+                    findNavController().navigate(R.id.action_dashboard_fragmentExcerciseScreen)
             }
         }
     }

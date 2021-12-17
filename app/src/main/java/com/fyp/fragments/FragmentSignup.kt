@@ -22,6 +22,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.fragment_signin.*
 import kotlinx.android.synthetic.main.fragment_signup.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -90,7 +91,11 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
             mobileTv.error =resources.getString(R.string.mobile_err)
             mobileTv.requestFocus()
             false
-        } else if (mobile.length < 11) {
+        }else if (!mobile.toString().startsWith("03")) {
+            username.error = resources.getString(R.string.mobile_err_2)
+            username.requestFocus()
+            false
+        }  else if (mobile.length < 11) {
             mobileTv.error =
                 resources.getString(R.string.mobile_digits_err)
             mobileTv.requestFocus()
