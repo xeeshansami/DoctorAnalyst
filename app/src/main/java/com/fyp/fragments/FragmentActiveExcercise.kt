@@ -36,6 +36,10 @@ class FragmentActiveExcercise : Fragment(), View.OnClickListener, iOnBackPressed
     }
 
     private fun init() {
+        list = ArrayList<videoObjects>()
+        urls = ArrayList<String>()
+        text = ArrayList<String>()
+        headings = ArrayList<String>()
         button1.setOnClickListener(this)
         button2.setOnClickListener(this)
         button3.setOnClickListener(this)

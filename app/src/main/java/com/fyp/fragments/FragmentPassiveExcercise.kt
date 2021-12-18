@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_passive_excercise.*
 
 
 class FragmentPassiveExcercise : Fragment(), View.OnClickListener, iOnBackPressed {
-    var list = ArrayList<videoObjects>()
+    var list : ArrayList<videoObjects>?=null
     var headings = ArrayList<String>()
     var urls = ArrayList<String>()
     var text = ArrayList<String>()
@@ -37,7 +37,12 @@ class FragmentPassiveExcercise : Fragment(), View.OnClickListener, iOnBackPresse
         init()
     }
 
+
     private fun init() {
+        list = ArrayList<videoObjects>()
+        urls = ArrayList<String>()
+        text = ArrayList<String>()
+        headings = ArrayList<String>()
         button1.setOnClickListener(this)
         button2.setOnClickListener(this)
         button3.setOnClickListener(this)

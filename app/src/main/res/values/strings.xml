@@ -49,83 +49,6 @@
     <string name="para">aksljdklasdlkasjd</string>
     <string name="backStr"><![CDATA[<< Back]]></string>
     <string name="nextStr"><![CDATA[NEXT >>]]></string>
-    <string name="strokeInfo1">What is a stroke?\n\n
-A stroke, sometimes called a “brain attack,” occurs when blood flow to the brain is interrupted. When a stroke occurs, brain cells in the immediate area begin to die because they stop getting the oxygen and nutrients they need to function. This can cause lasting brain damage, long-term disability, or even death.
-</string>
-    <string name="strokeInfo2">If your stroke affected the right side of your brain, your movement and sensation on the left side of your body may be affected. If your stroke damaged the brain tissue on the left side of your brain, your movement and sensation on the right side of your body may be affected. Brain damage to the left side of your brain may cause speech and language disorders\n\n</string>
-    <string name="strokeInfo3">What are the types of stroke?\n\n\nThe three main types of stroke are:\n\n
-1)Ischemic stroke is caused by a blood clot that blocks or plugs a blood vessel in the brain. Blocked or narrowed blood vessels are caused by fatty deposits that build up in blood vessels or by blood clots or other debris that travel through your bloodstream and lodge in the blood vessels in your brain. This is the most common type; about 80 percent of strokes are ischemic.
-2)Hemorrhagic stroke is caused by a blood vessel that breaks and bleeds into the brain. The leaked blood puts too much pressure on brain cells, which damages them.
-High blood pressure and aneurysms—balloon-like bulges in an artery that can stretch and burst—are examples of conditions that can cause a hemorrhagic stroke.
-There are two types of hemorrhagic strokes:\n\n
-Intracerebral hemorrhage is the most common type of hemorrhagic stroke. It occurs when an artery in the brain bursts, flooding the surrounding tissue with blood.
-Subarachnoid hemorrhage is a less common type of hemorrhagic stroke. It refers to bleeding in the area between the brain and the thin tissues that cover it.
-3)Transient Ischemic Attack (TIA) Another condition that\'s similar to a stroke. It\'s sometimes called a "mini-stroke." TIAs happen when the blood supply to the brain is blocked for a short time- usually no more than 5 minutes. The damage to the brain cells isn\'t permanent, but if you have had a TIA, you are at a much higher risk of having a stroke.
-Recognizing and treating TIAs can lower the risk of a major stroke. If you have a TIA, your health care team can find the cause and take steps to prevent a major stroke.
-Who is at risk for a stroke?\n\n
-Certain factors can raise your risk of a stroke. The major risk factors include\n\n
-High blood pressure. This is the primary risk factor for a stroke.\n\n
-Diabetes.\n\n
-Heart diseases. Atrial fibrillation and other heart diseases can cause blood clots that lead to stroke.\n\n
-Smoking. When you smoke, you damage your blood vessels and raise your blood pressure.\n\n
-A personal or family history of stroke or TIA.\n\n
-Age. Your risk of stroke increases as you get older.\n\n
-Race and ethnicity. African Americans have a higher risk of stroke.\n\n
-There are also other factors that are linked to a higher risk of stroke, such as\n\n
-Alcohol and illegal drug use\n\n
-Not getting enough physical activity\n\n
-High cholesterol\n\n
-Unhealthy diet\n\n
-Having obesity\n\n
-
-What are the symptoms of stroke?\n\n
-The symptoms of stroke often happen quickly. They include\n\n
-Sudden numbness or weakness of the face, arm, or leg (especially on one side of the body)\n\n
-Sudden confusion, trouble speaking, or understanding speech\n\n
-Sudden trouble seeing in one or both eyes\n\n
-Sudden difficulty walking, dizziness, loss of balance or coordination\n\n
-Sudden severe headache with no known cause\n\n
-</string>
-
-    <string name="strokeInfo4">How are strokes diagnosed?\n\n
-Some of the tests you may have include\n\n
-A physical exam. Your doctor will do a number of tests you\'re familiar with, such as listening to your heart and checking your blood pressure. You\'ll also have a neurological exam to see how a potential stroke is affecting your nervous system.
-Your mental alertness\n\n
-Your coordination and balance\n\n
-Any numbness or weakness in your face, arms, and legs\n\n
-Any trouble speaking and seeing clearly\n\n
-Blood tests\n\n
-Computerized tomography (CT) scan\n\n
-Magnetic resonance imaging (MRI)\n\n
-Carotid ultrasound\n\n
-Cerebral angiogram\n\n
-Echocardiogram Heart tests, which can help detect heart problems or blood clots that may have led to a stroke.\n\n
-What are the treatments for stroke?\n\n
-Treatments for stroke include medicines, surgery, and rehabilitation. Which treatments you get depend on the type of stroke and the stage of treatment. The different stages are
-Acute treatment, to try to stop a stroke while it is happening\n\n
-Post-stroke rehabilitation, to overcome the disabilities caused by the stroke\n\n
-Prevention, to prevent a first stroke or, if you have already had one, prevent another stroke\n\n
-Can strokes be prevented?If you have already had a stroke or are at risk of having a stroke, you can make some heart-healthy lifestyle changes to try to prevent a future stroke:\n\n
-Managing your blood pressure and cholesterol levels\n\n
-Managing diabetes.\n\n
-Quitting smoking\n\n
-Avoiding alcohol.\n\n
-Treating obstructive sleep apnea (OSA).\n\n
-Avoiding illegal drugs.\n\n
-Eating a heart-healthy diet\n\n
-Aiming for a healthy weight\n\n
-Managing stress\n\n
-Getting regular physical activity or exercise\n\n
-If these changes aren\'t enough, you may need medicine to control your risk factors.\n\n
-What disabilities can result from a stroke?\n\n
-Although stroke is a disease of the brain, it can affect the entire body. A stroke can sometimes cause temporary or permanent disabilities, depending on how long the brain lacks blood flow and which part was affected. Complications may include:
-•Paralysis or loss of muscle movement. You may become paralyzed on one side of your body, or lose control of certain muscles, such as those on one side of your face or one arm.
-Difficulty talking or swallowing.\n\n
-Memory loss or thinking difficulties.\n\n
-Emotional problems.\n\n
-Pain.\n\n
-Changes in behavior and self-care ability.\n\n
-</string>
     <string name="mobile_number">Mobile Number</string>
     <string name="login">Login</string>
     <string name="create_new_account">Create New Account</string>
@@ -172,7 +95,7 @@ Changes in behavior and self-care ability.\n\n
     <string name="full_name">Full Name</string>
     <string name="age">Age</string>
     <string name="city">City</string>
-    <string name="translation">Translation</string>
+    <string name="translation">Instructions</string>
     <string name="bilateral_shoulder_flexion_with_both_hands_interlocked_Str">•Patient should be in supine lying position.\n\n\nAsk the patient to clasp/hold the affected hand with the help of unaffected hand.\n\n\nThen flex both shoulders as demonstrated in the video.\n\n\nRepeat this exercise 10 times.\n\n</string>
     <string name="shoulder_horizontal_abduction_str">•Patient should be in supine lying position.\n\n\nAsk the patient to clasp/hold the affected hand with the help of unaffected hand.\n\n\nBring both arms at the level of 90° then move the arms right and left side as demonstrated in the video.\n\n\nRepeat this exercise 10 times.\n\n</string>
     <string name="shoulder_abduction_str">•Patient should be in supine lying position.\n\n\nAsk the patient to abduct the affected arm as demonstrated in the video.\n\n\nRepeat this exercise 10 times.\n\n</string>
@@ -184,7 +107,7 @@ Changes in behavior and self-care ability.\n\n
     <string name="hand_to_box_str">•Patient should be sitting in front of the table.\n\n\nPlace a box on the table.\n\n\nAsk the patient to place affected hand on the box then remove it as demonstrated in the video.\n\n\nKeep your body straight and shoulders back and avoid compensatory movements of body.\n\n\nRepeat this activity 10 times.\n\n</string>
     <string name="lift_can_str">•Sit in front of the table and place a can on the table.\n\n\nLift can with your affected hand.\n\n\nThen place it back on the table.\n\n\nKeep your body straight and shoulders back and avoid compensatory movements of body.\n\n\nRepeat this activity 10 times.\n\n</string>
     <string name="lift_pencil_str">•Sit in front of the table and place a pencil on the table.\n\n\nLift pencil with your affected hand.\n\n\nThen place it back on the table.\n\n\nKeep your body straight and shoulders back and avoid compensatory movements of body.\n\n\nRepeat this activity 10 times.\n\n</string>
-    <string name="stack_checkers_str" />
+    <string name="stack_checkers_str" >1. Sit in front of the table and place paper clip on the table.\n\n\n2. Lift paper clip with your affected hand.\n\n\n3. Then place it back on the table.\n\n\n4. Keep your body straight and shoulders back and avoid compensatory movements of body.\n\n\n5. Repeat this activity 10 times.\n\n\n</string>
     <string name="flip_cards_str">•Sit in front of the table and place three cards on the table.\n\n\nFlip cards one by one with your affected hand.\n\n\nKeep your body straight and shoulders back and avoid compensatory movements of body.\n\n\nRepeat this activity 10 times.\n\n</string>
     <string name="fold_towel_str">•Sit in front of the table and place a towel on the table.\n\n\nFold it as demonstrated in the video with your affected hand.\n\n\nThen unfold it.\n\n\nKeep your body straight and shoulders back and avoid compensatory movements of body.\n\n\nRepeat this activity 10 times.\n\n</string>
     <string name="drinking_water_from_glass_str">•Sit in front of the table and place a glass of water on the table.\n\n\nHold it with your affected hand.\n\n\nThen bring it close to your mouth and drink.\n\n\nKeep your body straight and shoulders back and avoid compensatory movements of body.\n\n</string>
@@ -232,10 +155,27 @@ Changes in behavior and self-care ability.\n\n
     <string name="login_out_err">Logging out...</string>
     <string name="email_err">Please enter the valid email or mobile number</string>
     <string name="old_pwd_err">Please enter the old password</string>
-    <string name="exercise_info">Exercise Probation</string>
+    <string name="exercise_info">Exercise Progression/Repetitions</string>
 
     <string name="mobile_err_2">Mobile number should be start with 03XXXXXXXXX</string>
     <string name="update_failed">Update failed, try again</string>
     <string name="update_succcess">Update successfully!</string>
     <string name="updating">Updating...</string>
+    <string name="lift_paper_clip">Lift Paper Clip</string>
+    <string name="lift_paper_clip_str">1.Sit in front of the table and place paper clip on the table.\n\n\n2.Lift paper clip with your affected hand.\n\n\n3. Then place it back on the table.\n\n\n4. Keep your body straight and shoulders back and avoid compensatory movements of body.\n\n\n5. Repeat this activity 10 times.</string>
+    <string name="header1"><u>What is a stroke?</u></string>
+    <string name="text1">A stroke, sometimes called a “brain attack,” occurs when blood flow to the brain is interrupted. When a stroke occurs, brain cells in the immediate area begin to die because they stop getting the oxygen and nutrients they need to function. This can cause lasting brain damage, long-term disability, or even death. </string>
+    <string name="text2">If your stroke affected the right side of your brain, your movement and sensation on the left side of your body may be affected. If your stroke damaged the brain tissue on the left side of your brain, your movement and sensation on the right side of your body may be affected. Brain damage to the left side of your brain may cause speech and language disorders.</string>
+    <string name="header2"><u>What are the types of stroke?</u></string>
+    <string name="text3">The three main types of stroke are:\n\n1)Ischemic stroke is caused by a blood clot that blocks or plugs a blood vessel in the brain. Blocked or narrowed blood vessels are caused by fatty deposits that build up in blood vessels or by blood clots or other debris that travel through your bloodstream and lodge in the blood vessels in your brain. This is the most common type; about 80 percent of strokes are ischemic.\n\n2)Hemorrhagic stroke is caused by a blood vessel that breaks and bleeds into the brain. The leaked blood puts too much pressure on brain cells, which damages them. High blood pressure and aneurysms—balloon-like bulges in an artery that can stretch and burst—are examples of conditions that can cause a hemorrhagic stroke. There are two types of hemorrhagic strokes: \n\n•Intracerebral hemorrhage is the most common type of hemorrhagic stroke. It occurs when an artery in the brain bursts, flooding the surrounding tissue with blood. \n\n•Subarachnoid hemorrhage is a less common type of hemorrhagic stroke. It refers to bleeding in the area between the brain and the thin tissues that cover it.\n\n3)Transient Ischemic Attack (TIA) Another condition that\'s similar to a stroke. It\'s sometimes called a \"mini-stroke.\" TIAs happen when the blood supply to the brain is blocked for a short time- usually no more than 5 minutes. The damage to the brain cells isn\'t permanent, but if you have had a TIA, you are at a much higher risk of having a stroke. Recognizing and treating TIAs can lower the risk of a major stroke. If you have a TIA, your health care team can find the cause and take steps to prevent a major stroke.</string>
+    <string name="header3"><u>Who is at risk for a stroke?</u></string>
+    <string name="header4">Certain factors can raise your risk of a stroke. The major risk factors include \n\n•High blood pressure. This is the primary risk factor for a stroke. \n\n•Diabetes. \n\n•Heart diseases. Atrial fibrillation and other heart diseases can cause blood clots that lead to stroke. \n\n•Smoking. When you smoke, you damage your blood vessels and raise your blood pressure. \n\n•A personal or family history of stroke or TIA. \n\n•Age. Your risk of stroke increases as you get older. \n\n•Race and ethnicity. African Americans have a higher risk of stroke. There are also other factors that are linked to a higher risk of stroke, such as \n\n•Alcohol and illegal drug use \n\n•Not getting enough physical activity \n\n•High cholesterol \n\n•Unhealthy diet \n\n•Having obesity </string>
+    <string name="text5">"The symptoms of stroke often happen quickly. They include \n\n•Sudden numbness or weakness of the face, arm, or leg (especially on one side of the body) \n\n•Sudden confusion, trouble speaking, or understanding speech \n\n•Sudden trouble seeing in one or both eyes \n\n•Sudden difficulty walking, dizziness, loss of balance or coordination \n\n•Sudden severe headache with no known cause</string>
+    <string name="header5"><u>How are strokes diagnosed?</u></string>
+    <string name="text6">Some of the tests you may have include: \n\n•A physical exam. Your doctor will do a number of tests you\'re familiar with, such as listening to your heart and checking your blood pressure. You\'ll also have a neurological exam to see how a potential stroke is affecting your nervous system. o\n\nYour mental alertness o\n\nYour coordination and balance o\n\nAny numbness or weakness in your face, arms, and legs o\n\nAny trouble speaking and seeing clearly \n\n•Blood tests \n\n•Computerized tomography (CT) scan \n\n•Magnetic resonance imaging (MRI) \n\n•Carotid ultrasound \n\n•Cerebral angiogram \n\n•Echocardiogram Heart tests, which can help detect heart problems or blood clots that may have led to a stroke.</string>
+    <string name="header6"><u>What are the treatments for stroke?</u></string>
+    <string name="text7">Treatments for stroke include medicines, surgery, and rehabilitation. Which treatments you get depend on the type of stroke and the stage of treatment. The different stages are \n\n•Acute treatment, to try to stop a stroke while it is happening \n\n•Post-stroke rehabilitation, to overcome the disabilities caused by the stroke \n\n•Prevention, to prevent a first stroke or, if you have already had one, prevent another stroke  Can strokes be prevented? If you have already had a stroke or are at risk of having a stroke, you can make some heart-healthy lifestyle changes to try to prevent a future stroke:  \n\n•Managing your blood pressure and cholesterol levels \n\n•Managing diabetes.  \n\n•Quitting smoking \n\n•Avoiding alcohol.  \n\n•Treating obstructive sleep apnea (OSA).  \n\n•Avoiding illegal drugs.  \n\n•Eating a heart-healthy diet \n\n•Aiming for a healthy weight \n\n•Managing stress \n\n•Getting regular physical activity or exercise  If these changes aren\'t enough, you may need medicine to control your risk factors.</string>
+    <string name="header7"><u>What disabilities can result from a stroke?</u></string>
+    <string name="text8">Although stroke is a disease of the brain, it can affect the entire body. A stroke can sometimes cause temporary or permanent disabilities, depending on how long the brain lacks blood flow and which part was affected. Complications may include: \n\n•Paralysis or loss of muscle movement. You may become paralyzed on one side of your body, or lose control of certain muscles, such as those on one side of your face or one arm. \n\n•Difficulty talking or swallowing.  \n\n•Memory loss or thinking difficulties.  \n\n•Emotional problems.  \n\n•Pain.  \n\n•Changes in behavior and self-care ability.</string>
+    <string name="header8"><u>What are the symptoms of stroke?</u></string>
 </resources>

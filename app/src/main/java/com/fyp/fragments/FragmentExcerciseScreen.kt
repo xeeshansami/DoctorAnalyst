@@ -36,6 +36,7 @@ class FragmentExcerciseScreen : Fragment(), View.OnClickListener ,iOnBackPressed
     }
 
     private fun init() {
+        list = ArrayList<videoObjects>()
         but2.setOnClickListener(this)
         but3.setOnClickListener(this)
         but4.setOnClickListener(this)

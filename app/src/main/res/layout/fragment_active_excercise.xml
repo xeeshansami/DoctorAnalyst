@@ -18,11 +18,13 @@
             android:id="@+id/guideline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="24dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline7"
+            android:layout_marginBottom="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -30,6 +32,7 @@
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideAbove"
+            android:layout_marginBottom="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -37,6 +40,7 @@
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideBottom"
+            android:layout_marginBottom="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -44,6 +48,7 @@
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/center"
+            android:layout_marginBottom="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -212,8 +217,17 @@
             android:textColor="@color/white"
             android:background="@drawable/clickable"
             android:textSize="15dp"
+            android:layout_marginBottom="20dp"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/button8" />
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/button9" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

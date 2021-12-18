@@ -19,10 +19,10 @@ import kotlinx.android.synthetic.main.fragment_functional_screen.*
 
 class FragmentFunctionalScreen : Fragment(), View.OnClickListener, iOnBackPressed,
     iOnVideoItemClickListner {
-    var list = ArrayList<videoObjects>()
+    var list : ArrayList<videoObjects>?=null
     var headings = ArrayList<String>()
-    var urls = ArrayList<String>()
-    var text = ArrayList<String>()
+    var urls : ArrayList<String>?=null
+    var text : ArrayList<String>?=null
     var myView: View? = null
     var videoPlay = true
     override fun onCreateView(
@@ -40,9 +40,13 @@ class FragmentFunctionalScreen : Fragment(), View.OnClickListener, iOnBackPresse
     }
 
     private fun init() {
+        list = ArrayList<videoObjects>()
+        urls = ArrayList<String>()
+        text = ArrayList<String>()
+        headings = ArrayList<String>()
         button1.setOnClickListener(this)
         button2.setOnClickListener(this)
-//        button3.setOnClickListener(this)
+        button3.setOnClickListener(this)
         button4.setOnClickListener(this)
         button5.setOnClickListener(this)
         button6.setOnClickListener(this)
@@ -66,9 +70,9 @@ class FragmentFunctionalScreen : Fragment(), View.OnClickListener, iOnBackPresse
         urls!!.add("https://strokex.xoqax.com/videos/functional-lift-pencil.mp4")
         text!!.add(resources.getString(R.string.lift_pencil_str))
 
-        headings!!.add("Lift Paper Clip")
+        headings!!.add(resources.getString(R.string.lift_paper_clip))
         urls!!.add("https://strokex.xoqax.com/videos/functional-lift-paper-clip.mp4")
-        text!!.add(resources.getString(R.string.stack_checkers_str))
+        text!!.add(resources.getString(R.string.lift_paper_clip_str))
 
         headings!!.add(resources.getString(R.string.stack_checkers))
         urls!!.add("https://strokex.xoqax.com/videos/functional-stack-checkers.mp4")
@@ -117,8 +121,8 @@ class FragmentFunctionalScreen : Fragment(), View.OnClickListener, iOnBackPresse
         for (x in 0 until  headings.size) {
             var obj = videoObjects()
             obj.heading=headings[x]
-            obj.videoUrl=urls[x]
-            obj.text=text[x]
+            obj.videoUrl=urls!![x]
+            obj.text=text!![x]
             list!!.add(obj)
         }
     }
@@ -154,18 +158,18 @@ class FragmentFunctionalScreen : Fragment(), View.OnClickListener, iOnBackPresse
                 )
                 findNavController().navigate(R.id.action_fragmentVideo, bundle)
             }
-//            R.id.button3 -> {
-//                bundle.putParcelableArrayList(
-//                    Constant.WEBVIEW_LINK,
-//                    list
-//                )
-//
-//                bundle.putInt(
-//                    Constant.POSITION,
-//                    2
-//                )
-//                findNavController().navigate(R.id.action_fragmentVideo, bundle)
-//            }
+            R.id.button3 -> {
+                bundle.putParcelableArrayList(
+                    Constant.WEBVIEW_LINK,
+                    list
+                )
+
+                bundle.putInt(
+                    Constant.POSITION,
+                    2
+                )
+                findNavController().navigate(R.id.action_fragmentVideo, bundle)
+            }
             R.id.button4 -> {
                 bundle.putParcelableArrayList(
                     Constant.WEBVIEW_LINK,
@@ -286,7 +290,7 @@ class FragmentFunctionalScreen : Fragment(), View.OnClickListener, iOnBackPresse
                 )
                 findNavController().navigate(R.id.action_fragmentVideo, bundle)
             }
-            R.id.button4 -> {
+            R.id.button14 -> {
                 bundle.putParcelableArrayList(
                     Constant.WEBVIEW_LINK,
                     list
@@ -294,34 +298,34 @@ class FragmentFunctionalScreen : Fragment(), View.OnClickListener, iOnBackPresse
 
                 bundle.putInt(
                     Constant.POSITION,
-                    14
+                    13
                 )
                 findNavController().navigate(R.id.action_fragmentVideo, bundle)
             }
-            R.id.button2 -> {
-                bundle.putParcelableArrayList(
-                    Constant.WEBVIEW_LINK,
-                    list
-                )
-
-                bundle.putInt(
-                    Constant.POSITION,
-                    1
-                )
-                findNavController().navigate(R.id.action_fragmentVideo, bundle)
-            }
-            R.id.button2 -> {
-                bundle.putParcelableArrayList(
-                    Constant.WEBVIEW_LINK,
-                    list
-                )
-
-                bundle.putInt(
-                    Constant.POSITION,
-                    1
-                )
-                findNavController().navigate(R.id.action_fragmentVideo, bundle)
-            }
+//            R.id.button2 -> {
+//                bundle.putParcelableArrayList(
+//                    Constant.WEBVIEW_LINK,
+//                    list
+//                )
+//
+//                bundle.putInt(
+//                    Constant.POSITION,
+//                    1
+//                )
+//                findNavController().navigate(R.id.action_fragmentVideo, bundle)
+//            }
+//            R.id.button2 -> {
+//                bundle.putParcelableArrayList(
+//                    Constant.WEBVIEW_LINK,
+//                    list
+//                )
+//
+//                bundle.putInt(
+//                    Constant.POSITION,
+//                    1
+//                )
+//                findNavController().navigate(R.id.action_fragmentVideo, bundle)
+//            }
         }
     }
 

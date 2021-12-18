@@ -28,6 +28,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_video_screen.*
+import java.lang.Exception
+import java.lang.NullPointerException
 import java.time.LocalTime
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -35,14 +37,14 @@ import kotlin.collections.set
 
 
 class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
-    private var finalTime=""
+    private var finalTime = ""
     private val EVENT_DATE_TIME = "2021-12-31 10:30:00"
     private val DATE_FORMAT = "yyyy-MM-dd HH:mm:ss"
     private val handler: Handler = Handler()
     private var runnable: Runnable? = null
     var myView: View? = null
     var sessionManager: SessionManager? = null
-    var obj = ArrayList<videoObjects>()
+    var obj: ArrayList<videoObjects>? = null
     var position = 0
     var next = 0
     var back = 0
@@ -61,6 +63,10 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
         init()
     }
 
+    override fun onResume() {
+        super.onResume()
+        init()
+    }
 //    fun webview(html: String, heading: String, text: String) {
 //        var pDialog = ProgressDialog(activity)
 //        // Set progressbar message
@@ -125,12 +131,12 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
         ivForm.getSettings().useWideViewPort = true;
         ivForm.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH)
         ivForm.getSettings().setAppCacheEnabled(true)
-        ivForm.scrollBarStyle=View.SCROLLBARS_INSIDE_OVERLAY
-        ivForm.settings.domStorageEnabled=true
-        ivForm.settings.layoutAlgorithm=WebSettings.LayoutAlgorithm.NARROW_COLUMNS
-        ivForm.settings.useWideViewPort=true
-        ivForm.settings.saveFormData=true
-        ivForm.settings.savePassword=true
+        ivForm.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
+        ivForm.settings.domStorageEnabled = true
+        ivForm.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NARROW_COLUMNS
+        ivForm.settings.useWideViewPort = true
+        ivForm.settings.saveFormData = true
+        ivForm.settings.savePassword = true
         ivForm.clearCache(true);
         ivForm.clearHistory();
         ivForm.webViewClient = WebViewClient()
@@ -159,11 +165,12 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
             }
 
             override fun onHideCustomView() {
-                ( (activity as ActivityDashboard).getWindow().getDecorView() as FrameLayout).removeView(
+                ((activity as ActivityDashboard).getWindow()
+                    .getDecorView() as FrameLayout).removeView(
                     mCustomView
                 )
                 mCustomView = null
-              (activity as ActivityDashboard).getWindow().getDecorView().setSystemUiVisibility(
+                (activity as ActivityDashboard).getWindow().getDecorView().setSystemUiVisibility(
                     mOriginalSystemUiVisibility
                 )
                 (activity as ActivityDashboard).setRequestedOrientation(mOriginalOrientation)
@@ -181,16 +188,18 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                 }
                 mCustomView = paramView
                 mOriginalSystemUiVisibility =
-                  (activity as ActivityDashboard).getWindow().getDecorView().getSystemUiVisibility()
-                mOriginalOrientation =  (activity as ActivityDashboard).getRequestedOrientation()
+                    (activity as ActivityDashboard).getWindow().getDecorView()
+                        .getSystemUiVisibility()
+                mOriginalOrientation = (activity as ActivityDashboard).getRequestedOrientation()
                 mCustomViewCallback = paramCustomViewCallback
-                ( (activity as ActivityDashboard).getWindow().getDecorView() as FrameLayout).addView(
+                ((activity as ActivityDashboard).getWindow().getDecorView() as FrameLayout).addView(
                     mCustomView,
                     FrameLayout.LayoutParams(-1, -1)
                 )
-              (activity as ActivityDashboard).getWindow().getDecorView()
+                (activity as ActivityDashboard).getWindow().getDecorView()
                     .setSystemUiVisibility(3846 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
             }
+
             override fun onProgressChanged(view: WebView?, progress: Int) {
                 try {
                     if (progressBar != null) {
@@ -200,7 +209,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                 }
             }
 
-           
+
         }
         ivForm.webViewClient = object : WebViewClient() {
             override fun onReceivedSslError(
@@ -226,7 +235,11 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
-                progressBar.visibility = View.VISIBLE;
+                try {
+                    progressBar.visibility = View.VISIBLE;
+                } catch (e: NullPointerException) {
+                } catch (e: Exception) {
+                }
             }
 
             override fun onReceivedError(
@@ -244,6 +257,9 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
     }
 
     private fun init() {
+        next = 0
+        back = 0
+        obj = ArrayList<videoObjects>()
         sessionManager = SessionManager(activity as ActivityDashboard)
         backBtn.setOnClickListener(this)
         nextBtn.setOnClickListener(this)
@@ -255,8 +271,13 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                     next = it
                     position = it
                     back = it
+                    Log.i("nextBack", "$next, $back")
                 }
-                webview(obj[next].videoUrl, obj[next].heading, obj[next].text)
+                webview(
+                    obj!![next].videoUrl,
+                    obj!![next].heading,
+                    obj!![next].text
+                )
                 countDownStart()
             }
         } catch (e: IllegalStateException) {
@@ -272,10 +293,12 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                     for (d in dataSnapshot.children) {
                         if (d.child("mobile").value == sessionManager!!.getStringVal(Constant.MOBILE)) {
                             val result: HashMap<String, Any> = HashMap()
-                            result["mobile"] =  sessionManager!!.getStringVal(Constant.MOBILE).toString()
+                            result["mobile"] =
+                                sessionManager!!.getStringVal(Constant.MOBILE).toString()
                             result["pageName"] = heading
-                            var name= d.child("fName").value.toString() +" "+d.child("lName").value.toString()
-                            result["userName"] =name
+                            var name =
+                                d.child("fName").value.toString() + " " + d.child("lName").value.toString()
+                            result["userName"] = name
                             result["age"] = d.child("age").value.toString()
                             result["gender"] = d.child("gender").value.toString()
                             result["exerciseName"] = heading
@@ -297,12 +320,14 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
             } //onCancelled
         })
     }
+
     private fun countDownStart() {
         object : CountDownTimer(30000, 1000) {
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onTick(millisUntilFinished: Long) {
-                finalTime="Time on "+obj[position].heading+" Page " +
-                        "| "+LocalTime.ofSecondOfDay(millisUntilFinished / 1000).toString()
+                finalTime = "Time on " +
+                        obj!![position].heading + " Page " +
+                        "| " + LocalTime.ofSecondOfDay(millisUntilFinished / 1000).toString()
             }
 
             override fun onFinish() {
@@ -311,37 +336,102 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
     }
 
 
-
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.backBtn -> {
-                if (back in 1..8 && obj.size == 9) {
+                if (back in 1..8 &&
+                    obj!!.size == 9
+                ) {
                     back--
                     next = back
-                    webview(obj[next].videoUrl, obj[next].heading, obj[next].text)
-                } else if (back in 1..1 && obj.size == 2) {
+                    Log.i(
+                        "btnClick", "$back, ${
+                            obj!!.size
+                        }"
+                    )
+                    webview(
+                        obj!![next].videoUrl,
+                        obj!![next].heading,
+                        obj!![next].text
+                    )
+                } else if (back > 0 && back < 2 &&
+                    obj!!.size == 2
+                ) {
                     back--
                     next = back
-                    webview(obj[next].videoUrl, obj[next].heading, obj[next].text)
-                } else if (back in 1..12 && obj.size == 13) {
+                    webview(
+                        obj!![next].videoUrl,
+                        obj!![next].heading,
+                        obj!![next].text
+                    )
+                    Log.i(
+                        "btnClick", "$back, ${
+                            obj!!.size
+                        }"
+                    )
+                } else if (back in 1..13 &&
+                    obj!!.size == 14
+                ) {
                     back--
                     next = back
-                    webview(obj[next].videoUrl, obj[next].heading, obj[next].text)
+                    webview(
+                        obj!![next].videoUrl,
+                        obj!![next].heading,
+                        obj!![next].text
+                    )
+                    Log.i(
+                        "btnClick", "$back, ${
+                            obj!!.size
+                        }"
+                    )
                 }
             }
             R.id.nextBtn -> {
-                if (next in 0..7 && obj.size == 9) {
+                if (next in 0..7 &&
+                    obj!!.size == 9
+                ) {
                     next++
                     back = next
-                    webview(obj[next].videoUrl, obj[next].heading, obj[next].text)
-                } else if (next in 0..0 && obj.size == 2) {
+                    webview(
+                        obj!![next].videoUrl,
+                        obj!![next].heading,
+                        obj!![next].text
+                    )
+                    Log.i(
+                        "btnClick", "$back, ${
+                            obj!!.size
+                        }"
+                    )
+                } else if (next >= 0 && next < 1 &&
+                    obj!!.size == 2
+                ) {
                     next++
                     back = next
-                    webview(obj[next].videoUrl, obj[next].heading, obj[next].text)
-                } else if (next in 0..11 && obj.size == 13) {
+                    webview(
+                        obj!![next].videoUrl,
+                        obj!![next].heading,
+                        obj!![next].text
+                    )
+                    Log.i(
+                        "btnClick", "$back, ${
+                            obj!!.size
+                        }"
+                    )
+                } else if (next in 0..12 &&
+                    obj!!.size == 14
+                ) {
                     next++
                     back = next
-                    webview(obj[next].videoUrl, obj[next].heading, obj[next].text)
+                    webview(
+                        obj!![next].videoUrl,
+                        obj!![next].heading,
+                        obj!![next].text
+                    )
+                    Log.i(
+                        "btnClick", "$back, ${
+                            obj!!.size
+                        }"
+                    )
                 }
 
             }
@@ -350,7 +440,11 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
 
     override fun onDestroy() {
         super.onDestroy()
-        setData(obj[next].videoUrl, obj[next].heading, obj[next].text)
+        setData(
+            obj!![next].videoUrl,
+            obj!![next].heading,
+            obj!![next].text
+        )
     }
 
     override fun onBackPressed(): Boolean {
