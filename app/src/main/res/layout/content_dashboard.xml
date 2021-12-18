@@ -21,6 +21,7 @@
         app:layout_constraintGuide_end="54dp" />
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_marginBottom="30dp"
         android:id="@+id/layout"
         android:layout_alignParentBottom="true"

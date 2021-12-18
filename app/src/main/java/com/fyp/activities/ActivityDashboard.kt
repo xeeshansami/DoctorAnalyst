@@ -49,16 +49,7 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
         init()
-        fullscreenContent = findViewById(R.id.fullscreen_content)
-        sessionManager = SessionManager(this)
-        if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1 || sessionManager!!.getIntVal(
-                Constant.LANGUAGE
-            ) == 0
-        ) {
-            AppLang.AppLang(this, "en")
-        } else {
-            AppLang.AppLang(this, "ur")
-        }
+
     }
 
 
@@ -96,8 +87,6 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
 
     fun init() {
         tvAccount.setOnClickListener(this)
-        tvHome.setOnClickListener(this)
-        tvUrdu.setOnClickListener(this)
     }
 
 
@@ -115,15 +104,6 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
         when (v!!.id) {
             R.id.tvAccount -> {
                 switchFragment(R.id.fragmentMyAccount)
-            }
-            R.id.tvHome -> {
-                switchFragment(R.id.startdashboard)
-            }
-            R.id.tvUrdu -> {
-                finish()
-                var intent = Intent(this, LanguageActivity::class.java)
-                startActivity(intent)
-                sessionManager!!.setIntVal(Constant.LANGUAGE, 0)
             }
         }
     }

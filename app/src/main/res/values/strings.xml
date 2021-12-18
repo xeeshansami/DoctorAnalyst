@@ -178,4 +178,5 @@
     <string name="header7"><u>What disabilities can result from a stroke?</u></string>
     <string name="text8">Although stroke is a disease of the brain, it can affect the entire body. A stroke can sometimes cause temporary or permanent disabilities, depending on how long the brain lacks blood flow and which part was affected. Complications may include: \n\n•Paralysis or loss of muscle movement. You may become paralyzed on one side of your body, or lose control of certain muscles, such as those on one side of your face or one arm. \n\n•Difficulty talking or swallowing.  \n\n•Memory loss or thinking difficulties.  \n\n•Emotional problems.  \n\n•Pain.  \n\n•Changes in behavior and self-care ability.</string>
     <string name="header8"><u>What are the symptoms of stroke?</u></string>
+    <string name="scanner_error_message">Scan failed</string>
 </resources>

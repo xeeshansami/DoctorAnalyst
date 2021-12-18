@@ -40,8 +40,6 @@ class FragmenLanguageScreen : Fragment(), iOnItemClickListner,iOnBackPressed, Vi
     }
 
     private fun init(view: View) {
-        but2.setOnClickListener(this)
-        but3.setOnClickListener(this)
         addQuestInRv()
         onBackPressed(view)
     }
