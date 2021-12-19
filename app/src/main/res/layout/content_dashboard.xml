@@ -21,7 +21,7 @@
         app:layout_constraintGuide_end="54dp" />
 
     <LinearLayout
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="50dp"
         android:id="@+id/layout"
         android:layout_alignParentBottom="true"
         android:background="@drawable/button_bg"

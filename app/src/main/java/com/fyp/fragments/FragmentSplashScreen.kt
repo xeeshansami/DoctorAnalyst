@@ -79,7 +79,7 @@ class FragmentSplashScreen : Fragment() {
             startActivity(intent)
             (activity as LogActivity).finish()
         } else {
-            findNavController().navigate(R.id.action_splashScreen_to_signin)
+            sendToScreen()
         }
     }
 
@@ -101,12 +101,12 @@ class FragmentSplashScreen : Fragment() {
         show()
     }
 
-    fun sendToScreen(id: Int) {
+    fun sendToScreen() {
         Handler().postDelayed({
+
+            findNavController().navigateUp();
             findNavController().navigate(
-                id, null,
-                NavOptions.Builder().setPopUpTo(R.id.splashScreen, true).build()
-            )
+                R.id.action_splashScreen_to_signin)
         }, 1500)
 
     }

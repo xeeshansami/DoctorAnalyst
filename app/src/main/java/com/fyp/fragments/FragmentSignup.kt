@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -45,7 +46,16 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
+        val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                //Handle the back pressed
+                Toast.makeText(activity,"asdas",2000).show()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
+
+
 
     fun init() {
         sessionManager = SessionManager(activity as LogActivity)
@@ -197,7 +207,7 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
     }
 
     override fun onBackPressed(): Boolean {
-        val navController = requireActivity().findNavController(R.id.fragment)
+        val navController = requireActivity().findNavController(R.id.fragment1)
         if (navController.currentDestination?.id != R.id.signup) {
             Log.i("onBackPress", "Not Up Finish All Fragment")
             requireActivity().finish()

@@ -86,9 +86,9 @@ class LogActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val navController = findNavController(R.id.fragment)
+        val navController = findNavController(R.id.fragment1)
         if (navController.navigateUp()) {
-//            navController.navigateUp()
+            navController.navigateUp()
         } else {
             finish()
         }
