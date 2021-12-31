@@ -155,14 +155,14 @@
     <string name="login_out_err">Logging out...</string>
     <string name="email_err">Please enter the valid email or mobile number</string>
     <string name="old_pwd_err">Please enter the old password</string>
-    <string name="exercise_info">Exercise Progression/Repetitions</string>
+    <string name="exercise_info">Exercise Progression</string>
 
     <string name="mobile_err_2">Mobile number should be start with 03XXXXXXXXX</string>
     <string name="update_failed">Update failed, try again</string>
     <string name="update_succcess">Update successfully!</string>
     <string name="updating">Updating...</string>
     <string name="lift_paper_clip">Lift Paper Clip</string>
-    <string name="lift_paper_clip_str">1.Sit in front of the table and place paper clip on the table.\n\n\n2.Lift paper clip with your affected hand.\n\n\n3. Then place it back on the table.\n\n\n4. Keep your body straight and shoulders back and avoid compensatory movements of body.\n\n\n5. Repeat this activity 10 times.</string>
+    <string name="lift_paper_clip_str">.Sit in front of the table and place paper clip on the table.\n\n\n.Lift paper clip with your affected hand.\n\n\n. Then place it back on the table.\n\n\n. Keep your body straight and shoulders back and avoid compensatory movements of body.\n\n\n. Repeat this activity 10 times.</string>
     <string name="header1"><u>What is a stroke?</u></string>
     <string name="text1">A stroke, sometimes called a “brain attack,” occurs when blood flow to the brain is interrupted. When a stroke occurs, brain cells in the immediate area begin to die because they stop getting the oxygen and nutrients they need to function. This can cause lasting brain damage, long-term disability, or even death. </string>
     <string name="text2">If your stroke affected the right side of your brain, your movement and sensation on the left side of your body may be affected. If your stroke damaged the brain tissue on the left side of your brain, your movement and sensation on the right side of your body may be affected. Brain damage to the left side of your brain may cause speech and language disorders.</string>

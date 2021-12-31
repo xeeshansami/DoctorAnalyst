@@ -14,7 +14,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
 import android.widget.FrameLayout
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.fyp.R
@@ -28,16 +27,13 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_video_screen.*
-import java.lang.Exception
-import java.lang.NullPointerException
-import java.time.LocalTime
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 import kotlin.collections.set
 
 
 class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
-    private var finalTime = ""
+    var counter:CountDownTimer?=null
+    var maxCounter: Long = 1000000
+    var diff: Long = 1000
     private val EVENT_DATE_TIME = "2021-12-31 10:30:00"
     private val DATE_FORMAT = "yyyy-MM-dd HH:mm:ss"
     private val handler: Handler = Handler()
@@ -49,6 +45,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
     var next = 0
     var back = 0
     var text = ""
+    var finalTime = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -66,6 +63,17 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
     override fun onResume() {
         super.onResume()
         init()
+    }
+    fun convertSeconds(seconds: Int): String? {
+        val h = seconds / 3600
+        val m = seconds % 3600 / 60
+        val s = seconds % 60
+        val sh = if (h > 0) "$h h" else ""
+        val sm =
+            (if (m in 1..9 && h > 0) "0" else "") + if (m > 0) if (h > 0 && s == 0) m.toString() else "$m min" else ""
+        val ss =
+            if (s == 0 && (h > 0 || m > 0)) "" else (if (s < 10 && (h > 0 || m > 0)) "0" else "") + s.toString() + " " + "sec"
+        return sh + (if (h > 0) " " else "") + sm + (if (m > 0) " " else "") + ss
     }
 //    fun webview(html: String, heading: String, text: String) {
 //        var pDialog = ProgressDialog(activity)
@@ -278,7 +286,20 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                     obj!![next].heading,
                     obj!![next].text
                 )
-                countDownStart()
+
+                counter= object : CountDownTimer(maxCounter, diff) {
+                    override fun onTick(millisUntilFinished: Long) {
+                        val diff: Long = maxCounter - millisUntilFinished
+                        finalTime=(diff / 1000).toString()
+                        Log.i("TickTick",finalTime)
+                        //here you can have your logic to set text to edittext
+                    }
+
+                    override fun onFinish() {
+
+                    }
+                }.start()
+
             }
         } catch (e: IllegalStateException) {
         }
@@ -304,7 +325,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                             result["exerciseName"] = heading
                             result["videoUrl"] = videoUrl
                             result["translation points"] = text
-                            result["time"] = finalTime
+                            result["VideoScreentime"] = convertSeconds(finalTime.toInt())+""
                             d.key?.let {
                                 FirebaseDatabase.getInstance().reference.child("upwork-f2a18-default-rtdb")
                                     .child("RegisteredUsers")
@@ -321,19 +342,6 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
         })
     }
 
-    private fun countDownStart() {
-        object : CountDownTimer(30000, 1000) {
-            @RequiresApi(Build.VERSION_CODES.O)
-            override fun onTick(millisUntilFinished: Long) {
-                finalTime = "Time on " +
-                        obj!![position].heading + " Page " +
-                        "| " + LocalTime.ofSecondOfDay(millisUntilFinished / 1000).toString()
-            }
-
-            override fun onFinish() {
-            }
-        }.start()
-    }
 
 
     override fun onClick(v: View?) {
@@ -440,6 +448,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
 
     override fun onDestroy() {
         super.onDestroy()
+        counter!!.cancel()
         setData(
             obj!![next].videoUrl,
             obj!![next].heading,
