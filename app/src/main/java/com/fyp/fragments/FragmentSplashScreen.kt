@@ -75,9 +75,12 @@ class FragmentSplashScreen : Fragment() {
     override fun onStart() {
         super.onStart()
         if (!sessionManager!!.getStringVal(Constant.MOBILE).isNullOrEmpty()) {
-            var intent = Intent(activity as LogActivity, LanguageActivity::class.java)
-            startActivity(intent)
-            (activity as LogActivity).finish()
+            Handler().postDelayed({
+                var intent = Intent(activity as LogActivity, LanguageActivity::class.java)
+                startActivity(intent)
+                (activity as LogActivity).finish()
+            }, 3000)
+
         } else {
             sendToScreen()
         }
@@ -107,7 +110,7 @@ class FragmentSplashScreen : Fragment() {
             findNavController().navigateUp();
             findNavController().navigate(
                 R.id.action_splashScreen_to_signin)
-        }, 1500)
+        }, 3000)
 
     }
 
