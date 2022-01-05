@@ -16,10 +16,8 @@ interface APIInterface {
     @POST("login.php")
     fun login(@Body body:RequestBody): Call<BaseResponse>
 
-
     @POST("appTime.php")
     fun appTime(@Body body:RequestBody): Call<BaseResponse>
-
 
     @POST("updateAppTime.php")
     fun updateAppTime(@Body body:RequestBody): Call<BaseResponse>

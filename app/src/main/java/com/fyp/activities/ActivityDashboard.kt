@@ -2,6 +2,7 @@ package com.fyp.activities
 
 import android.annotation.SuppressLint
 import android.app.ActivityManager
+import android.content.Context
 import android.content.Intent
 import android.os.*
 import android.provider.Settings
@@ -15,10 +16,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.fyp.R
 import com.fyp.network.models.response.base.BaseResponse
-import com.fyp.utils.Constant
-import com.fyp.utils.GlobalClass
-import com.fyp.utils.SessionManager
-import com.fyp.utils.ToastUtils
+import com.fyp.utils.*
 import com.hbl.hblaccountopeningapp.network.ResponseHandlers.callbacks.RegisterCallBack
 import com.hbl.hblaccountopeningapp.network.enums.RetrofitEnums
 import com.hbl.hblaccountopeningapp.network.store.HBLHRStore
@@ -36,8 +34,8 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
     private var finalTime = ""
     private val hideHandler = Handler()
     private var sessionManager: SessionManager? = null
-    var nMyApplication: GlobalClass? = null
-
+    var globalClass: GlobalClass? = null
+    private var progressDialog: TransparentProgressDialog? = null
     @Suppress("InlinedApi")
     private val hidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
@@ -66,8 +64,7 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
-        nMyApplication = application as GlobalClass
-        nMyApplication!!.onActivityCreated(this, savedInstanceState)
+        globalClass = GlobalClass.applicationContext!!.applicationContext as GlobalClass
         sessionManager = SessionManager(this)
         init()
         appTime()
@@ -99,7 +96,7 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
 
 
     fun updateAppTime() {
-        nMyApplication?.showDialog(this)
+        globalClass?.showDialog(this)
         val requestBody: RequestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("phone",sessionManager!!.getStringVal(Constant.MOBILE)!!)
@@ -111,18 +108,18 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
                 @SuppressLint("WrongConstant")
                 override fun Success(response: BaseResponse) {
 //                    ToastUtils.showToastWith(this@ActivityDashboard, response.message)
-                    nMyApplication?.hideLoader()
+                    globalClass?.hideLoader()
                 }
 
                 override fun Failure(response: BaseResponse) {
                     ToastUtils.showToastWith(this@ActivityDashboard, response.message)
-                   nMyApplication?.hideLoader()
+                        globalClass?.hideLoader()
                 }
             })
     }
 
     fun appTime() {
-        nMyApplication?.showDialog(this)
+        globalClass?.showDialog(this)
         val requestBody: RequestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("phone",sessionManager!!.getStringVal(Constant.MOBILE)!!)
@@ -133,12 +130,12 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
                 @SuppressLint("WrongConstant")
                 override fun Success(response: BaseResponse) {
 //                    ToastUtils.showToastWith(this@ActivityDashboard, response.message, "")
-                    nMyApplication?.hideLoader()
+                    globalClass?.hideLoader()
                 }
 
                 override fun Failure(response: BaseResponse) {
                     ToastUtils.showToastWith(this@ActivityDashboard, response.message, "")
-                    nMyApplication?.hideLoader()
+                        globalClass?.hideLoader()
                 }
             })
     }
@@ -156,42 +153,37 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
-        nMyApplication!!.onActivityResumed(this)
         window?.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     }
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         super.onSaveInstanceState(outState, outPersistentState)
-        nMyApplication!!.onActivitySaveInstanceState(this, outState);
     }
     override fun onStart() {
         super.onStart()
-        nMyApplication!!.onActivityStarted(this)
     }
 
     override fun onStop() {
+        updateAppTime()
         super.onStop()
-        nMyApplication!!.onActivityStopped(this)
     }
 
     override fun onPause() {
+        updateAppTime()
         super.onPause()
         window?.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         // Clear the systemUiVisibility flag
         window?.decorView?.systemUiVisibility = 0
-        nMyApplication!!.onActivityPaused(this)
-
         show()
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         counter!!.cancel()
         dummyButton = null
         fullscreenContent = null
         fullscreenContentControls = null
-        nMyApplication!!.onActivityDestroyed(this)
         updateAppTime()
+        super.onDestroy()
     }
 
 
@@ -250,6 +242,23 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
         } else {
             finish()
 //        }
+        }
+    }
+    fun getProgressDialogInstance(context: Context?): TransparentProgressDialog? {
+        if (progressDialog == null) progressDialog = TransparentProgressDialog(
+            context!!)
+        return progressDialog
+    }
+    fun showDialog(context: Context?) {
+        progressDialog = getProgressDialogInstance(context)
+        progressDialog!!.setCancelable(false)
+        progressDialog!!.show()
+    }
+
+    fun hideLoader() {
+        if (progressDialog != null && progressDialog!!.isShowing) {
+            progressDialog!!.cancel()
+            progressDialog = null
         }
     }
 }

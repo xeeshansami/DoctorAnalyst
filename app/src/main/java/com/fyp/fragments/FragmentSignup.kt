@@ -20,6 +20,7 @@ import com.fyp.interfaces.iOnBackPressed
 import com.fyp.network.models.request.base.RegisterRequest
 import com.fyp.network.models.response.base.BaseResponse
 import com.fyp.utils.Constant
+import com.fyp.utils.GlobalClass
 import com.fyp.utils.SessionManager
 import com.fyp.utils.ToastUtils
 import com.google.gson.Gson
@@ -40,6 +41,7 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
     //    private var firebaseAuth: FirebaseAuth? = null
 //    private var mDatabase:DatabaseReference?=null
     private var sessionManager: SessionManager? = null
+    val globalClass = GlobalClass.applicationContext!!.applicationContext as GlobalClass
     private var list = ArrayList<String>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,13 +83,14 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
                             Constant.MOBILE,
                             mobileTv.text.toString().trim()
                         )
+                        Log.i("NUMBERCHECK",   sessionManager!!.getStringVal(Constant.MOBILE)!!)
+                        ToastUtils.showToastWith(activity, "Registration successfully...")
                         (activity as LogActivity).finish()
                         findNavController().navigate(R.id.action_signup_to_dashboard)
-                        ToastUtils.showToastWith(activity, "Registration successfully...")
                     } else if (response.message.contains("exist")) {
-                        ToastUtils.showToastWith(activity, "Account Already Exist!")
+                        ToastUtils.showToastWith(activity, "Account Already Exist!","")
                     }else{
-                        ToastUtils.showToastWith(activity, response.message)
+                        ToastUtils.showToastWith(activity, response.message,"")
                     }
                     (activity as LogActivity).globalClass?.hideLoader()
                 }

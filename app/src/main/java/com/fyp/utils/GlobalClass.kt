@@ -22,7 +22,8 @@ class GlobalClass : HBLHRStore(), Application.ActivityLifecycleCallbacks {
     override fun onCreate() {
         super.onCreate()
         sessionManager = SessionManager(this)
-        Companion.applicationContext = applicationContext    }
+        Companion.applicationContext = applicationContext
+    }
 
     companion object {
         private val consumerStore: GlobalClass? = null
@@ -31,15 +32,19 @@ class GlobalClass : HBLHRStore(), Application.ActivityLifecycleCallbacks {
             get() = consumerStore ?: GlobalClass()
     }
 
-     fun getProgressDialogInstance(context: Context?): TransparentProgressDialog? {
+    fun getProgressDialogInstance(context: Context?): TransparentProgressDialog? {
         if (progressDialog == null) progressDialog = TransparentProgressDialog(
-            context!!)
+            context!!
+        )
         return progressDialog
     }
+
     fun showDialog(context: Context?) {
         progressDialog = getProgressDialogInstance(context)
         progressDialog!!.setCancelable(false)
-        progressDialog!!.show()
+        if (progressDialog!!.isShowing) {
+            progressDialog!!.dismiss()
+        }
     }
 
     fun hideLoader() {
@@ -48,6 +53,7 @@ class GlobalClass : HBLHRStore(), Application.ActivityLifecycleCallbacks {
             progressDialog = null
         }
     }
+
     fun startTime(): String {
         val current_data_time = SimpleDateFormat("dd-MMM-yyyy hh:mm:ss a", Locale.getDefault())
         return current_data_time.format(Date())

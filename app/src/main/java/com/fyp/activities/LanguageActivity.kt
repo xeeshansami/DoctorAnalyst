@@ -1,5 +1,6 @@
 package com.fyp.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -8,10 +9,17 @@ import android.os.Handler
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import com.fyp.R
 import com.fyp.utils.Constant
 import com.fyp.utils.SessionManager
+import com.fyp.utils.ToastUtils
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_language.*
 
 class LanguageActivity : AppCompatActivity(), View.OnClickListener {
@@ -56,12 +64,46 @@ class LanguageActivity : AppCompatActivity(), View.OnClickListener {
 //                AppLang.AppLang(this, "ur")
 //            }
 //        }
+
         but2.setOnClickListener(this)
         but3.setOnClickListener(this)
     }
 
+    private fun checkVersion() {
+        val rootRef = FirebaseDatabase.getInstance().reference
+        val dbRef = rootRef.child("upwork-f2a18-default-rtdb")
+        dbRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    var check=dataSnapshot.child("version").value.toString()
+                    if (check == "1") {
+                        alert()
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            } //onCancelled
+        })
+    }
+
+    @SuppressLint("WrongConstant")
+    fun alert() {
+        val builder = AlertDialog.Builder(this)
+        builder.setCancelable(false)
+        builder.setTitle("Alert")
+        builder.setMessage("Something went wrong, please try again later and coordinate with administrator")
+        builder.setPositiveButton("Send report") { dialogInterface, i ->
+            Toast.makeText(this,"Report sent to the developer portal",2000).show()
+            finish()
+        }
+        val alert = builder.create()
+        alert.show()
+    }
+
     override fun onResume() {
         super.onResume()
+        checkVersion()
         window?.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     }
 
@@ -97,12 +139,12 @@ class LanguageActivity : AppCompatActivity(), View.OnClickListener {
         when (v!!.id) {
             R.id.but2 -> {
                 AppLang.AppLang(this, "en")
-                sessionManager!!.setIntVal(Constant.LANGUAGE,1)
+                sessionManager!!.setIntVal(Constant.LANGUAGE, 1)
                 startActivity(Intent(this, ActivityDashboard::class.java))
             }
             R.id.but3 -> {
                 AppLang.AppLang(this, "ur")
-                sessionManager!!.setIntVal(Constant.LANGUAGE,2)
+                sessionManager!!.setIntVal(Constant.LANGUAGE, 2)
                 startActivity(Intent(this, ActivityDashboard::class.java))
             }
         }

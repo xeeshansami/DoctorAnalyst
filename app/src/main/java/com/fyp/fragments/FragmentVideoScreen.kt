@@ -18,10 +18,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.fyp.R
 import com.fyp.activities.ActivityDashboard
+import com.fyp.activities.LogActivity
 import com.fyp.interfaces.iOnBackPressed
 import com.fyp.models.videoObjects
 import com.fyp.network.models.response.base.BaseResponse
 import com.fyp.utils.Constant
+import com.fyp.utils.GlobalClass
 import com.fyp.utils.SessionManager
 import com.fyp.utils.ToastUtils
 import com.hbl.hblaccountopeningapp.network.ResponseHandlers.callbacks.RegisterCallBack
@@ -35,6 +37,7 @@ import kotlin.collections.set
 
 class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
     var counter:CountDownTimer?=null
+    val globalClass = GlobalClass.applicationContext!!.applicationContext as GlobalClass
     var maxCounter: Long = 1000000
     var diff: Long = 1000
     private val EVENT_DATE_TIME = "2021-12-31 10:30:00"
@@ -66,6 +69,24 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
     override fun onResume() {
         super.onResume()
         init()
+    }
+
+    override fun onPause() {
+        updateAppTime(
+            obj!![next].videoUrl,
+            obj!![next].heading,
+            obj!![next].text
+        )
+        super.onPause()
+    }
+
+    override fun onStop() {
+        updateAppTime(
+            obj!![next].videoUrl,
+            obj!![next].heading,
+            obj!![next].text
+        )
+        super.onStop()
     }
     fun convertSeconds(seconds: Int): String? {
         val h = seconds / 3600
@@ -312,10 +333,10 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
 
 
     fun updateAppTime(videoUrl: String, heading: String, text: String) {
-        (activity as ActivityDashboard).nMyApplication?.showDialog(activity)
+        (activity as ActivityDashboard).globalClass?.showDialog(activity)
         val requestBody: RequestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
-            .addFormDataPart("pageName,",heading)
+            .addFormDataPart("pageName",heading)
             .addFormDataPart("phone",sessionManager!!.getStringVal(Constant.MOBILE)!!)
             .addFormDataPart("exerciseName", heading)
             .addFormDataPart("videoScreenTime", convertSeconds(finalTime.toInt())+"")
@@ -327,12 +348,12 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                 @SuppressLint("WrongConstant")
                 override fun Success(response: BaseResponse) {
 //                    ToastUtils.showToastWith(activity as ActivityDashboard, "His", "")
-                    (activity as ActivityDashboard).nMyApplication?.hideLoader()
+                    (activity as ActivityDashboard).globalClass?.hideLoader()
                 }
 
                 override fun Failure(response: BaseResponse) {
                     ToastUtils.showToastWith(activity as ActivityDashboard, response.message, "")
-                    (activity as ActivityDashboard).nMyApplication?.hideLoader()
+                    (activity as ActivityDashboard).globalClass?.hideLoader()
                 }
             })
     }
@@ -502,13 +523,13 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         counter!!.cancel()
         updateAppTime(
             obj!![next].videoUrl,
             obj!![next].heading,
             obj!![next].text
         )
+        super.onDestroy()
     }
 
     override fun onBackPressed(): Boolean {

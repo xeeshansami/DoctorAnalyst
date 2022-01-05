@@ -14,6 +14,7 @@ import com.fyp.R
 import com.fyp.activities.LogActivity
 import com.fyp.network.models.response.base.BaseResponse
 import com.fyp.utils.Constant
+import com.fyp.utils.GlobalClass
 import com.fyp.utils.SessionManager
 import com.fyp.utils.ToastUtils
 import com.hbl.hblaccountopeningapp.network.ResponseHandlers.callbacks.RegisterCallBack
@@ -30,6 +31,7 @@ class FragmentSignin() : Fragment(), View.OnClickListener {
 
 //    private var firebaseAuth: FirebaseAuth? = null
     private var sessionManager: SessionManager? = null
+    val globalClass = GlobalClass.applicationContext!!.applicationContext as GlobalClass
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -83,7 +85,7 @@ class FragmentSignin() : Fragment(), View.OnClickListener {
         }
     }
     fun login() {
-        (activity as LogActivity).globalClass?.showDialog(activity)
+        (activity as LogActivity). globalClass?.showDialog(activity)
         val requestBody: RequestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("phone", username.text.toString().trim())
@@ -94,12 +96,13 @@ class FragmentSignin() : Fragment(), View.OnClickListener {
                 @SuppressLint("WrongConstant")
                 override fun Success(response: BaseResponse) {
                     if (response.message.contains("exist")) {
-                        sessionManager!!.setStringVal(Constant.MOBILE,  mobileTv.text.toString().trim())
+                        sessionManager!!.setStringVal(Constant.MOBILE,  username.text.toString().trim())
+                        Log.i("NUMBERCHECK",   sessionManager!!.getStringVal(Constant.MOBILE)!!)
+                        ToastUtils.showToastWith(activity, "Registration successfully...")
                         (activity as LogActivity).finish()
                         findNavController().navigate(R.id.action_signin_to_dashboard)
-                        ToastUtils.showToastWith(activity, "Registration successfully...")
                     } else{
-                        ToastUtils.showToastWith(activity, response.message)
+                        ToastUtils.showToastWith(activity, response.message,"")
                     }
                     (activity as LogActivity).globalClass?.hideLoader()
                 }

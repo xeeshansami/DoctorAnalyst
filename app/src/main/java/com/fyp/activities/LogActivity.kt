@@ -1,5 +1,6 @@
 package com.fyp.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -15,9 +16,11 @@ import com.fyp.R
 import com.fyp.utils.Constant
 import com.fyp.utils.GlobalClass
 import com.fyp.utils.SessionManager
+import com.fyp.utils.TransparentProgressDialog
 
 class LogActivity : AppCompatActivity() {
     private val hideHandler = Handler()
+    private var progressDialog: TransparentProgressDialog? = null
     @JvmField
     public var globalClass: GlobalClass? = null
     @Suppress("InlinedApi")
@@ -94,6 +97,23 @@ class LogActivity : AppCompatActivity() {
             navController.navigateUp()
         } else {
             finish()
+        }
+    }
+    fun getProgressDialogInstance(context: Context?): TransparentProgressDialog? {
+        if (progressDialog == null) progressDialog = TransparentProgressDialog(
+            context!!)
+        return progressDialog
+    }
+    fun showDialog(context: Context?) {
+        progressDialog = getProgressDialogInstance(context)
+        progressDialog!!.setCancelable(false)
+        progressDialog!!.show()
+    }
+
+    fun hideLoader() {
+        if (progressDialog != null && progressDialog!!.isShowing) {
+            progressDialog!!.cancel()
+            progressDialog = null
         }
     }
 }
