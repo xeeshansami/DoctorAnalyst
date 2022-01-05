@@ -10,10 +10,6 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import com.fyp.utils.Constant
 import com.fyp.utils.SessionManager
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import java.text.SimpleDateFormat
 import java.time.LocalTime
 import java.util.*
@@ -38,7 +34,7 @@ class MyApplication : Application(), Application.ActivityLifecycleCallbacks {
         return current_data_time.format(Date())
     }
 
-    private fun setData(isStart: Boolean) {
+    /*private fun setData(isStart: Boolean) {
         val rootRef = FirebaseDatabase.getInstance().reference
         val dbRef = rootRef.child("upwork-f2a18-default-rtdb").child("RegisteredUsers")
         dbRef.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -47,13 +43,6 @@ class MyApplication : Application(), Application.ActivityLifecycleCallbacks {
                     for (d in dataSnapshot.children) {
                         if (d.child("mobile").value == sessionManager!!.getStringVal(Constant.MOBILE)) {
                             val result: HashMap<String, Any> = HashMap()
-                            result["mobile"] =
-                                sessionManager!!.getStringVal(Constant.MOBILE).toString()
-                            var name =
-                                d.child("fName").value.toString() + " " + d.child("lName").value.toString()
-                            result["userName"] = name
-                            result["age"] = d.child("age").value.toString()
-                            result["gender"] = d.child("gender").value.toString()
                             if (isStart) {
                                 result["DateTimeOpenApp"] = startTime()
                             } else {
@@ -62,7 +51,7 @@ class MyApplication : Application(), Application.ActivityLifecycleCallbacks {
                             d.key?.let {
                                 FirebaseDatabase.getInstance().reference.child("upwork-f2a18-default-rtdb")
                                     .child("RegisteredUsers")
-                                    .child(it).updateChildren(result)
+                                    .child(it).child("Records").push().setValue(result)
                             }
                             break
                         }
@@ -73,7 +62,7 @@ class MyApplication : Application(), Application.ActivityLifecycleCallbacks {
             override fun onCancelled(error: DatabaseError) {
             } //onCancelled
         })
-    }
+    }*/
 
     private fun countDownStart() {
         object : CountDownTimer(30000, 1000) {
@@ -110,12 +99,12 @@ class MyApplication : Application(), Application.ActivityLifecycleCallbacks {
 
     override fun onActivityDestroyed(activity: Activity) {
         Log.i(tag, activity.localClassName)
-        setData(false)
+//        setData(false)
     }
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         Log.i(tag, activity.localClassName)
         countDownStart()
-        setData(true)
+//        setData(true)
     }
 }

@@ -18,7 +18,6 @@ import com.fyp.activities.LanguageActivity
 import com.fyp.activities.LogActivity
 import com.fyp.utils.Constant
 import com.fyp.utils.SessionManager
-import com.google.firebase.auth.FirebaseAuth
 
 
 /**
@@ -28,7 +27,7 @@ import com.google.firebase.auth.FirebaseAuth
 class FragmentSplashScreen : Fragment() {
     private val hideHandler = Handler()
     private var sessionManager: SessionManager? = null
-    private var firebaseAuth: FirebaseAuth? = null
+//    private var firebaseAuth: FirebaseAuth? = null
 
     @Suppress("InlinedApi")
     private val hidePart2Runnable = Runnable {
@@ -68,7 +67,7 @@ class FragmentSplashScreen : Fragment() {
     }
 
     fun init() {
-        firebaseAuth = FirebaseAuth.getInstance()
+//        firebaseAuth = FirebaseAuth.getInstance()
         sessionManager = SessionManager(activity as LogActivity)
     }
 

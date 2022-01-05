@@ -1,5 +1,6 @@
 package com.fyp.fragments
 
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
@@ -8,33 +9,38 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.fyp.R
+import com.fyp.activities.ActivityDashboard
 import com.fyp.activities.LogActivity
 import com.fyp.interfaces.iOnBackPressed
+import com.fyp.network.models.request.base.RegisterRequest
+import com.fyp.network.models.response.base.BaseResponse
 import com.fyp.utils.Constant
 import com.fyp.utils.SessionManager
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.fyp.utils.ToastUtils
+import com.google.gson.Gson
+import com.hbl.hblaccountopeningapp.network.ResponseHandlers.callbacks.RegisterCallBack
+import com.hbl.hblaccountopeningapp.network.enums.RetrofitEnums
+import com.hbl.hblaccountopeningapp.network.store.HBLHRStore
 import kotlinx.android.synthetic.main.fragment_signin.*
 import kotlinx.android.synthetic.main.fragment_signup.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import java.util.*
 import kotlin.collections.ArrayList
 
 
 class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
     private val myCalendar: Calendar = Calendar.getInstance()
-    private var firebaseAuth: FirebaseAuth? = null
-    private var mDatabase:DatabaseReference?=null
+
+    //    private var firebaseAuth: FirebaseAuth? = null
+//    private var mDatabase:DatabaseReference?=null
     private var sessionManager: SessionManager? = null
-    private var list=ArrayList<String>()
+    private var list = ArrayList<String>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,23 +55,60 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
         val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 //Handle the back pressed
-                Toast.makeText(activity,"asdas",2000).show()
+//                Toast.makeText(activity,"asdas",2000).show()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
+    fun register() {
+        (activity as LogActivity).globalClass?.showDialog(activity)
+        val requestBody: RequestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("name", firstNameTv.text.toString().trim())
+            .addFormDataPart("age", age.text.toString().trim())
+            .addFormDataPart("phone", mobileTv.text.toString().trim())
+            .addFormDataPart("gender", spinner.selectedItem.toString().trim())
+            .addFormDataPart("city", cityTv.text.toString().trim())
+            .build()
+        HBLHRStore.instance?.register(
+            RetrofitEnums.URL_HBL,
+            requestBody, object : RegisterCallBack {
+                @SuppressLint("WrongConstant")
+                override fun Success(response: BaseResponse) {
+                    if (response.message.contains("inserted")) {
+                        sessionManager!!.setStringVal(
+                            Constant.MOBILE,
+                            mobileTv.text.toString().trim()
+                        )
+                        (activity as LogActivity).finish()
+                        findNavController().navigate(R.id.action_signup_to_dashboard)
+                        ToastUtils.showToastWith(activity, "Registration successfully...")
+                    } else if (response.message.contains("exist")) {
+                        ToastUtils.showToastWith(activity, "Account Already Exist!")
+                    }else{
+                        ToastUtils.showToastWith(activity, response.message)
+                    }
+                    (activity as LogActivity).globalClass?.hideLoader()
+                }
+
+                override fun Failure(response: BaseResponse) {
+                    ToastUtils.showToastWith(activity, response.message, "")
+                    (activity as LogActivity).globalClass?.hideLoader()
+                }
+            })
+    }
 
 
     fun init() {
         sessionManager = SessionManager(activity as LogActivity)
-        firebaseAuth = FirebaseAuth.getInstance();
+//        firebaseAuth = FirebaseAuth.getInstance();
         login.setOnClickListener(this)
         registerBtn.setOnClickListener(this)
         addQuestInRv()
     }
 
-    private fun addQuestInRv(){
+    private fun addQuestInRv() {
         val questions = (activity as LogActivity).resources!!.getStringArray(R.array.gender)
         list.clear()
         for (element in questions) {
@@ -73,7 +116,7 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
         }
         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
             activity as LogActivity,
-           R.layout.quest_list_view,R.id.text1,
+            R.layout.quest_list_view, R.id.text1,
             list
         )
         adapter.setDropDownViewResource(R.layout.quest_list_view)
@@ -86,7 +129,7 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
         var mobile = mobileTv.text.toString().trim()
         var cityTvValue = cityTv.text.toString().trim()
         return if (fName.isNullOrEmpty()) {
-            firstNameTv.error =resources.getString(R.string.fname_err)
+            firstNameTv.error = resources.getString(R.string.fname_err)
             firstNameTv.requestFocus()
             false
         } else if (ageValue.isNullOrEmpty()) {
@@ -94,18 +137,18 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
             age.requestFocus()
             false
         } else if (cityTvValue.isNullOrEmpty()) {
-            age.error =resources.getString(R.string.city_err)
+            age.error = resources.getString(R.string.city_err)
             age.requestFocus()
             false
         } else if (mobile.isNullOrEmpty()) {
-            mobileTv.error =resources.getString(R.string.mobile_err)
+            mobileTv.error = resources.getString(R.string.mobile_err)
             mobileTv.requestFocus()
             false
-        }else if (!mobile.toString().startsWith("03")) {
-            username.error = resources.getString(R.string.mobile_err_2)
-            username.requestFocus()
+        } else if (!mobile.toString().startsWith("03")) {
+            mobileTv.error = resources.getString(R.string.mobile_err_2)
+            mobileTv.requestFocus()
             false
-        }  else if (mobile.length < 11) {
+        } else if (mobile.length < 11) {
             mobileTv.error =
                 resources.getString(R.string.mobile_digits_err)
             mobileTv.requestFocus()
@@ -119,13 +162,7 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
         when (v!!.id) {
             R.id.registerBtn -> {
                 if (validation()) {
-                    var fName = firstNameTv.text.toString().trim()
-                    var lName = age.text.toString().trim()
-                    var age = age.text.toString().trim()
-                    var cityTv = cityTv.text.toString().trim()
-                    var gender = spinner.selectedItem.toString().trim()
-                    var mobile = mobileTv.text.toString().trim()
-                    addToFirebaseDB( fName, lName, mobile,age,cityTv,gender)
+                    register()
                 }
             }
             R.id.login -> {
@@ -140,23 +177,23 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
         mobile: String,
     ) {
         val progressDialog = ProgressDialog.show(activity, "Please wait", "Registration...", true)
-        firebaseAuth?.createUserWithEmailAndPassword(fName, lName)
-            ?.addOnCompleteListener(activity as LogActivity,
-                OnCompleteListener<AuthResult?> { task ->
-                    Log.d("TAG", "createUserWithEmail:onComplete:" + task.isSuccessful)
-                    // If sign in fails, display a message to the user. If sign in succeeds
-                    // the auth state listener will be notified and logic to handle the
-                    // signed in user can be handled in the listener.
-                    if (task.isSuccessful) {
-//                        addToFirebaseDB(fName, lName, mobile, age, cityTv, gender)
-                    }else{
-                        Toast.makeText(
-                            activity, task.exception?.message.toString(),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                    progressDialog.dismiss()
-                })
+//        firebaseAuth?.createUserWithEmailAndPassword(fName, lName)
+//            ?.addOnCompleteListener(activity as LogActivity,
+//                OnCompleteListener<AuthResult?> { task ->
+//                    Log.d("TAG", "createUserWithEmail:onComplete:" + task.isSuccessful)
+//                    // If sign in fails, display a message to the user. If sign in succeeds
+//                    // the auth state listener will be notified and logic to handle the
+//                    // signed in user can be handled in the listener.
+//                    if (task.isSuccessful) {
+////                        addToFirebaseDB(fName, lName, mobile, age, cityTv, gender)
+//                    }else{
+//                        Toast.makeText(
+//                            activity, task.exception?.message.toString(),
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                    }
+//                    progressDialog.dismiss()
+//                })
     }
 
     private fun addToFirebaseDB(
@@ -167,33 +204,34 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
         cityTv: String,
         gender: String,
     ) {
-        var progressDialog = ProgressDialog.show(activity, "Please wait", "Registration is in process...", true)
-        mDatabase = FirebaseDatabase.getInstance().getReference("upwork-f2a18-default-rtdb");
-        val hashMap: HashMap<String, String> = HashMap()
-        hashMap["fName"] = fName
-        hashMap["lName"] = lName
-        hashMap["city"] = cityTv
-        hashMap["age"] = age
-        hashMap["gender"] = gender
-        hashMap["mobile"] = mobile
-        mDatabase?.child("RegisteredUsers")
-            ?.push()
-            ?.setValue(hashMap)
-            ?.addOnCompleteListener {
-                sessionManager!!.setStringVal(Constant.MOBILE, mobile)
-                (activity as LogActivity).finish()
-                findNavController().navigate(R.id.action_signup_to_dashboard)
-                Toast.makeText(
-                    activity, "Registration successfully...",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }?.addOnFailureListener { e ->
-                Toast.makeText(
-                    activity,
-                    e.message,
-                    Toast.LENGTH_LONG
-                ).show()
-            }
+        var progressDialog =
+            ProgressDialog.show(activity, "Please wait", "Registration is in process...", true)
+//        mDatabase = FirebaseDatabase.getInstance().getReference("upwork-f2a18-default-rtdb");
+//        val hashMap: HashMap<String, String> = HashMap()
+//        hashMap["fName"] = fName
+//        hashMap["lName"] = lName
+//        hashMap["city"] = cityTv
+//        hashMap["age"] = age
+//        hashMap["gender"] = gender
+//        hashMap["mobile"] = mobile
+//        mDatabase?.child("RegisteredUsers")
+//            ?.push()
+//            ?.setValue(hashMap)
+//            ?.addOnCompleteListener {
+//                sessionManager!!.setStringVal(Constant.MOBILE, mobile)
+//                (activity as LogActivity).finish()
+//                findNavController().navigate(R.id.action_signup_to_dashboard)
+//                Toast.makeText(
+//                    activity, "Registration successfully...",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }?.addOnFailureListener { e ->
+//                Toast.makeText(
+//                    activity,
+//                    e.message,
+//                    Toast.LENGTH_LONG
+//                ).show()
+//            }
 
     }
 

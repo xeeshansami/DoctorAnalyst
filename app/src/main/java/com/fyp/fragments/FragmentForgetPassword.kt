@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.fyp.R
 import com.fyp.utils.Util
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_forget_password.*
 import java.util.*
 
@@ -54,7 +53,7 @@ class FragmentForgetPassword() : Fragment(), View.OnClickListener {
     fun forgetPwd(email: String) {
         val progressDialog =
             ProgressDialog.show(activity, "Please wait", "Reset email emailing...", true)
-        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+        /*FirebaseAuth.getInstance().sendPasswordResetEmail(email)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(
@@ -71,7 +70,7 @@ class FragmentForgetPassword() : Fragment(), View.OnClickListener {
                     ).show()
                 }
                 progressDialog.dismiss()
-            }
+            }*/
     }
 
     override fun onClick(v: View?) {

@@ -13,8 +13,6 @@ import com.fyp.activities.ActivityDashboard
 import com.fyp.interfaces.iOnBackPressed
 import com.fyp.utils.Constant
 import com.fyp.utils.SessionManager
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_signup.*
 import kotlinx.android.synthetic.main.fragment_signup.firstNameTv
 import kotlinx.android.synthetic.main.fragment_signup.mobileTv
@@ -24,9 +22,9 @@ import java.util.*
 
 class FragmentUpdate : Fragment(), iOnBackPressed, View.OnClickListener {
     val myCalendar = Calendar.getInstance()
-    private var mDatabase: DatabaseReference? = null
+//    private var mDatabase: DatabaseReference? = null
     private var sessionManager: SessionManager? = null
-    var firebaseAuth = FirebaseAuth.getInstance()
+//    var firebaseAuth = FirebaseAuth.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,7 +45,7 @@ class FragmentUpdate : Fragment(), iOnBackPressed, View.OnClickListener {
 
     fun init() {
         updateBtn.setOnClickListener(this)
-        firebaseAuth = FirebaseAuth.getInstance()
+//        firebaseAuth = FirebaseAuth.getInstance()
         sessionManager = SessionManager(activity as ActivityDashboard)
     }
 
@@ -65,51 +63,51 @@ class FragmentUpdate : Fragment(), iOnBackPressed, View.OnClickListener {
                 "Fetching your profile...",
                 true
             )
-        val rootRef = FirebaseDatabase.getInstance().reference
-        val dbRef = rootRef.child("upwork-f2a18-default-rtdb").child("RegisteredUsers")
-        dbRef!!.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (data in dataSnapshot.children) {
-                        if (data.child("mobile").value == mobile) {
-                            var map: MutableMap<*, *>? = data.getValue(
-                                MutableMap::class.java
-                            )
-                            fName = map!!.get("fName").toString();
-                            lName =map!!.get("lName").toString();
-                            mobile = map!!.get("mobile").toString();
-                            age = map!!.get("age").toString();
-                            check = true
-                            break
-                        } else {
-                            check = false
-                        }
-                    }
-                    if (check) {
-                        firstNameTv.setText(fName)
-                        lastName.setText(lName)
-                        mobileTv.setText(mobile)
-                        AgeTv.setText(age)
-                        progressDialog.dismiss()
-                    } else {
-                        Toast.makeText(
-                            activity,
-                            resources.getString(R.string.login_err), Toast.LENGTH_LONG
-                        )
-                            .show()
-                        progressDialog.dismiss()
-                    }
-                }
-                for (data in dataSnapshot.children) {
-
-                    progressDialog.dismiss()
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                progressDialog.dismiss()
-            }
-        })
+//        val rootRef = FirebaseDatabase.getInstance().reference
+//        val dbRef = rootRef.child("upwork-f2a18-default-rtdb").child("RegisteredUsers")
+//        dbRef!!.addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                if (dataSnapshot.exists()) {
+//                    for (data in dataSnapshot.children) {
+//                        if (data.child("mobile").value == mobile) {
+//                            var map: MutableMap<*, *>? = data.getValue(
+//                                MutableMap::class.java
+//                            )
+//                            fName = map!!.get("fName").toString();
+//                            lName =map!!.get("lName").toString();
+//                            mobile = map!!.get("mobile").toString();
+//                            age = map!!.get("age").toString();
+//                            check = true
+//                            break
+//                        } else {
+//                            check = false
+//                        }
+//                    }
+//                    if (check) {
+//                        firstNameTv.setText(fName)
+//                        lastName.setText(lName)
+//                        mobileTv.setText(mobile)
+//                        AgeTv.setText(age)
+//                        progressDialog.dismiss()
+//                    } else {
+//                        Toast.makeText(
+//                            activity,
+//                            resources.getString(R.string.login_err), Toast.LENGTH_LONG
+//                        )
+//                            .show()
+//                        progressDialog.dismiss()
+//                    }
+//                }
+//                for (data in dataSnapshot.children) {
+//
+//                    progressDialog.dismiss()
+//                }
+//            }
+//
+//            override fun onCancelled(databaseError: DatabaseError) {
+//                progressDialog.dismiss()
+//            }
+//        })
     }
 
     private fun updateDB() {
@@ -138,49 +136,49 @@ class FragmentUpdate : Fragment(), iOnBackPressed, View.OnClickListener {
         var mobile = sessionManager!!.getStringVal(Constant.MOBILE)
         var Age = AgeTv.text.toString().trim()
         var mobile2 = mobileTv.text.toString().trim()
-        val rootRef = FirebaseDatabase.getInstance().reference
-        val dbRef = rootRef.child("upwork-f2a18-default-rtdb").child("RegisteredUsers")
-        dbRef.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (d in dataSnapshot.children) {
-                        if (d.child("mobile").value == mobile) {
-                            check = true
-                            key = d.key.toString()
-                            break
-                        } else {
-                            check = false
-                        }
-                    }
-                    if (check) {
-                        sessionManager!!.setStringVal(Constant.MOBILE, mobile)
-                        var taskMap: MutableMap<String, Any> = HashMap()
-                        taskMap["fName"] = fName
-                        taskMap["lName"] = lName
-                        taskMap["age"] = Age
-                        taskMap["mobile"] = mobile2
-                        dbRef.child(key).updateChildren(taskMap)
-                        findNavController().navigateUp()
-                        progressDialog.dismiss()
-                        Toast.makeText(
-                            activity as ActivityDashboard,
-                            resources.getString(R.string.update_succcess), Toast.LENGTH_LONG
-                        )
-                    } else {
-                        Toast.makeText(
-                            activity,
-                            resources.getString(R.string.update_failed), Toast.LENGTH_LONG
-                        )
-                            .show()
-                        progressDialog.dismiss()
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                progressDialog.dismiss()
-            } //onCancelled
-        })
+//        val rootRef = FirebaseDatabase.getInstance().reference
+//        val dbRef = rootRef.child("upwork-f2a18-default-rtdb").child("RegisteredUsers")
+//        dbRef.addListenerForSingleValueEvent(object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                if (dataSnapshot.exists()) {
+//                    for (d in dataSnapshot.children) {
+//                        if (d.child("mobile").value == mobile) {
+//                            check = true
+//                            key = d.key.toString()
+//                            break
+//                        } else {
+//                            check = false
+//                        }
+//                    }
+//                    if (check) {
+//                        sessionManager!!.setStringVal(Constant.MOBILE, mobile)
+//                        var taskMap: MutableMap<String, Any> = HashMap()
+//                        taskMap["fName"] = fName
+//                        taskMap["lName"] = lName
+//                        taskMap["age"] = Age
+//                        taskMap["mobile"] = mobile2
+//                        dbRef.child(key).updateChildren(taskMap)
+//                        findNavController().navigateUp()
+//                        progressDialog.dismiss()
+//                        Toast.makeText(
+//                            activity as ActivityDashboard,
+//                            resources.getString(R.string.update_succcess), Toast.LENGTH_LONG
+//                        )
+//                    } else {
+//                        Toast.makeText(
+//                            activity,
+//                            resources.getString(R.string.update_failed), Toast.LENGTH_LONG
+//                        )
+//                            .show()
+//                        progressDialog.dismiss()
+//                    }
+//                }
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                progressDialog.dismiss()
+//            } //onCancelled
+//        })
     }
 
     private fun validation(): Boolean {

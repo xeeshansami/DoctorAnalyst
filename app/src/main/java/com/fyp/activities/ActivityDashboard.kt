@@ -1,8 +1,10 @@
 package com.fyp.activities
 
+import android.annotation.SuppressLint
 import android.app.ActivityManager
 import android.content.Intent
 import android.os.*
+import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
@@ -10,14 +12,21 @@ import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.fyp.R
+import com.fyp.network.models.response.base.BaseResponse
 import com.fyp.utils.Constant
+import com.fyp.utils.GlobalClass
 import com.fyp.utils.SessionManager
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.fyp.utils.ToastUtils
+import com.hbl.hblaccountopeningapp.network.ResponseHandlers.callbacks.RegisterCallBack
+import com.hbl.hblaccountopeningapp.network.enums.RetrofitEnums
+import com.hbl.hblaccountopeningapp.network.store.HBLHRStore
 import kotlinx.android.synthetic.main.content_dashboard.*
+import kotlinx.android.synthetic.main.fragment_signin.*
+import kotlinx.android.synthetic.main.fragment_signup.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import java.text.SimpleDateFormat
 import java.time.LocalTime
 import java.util.*
@@ -27,7 +36,7 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
     private var finalTime = ""
     private val hideHandler = Handler()
     private var sessionManager: SessionManager? = null
-    protected var nMyApplication: MyApplication? = null
+    var nMyApplication: GlobalClass? = null
 
     @Suppress("InlinedApi")
     private val hidePart2Runnable = Runnable {
@@ -57,11 +66,13 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
-        nMyApplication = application as MyApplication
+        nMyApplication = application as GlobalClass
         nMyApplication!!.onActivityCreated(this, savedInstanceState)
-        init()
-        fullscreenContent = findViewById(R.id.fullscreen_content)
         sessionManager = SessionManager(this)
+        init()
+        appTime()
+        fullscreenContent = findViewById(R.id.fullscreen_content)
+
         if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1 || sessionManager!!.getIntVal(
                 Constant.LANGUAGE
             ) == 0
@@ -84,6 +95,53 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
         }.start()
 
     }
+
+
+
+    fun updateAppTime() {
+        nMyApplication?.showDialog(this)
+        val requestBody: RequestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("phone",sessionManager!!.getStringVal(Constant.MOBILE)!!)
+            .addFormDataPart("completeApplicationTime,", convertSeconds(finalTime.toInt()).toString())
+            .build()
+        HBLHRStore.instance?.updateAppTime(
+            RetrofitEnums.URL_HBL,
+            requestBody, object : RegisterCallBack {
+                @SuppressLint("WrongConstant")
+                override fun Success(response: BaseResponse) {
+//                    ToastUtils.showToastWith(this@ActivityDashboard, response.message)
+                    nMyApplication?.hideLoader()
+                }
+
+                override fun Failure(response: BaseResponse) {
+                    ToastUtils.showToastWith(this@ActivityDashboard, response.message)
+                   nMyApplication?.hideLoader()
+                }
+            })
+    }
+
+    fun appTime() {
+        nMyApplication?.showDialog(this)
+        val requestBody: RequestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("phone",sessionManager!!.getStringVal(Constant.MOBILE)!!)
+            .build()
+        HBLHRStore.instance?.appTime(
+            RetrofitEnums.URL_HBL,
+            requestBody, object : RegisterCallBack {
+                @SuppressLint("WrongConstant")
+                override fun Success(response: BaseResponse) {
+//                    ToastUtils.showToastWith(this@ActivityDashboard, response.message, "")
+                    nMyApplication?.hideLoader()
+                }
+
+                override fun Failure(response: BaseResponse) {
+                    ToastUtils.showToastWith(this@ActivityDashboard, response.message, "")
+                    nMyApplication?.hideLoader()
+                }
+            })
+    }
     fun convertSeconds(seconds: Int): String? {
         val h = seconds / 3600
         val m = seconds % 3600 / 60
@@ -94,31 +152,6 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
         val ss =
             if (s == 0 && (h > 0 || m > 0)) "" else (if (s < 10 && (h > 0 || m > 0)) "0" else "") + s.toString() + " " + "sec"
         return sh + (if (h > 0) " " else "") + sm + (if (m > 0) " " else "") + ss
-    }
-    private fun setData() {
-        val rootRef = FirebaseDatabase.getInstance().reference
-        val dbRef = rootRef.child("upwork-f2a18-default-rtdb").child("RegisteredUsers")
-        dbRef.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (d in dataSnapshot.children) {
-                        if (d.child("mobile").value == sessionManager!!.getStringVal(Constant.MOBILE)) {
-                            val result: HashMap<String, Any> = HashMap()
-                            result["CompleteApplicationTime"] = convertSeconds(finalTime.toInt())+""
-                            d.key?.let {
-                                FirebaseDatabase.getInstance().reference.child("upwork-f2a18-default-rtdb")
-                                    .child("RegisteredUsers")
-                                    .child(it).updateChildren(result)
-                            }
-                            break
-                        }
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            } //onCancelled
-        })
     }
 
     override fun onResume() {
@@ -158,7 +191,7 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
         fullscreenContent = null
         fullscreenContentControls = null
         nMyApplication!!.onActivityDestroyed(this)
-        setData()
+        updateAppTime()
     }
 
 

@@ -20,13 +20,16 @@ import com.fyp.R
 import com.fyp.activities.ActivityDashboard
 import com.fyp.interfaces.iOnBackPressed
 import com.fyp.models.videoObjects
+import com.fyp.network.models.response.base.BaseResponse
 import com.fyp.utils.Constant
 import com.fyp.utils.SessionManager
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.fyp.utils.ToastUtils
+import com.hbl.hblaccountopeningapp.network.ResponseHandlers.callbacks.RegisterCallBack
+import com.hbl.hblaccountopeningapp.network.enums.RetrofitEnums
+import com.hbl.hblaccountopeningapp.network.store.HBLHRStore
 import kotlinx.android.synthetic.main.fragment_video_screen.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import kotlin.collections.set
 
 
@@ -75,6 +78,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
             if (s == 0 && (h > 0 || m > 0)) "" else (if (s < 10 && (h > 0 || m > 0)) "0" else "") + s.toString() + " " + "sec"
         return sh + (if (h > 0) " " else "") + sm + (if (m > 0) " " else "") + ss
     }
+
 //    fun webview(html: String, heading: String, text: String) {
 //        var pDialog = ProgressDialog(activity)
 //        // Set progressbar message
@@ -305,41 +309,62 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
         }
     }
 
-    private fun setData(videoUrl: String, heading: String, text: String) {
-        val rootRef = FirebaseDatabase.getInstance().reference
-        val dbRef = rootRef.child("upwork-f2a18-default-rtdb").child("RegisteredUsers")
-        dbRef.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (d in dataSnapshot.children) {
-                        if (d.child("mobile").value == sessionManager!!.getStringVal(Constant.MOBILE)) {
-                            val result: HashMap<String, Any> = HashMap()
-                            result["mobile"] =
-                                sessionManager!!.getStringVal(Constant.MOBILE).toString()
-                            result["pageName"] = heading
-                            var name =
-                                d.child("fName").value.toString() + " " + d.child("lName").value.toString()
-                            result["userName"] = name
-                            result["age"] = d.child("age").value.toString()
-                            result["gender"] = d.child("gender").value.toString()
-                            result["exerciseName"] = heading
-                            result["videoUrl"] = videoUrl
-                            result["translation points"] = text
-                            result["VideoScreentime"] = convertSeconds(finalTime.toInt())+""
-                            d.key?.let {
-                                FirebaseDatabase.getInstance().reference.child("upwork-f2a18-default-rtdb")
-                                    .child("RegisteredUsers")
-                                    .child(it).updateChildren(result)
-                            }
-                            break
-                        }
-                    }
-                }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-            } //onCancelled
-        })
+
+    fun updateAppTime(videoUrl: String, heading: String, text: String) {
+        (activity as ActivityDashboard).nMyApplication?.showDialog(activity)
+        val requestBody: RequestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("pageName,",heading)
+            .addFormDataPart("phone",sessionManager!!.getStringVal(Constant.MOBILE)!!)
+            .addFormDataPart("exerciseName", heading)
+            .addFormDataPart("videoScreenTime", convertSeconds(finalTime.toInt())+"")
+            .addFormDataPart("videoUrl",videoUrl)
+            .build()
+        HBLHRStore.instance?.updateAppTime(
+            RetrofitEnums.URL_HBL,
+            requestBody, object : RegisterCallBack {
+                @SuppressLint("WrongConstant")
+                override fun Success(response: BaseResponse) {
+//                    ToastUtils.showToastWith(activity as ActivityDashboard, "His", "")
+                    (activity as ActivityDashboard).nMyApplication?.hideLoader()
+                }
+
+                override fun Failure(response: BaseResponse) {
+                    ToastUtils.showToastWith(activity as ActivityDashboard, response.message, "")
+                    (activity as ActivityDashboard).nMyApplication?.hideLoader()
+                }
+            })
+    }
+
+    private fun setData(videoUrl: String, heading: String, text: String) {
+//        val rootRef = FirebaseDatabase.getInstance().reference
+//        val dbRef = rootRef.child("upwork-f2a18-default-rtdb").child("RegisteredUsers")
+//        dbRef.addListenerForSingleValueEvent(object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                if (dataSnapshot.exists()) {
+//                    for (d in dataSnapshot.children) {
+//                        if (d.child("mobile").value == sessionManager!!.getStringVal(Constant.MOBILE)) {
+//                            val result: HashMap<String, Any> = HashMap()
+//                            result["VideoScreentime"] = convertSeconds(finalTime.toInt())+""
+//                            result["pageName"] = heading
+//                            result["exerciseName"] = heading
+//                            result["videoUrl"] = videoUrl
+//                            result["translation points"] = text
+//                            d.key?.let {
+//                                FirebaseDatabase.getInstance().reference.child("upwork-f2a18-default-rtdb")
+//                                    .child("RegisteredUsers")
+//                                    .child(it).child("Records").push().setValue(result)
+//                            }
+//                            break
+//                        }
+//                    }
+//                }
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//            } //onCancelled
+//        })
     }
 
 
@@ -352,6 +377,11 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                 ) {
                     back--
                     next = back
+                    updateAppTime(
+                        obj!![next].videoUrl,
+                        obj!![next].heading,
+                        obj!![next].text
+                    )
                     Log.i(
                         "btnClick", "$back, ${
                             obj!!.size
@@ -365,6 +395,11 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                 } else if (back > 0 && back < 2 &&
                     obj!!.size == 2
                 ) {
+                    updateAppTime(
+                        obj!![next].videoUrl,
+                        obj!![next].heading,
+                        obj!![next].text
+                    )
                     back--
                     next = back
                     webview(
@@ -380,6 +415,11 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                 } else if (back in 1..13 &&
                     obj!!.size == 14
                 ) {
+                    updateAppTime(
+                        obj!![next].videoUrl,
+                        obj!![next].heading,
+                        obj!![next].text
+                    )
                     back--
                     next = back
                     webview(
@@ -398,6 +438,11 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                 if (next in 0..7 &&
                     obj!!.size == 9
                 ) {
+                    updateAppTime(
+                        obj!![next].videoUrl,
+                        obj!![next].heading,
+                        obj!![next].text
+                    )
                     next++
                     back = next
                     webview(
@@ -413,6 +458,11 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                 } else if (next >= 0 && next < 1 &&
                     obj!!.size == 2
                 ) {
+                    updateAppTime(
+                        obj!![next].videoUrl,
+                        obj!![next].heading,
+                        obj!![next].text
+                    )
                     next++
                     back = next
                     webview(
@@ -428,6 +478,11 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                 } else if (next in 0..12 &&
                     obj!!.size == 14
                 ) {
+                    updateAppTime(
+                        obj!![next].videoUrl,
+                        obj!![next].heading,
+                        obj!![next].text
+                    )
                     next++
                     back = next
                     webview(
@@ -449,7 +504,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
     override fun onDestroy() {
         super.onDestroy()
         counter!!.cancel()
-        setData(
+        updateAppTime(
             obj!![next].videoUrl,
             obj!![next].heading,
             obj!![next].text

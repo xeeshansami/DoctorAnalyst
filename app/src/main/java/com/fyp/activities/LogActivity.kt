@@ -13,11 +13,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.fyp.R
 import com.fyp.utils.Constant
+import com.fyp.utils.GlobalClass
 import com.fyp.utils.SessionManager
 
 class LogActivity : AppCompatActivity() {
     private val hideHandler = Handler()
-
+    @JvmField
+    public var globalClass: GlobalClass? = null
     @Suppress("InlinedApi")
     private val hidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
@@ -45,6 +47,7 @@ class LogActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_logs)
         fullscreenContent = findViewById(R.id.fullscreen_content)
+        globalClass = GlobalClass.applicationContext!!.applicationContext as GlobalClass
         sessionManager = SessionManager(this)
 //        if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1||sessionManager!!.getIntVal(Constant.LANGUAGE) == 0) {
 //            AppLang.AppLang(this, "en")

@@ -18,17 +18,13 @@ import com.fyp.utils.Constant
 import com.fyp.utils.SessionManager
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.EmailAuthProvider
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_change_password.*
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
 class FragmentChangePassword() : Fragment(), View.OnClickListener {
-    private var mDatabase: DatabaseReference? = null
+//    private var mDatabase: DatabaseReference? = null
     private var sessionManager: SessionManager? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -82,52 +78,52 @@ class FragmentChangePassword() : Fragment(), View.OnClickListener {
                 "Checking and changing the password...",
                 true
             )
-        var user = FirebaseAuth.getInstance().currentUser;
-        var credential = EmailAuthProvider
-            .getCredential(sessionManager?.getStringVal(Constant.USER_NAME).toString(), currPwd);
-        user?.reauthenticate(credential)
-            ?.addOnCompleteListener {
-                if (it.isSuccessful) {
-                    user.updatePassword(newPass).addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            updateDB("password", newPass)
-                        } else {
-                            Toast.makeText(
-                                activity,
-                                it.exception?.message.toString(),
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    };
-                } else {
-                    Toast.makeText(activity, it.exception?.message.toString(), Toast.LENGTH_LONG)
-                        .show()
-                }
-                progressDialog.dismiss()
-            };
+//        var user = FirebaseAuth.getInstance().currentUser;
+//        var credential = EmailAuthProvider
+//            .getCredential(sessionManager?.getStringVal(Constant.USER_NAME).toString(), currPwd);
+//        user?.reauthenticate(credential)
+//            ?.addOnCompleteListener {
+//                if (it.isSuccessful) {
+//                    user.updatePassword(newPass).addOnCompleteListener {
+//                        if (it.isSuccessful) {
+//                            updateDB("password", newPass)
+//                        } else {
+//                            Toast.makeText(
+//                                activity,
+//                                it.exception?.message.toString(),
+//                                Toast.LENGTH_LONG
+//                            ).show()
+//                        }
+//                    };
+//                } else {
+//                    Toast.makeText(activity, it.exception?.message.toString(), Toast.LENGTH_LONG)
+//                        .show()
+//                }
+//                progressDialog.dismiss()
+//            };
     }
 
-    fun updateDB(key: String, value: String) {
-        try {
-            var firebaseAuth = FirebaseAuth.getInstance()
-            mDatabase = FirebaseDatabase.getInstance().getReference("fyproject-6150d");
-            mDatabase!!.child("RegisteredUsers").child(firebaseAuth.currentUser!!.uid)
-                .child(key).setValue(value);
-            Toast.makeText(
-                activity,
-                sessionManager?.getStringVal(Constant.USER_NAME)
-                    .toString() + ": password successfully changed!",
-                Toast.LENGTH_LONG
-            ).show()
-            findNavController().popBackStack()
-        } catch (ex: Exception) {
-            Toast.makeText(
-                activity,
-                ex.message,
-                Toast.LENGTH_LONG
-            ).show()
-        }
-    }
+//    fun updateDB(key: String, value: String) {
+//        try {
+//            var firebaseAuth = FirebaseAuth.getInstance()
+//            mDatabase = FirebaseDatabase.getInstance().getReference("fyproject-6150d");
+//            mDatabase!!.child("RegisteredUsers").child(firebaseAuth.currentUser!!.uid)
+//                .child(key).setValue(value);
+//            Toast.makeText(
+//                activity,
+//                sessionManager?.getStringVal(Constant.USER_NAME)
+//                    .toString() + ": password successfully changed!",
+//                Toast.LENGTH_LONG
+//            ).show()
+//            findNavController().popBackStack()
+//        } catch (ex: Exception) {
+//            Toast.makeText(
+//                activity,
+//                ex.message,
+//                Toast.LENGTH_LONG
+//            ).show()
+//        }
+//    }
 
     override fun onClick(v: View?) {
         when (v!!.id) {
