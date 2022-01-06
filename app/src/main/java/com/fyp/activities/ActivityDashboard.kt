@@ -31,11 +31,12 @@ import java.util.*
 
 
 class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
-    private var finalTime = ""
+     var finalTime = ""
     private val hideHandler = Handler()
     private var sessionManager: SessionManager? = null
     var globalClass: GlobalClass? = null
     private var progressDialog: TransparentProgressDialog? = null
+
     @Suppress("InlinedApi")
     private val hidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
@@ -57,9 +58,10 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
     private var dummyButton: Button? = null
     private var fullscreenContent: View? = null
     private var fullscreenContentControls: View? = null
-    var counter:CountDownTimer?=null
+    var counter: CountDownTimer? = null
     var maxCounter: Long = 1000000
     var diff: Long = 1000
+
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,11 +80,11 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
         } else {
             AppLang.AppLang(this, "ur")
         }
-        counter= object : CountDownTimer(maxCounter, diff) {
+        counter = object : CountDownTimer(maxCounter, diff) {
             override fun onTick(millisUntilFinished: Long) {
                 val diff: Long = maxCounter - millisUntilFinished
-                finalTime=(diff / 1000).toString()
-                Log.i("TickTick",finalTime)
+                finalTime = (diff / 1000).toString()
+                Log.i("TickTick", finalTime)
                 //here you can have your logic to set text to edittext
             }
 
@@ -94,13 +96,15 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
     }
 
 
-
     fun updateAppTime() {
         globalClass?.showDialog(this)
         val requestBody: RequestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
-            .addFormDataPart("phone",sessionManager!!.getStringVal(Constant.MOBILE)!!)
-            .addFormDataPart("completeApplicationTime,", convertSeconds(finalTime.toInt()).toString())
+            .addFormDataPart("phone", sessionManager!!.getStringVal(Constant.MOBILE)!!)
+            .addFormDataPart(
+                "completeApplicationTime,",
+                finalTime
+            )
             .build()
         HBLHRStore.instance?.updateAppTime(
             RetrofitEnums.URL_HBL,
@@ -108,21 +112,29 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
                 @SuppressLint("WrongConstant")
                 override fun Success(response: BaseResponse) {
 //                    ToastUtils.showToastWith(this@ActivityDashboard, response.message)
+                    Log.i("Counter", "2")
                     globalClass?.hideLoader()
                 }
 
                 override fun Failure(response: BaseResponse) {
                     ToastUtils.showToastWith(this@ActivityDashboard, response.message)
-                        globalClass?.hideLoader()
+                    globalClass?.hideLoader()
                 }
             })
     }
 
     fun appTime() {
         globalClass?.showDialog(this)
+        var lang = ""
+        if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1) {
+            lang = "english"
+        } else {
+            lang = "urdu"
+        }
         val requestBody: RequestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
-            .addFormDataPart("phone",sessionManager!!.getStringVal(Constant.MOBILE)!!)
+            .addFormDataPart("phone", sessionManager!!.getStringVal(Constant.MOBILE)!!)
+            .addFormDataPart("language", lang)
             .build()
         HBLHRStore.instance?.appTime(
             RetrofitEnums.URL_HBL,
@@ -130,15 +142,17 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
                 @SuppressLint("WrongConstant")
                 override fun Success(response: BaseResponse) {
 //                    ToastUtils.showToastWith(this@ActivityDashboard, response.message, "")
+                    updateHistoryAppTime()
                     globalClass?.hideLoader()
                 }
 
                 override fun Failure(response: BaseResponse) {
                     ToastUtils.showToastWith(this@ActivityDashboard, response.message, "")
-                        globalClass?.hideLoader()
+                    globalClass?.hideLoader()
                 }
             })
     }
+
     fun convertSeconds(seconds: Int): String? {
         val h = seconds / 3600
         val m = seconds % 3600 / 60
@@ -159,17 +173,20 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         super.onSaveInstanceState(outState, outPersistentState)
     }
+
     override fun onStart() {
         super.onStart()
     }
 
     override fun onStop() {
+        Log.i("Counter", "1")
         updateAppTime()
         super.onStop()
     }
 
     override fun onPause() {
-        updateAppTime()
+        Log.i("Counter", "0")
+//        updateAppTime()
         super.onPause()
         window?.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         // Clear the systemUiVisibility flag
@@ -178,12 +195,41 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onDestroy() {
+        Log.i("Counter", "2")
         counter!!.cancel()
+        counter!!.onFinish()
         dummyButton = null
         fullscreenContent = null
         fullscreenContentControls = null
-        updateAppTime()
+//        updateAppTime()
         super.onDestroy()
+    }
+
+    fun updateHistoryAppTime() {
+        var request = sessionManager!!.getHistory()
+        val requestBody: RequestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("pageName", request!!.pageName)
+            .addFormDataPart("phone", request!!.phone)
+            .addFormDataPart("exerciseName", request!!.exerciseName)
+            .addFormDataPart("videoScreenTime", request!!.videoScreenTime)
+            .addFormDataPart("videoUrl", request!!.videoUrl)
+            .build()
+        HBLHRStore.instance?.history(
+            RetrofitEnums.URL_HBL,
+            requestBody, object : RegisterCallBack {
+                @SuppressLint("WrongConstant")
+                override fun Success(response: BaseResponse) {
+//                    ToastUtils.showToastWith(activity as ActivityDashboard, "His", "")
+                    Log.i("Counter", "1")
+                    globalClass?.hideLoader()
+                }
+
+                override fun Failure(response: BaseResponse) {
+                    ToastUtils.showToastWith(this@ActivityDashboard, response.message, "")
+                    globalClass?.hideLoader();
+                }
+            })
     }
 
 
@@ -244,11 +290,14 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
 //        }
         }
     }
+
     fun getProgressDialogInstance(context: Context?): TransparentProgressDialog? {
         if (progressDialog == null) progressDialog = TransparentProgressDialog(
-            context!!)
+            context!!
+        )
         return progressDialog
     }
+
     fun showDialog(context: Context?) {
         progressDialog = getProgressDialogInstance(context)
         progressDialog!!.setCancelable(false)

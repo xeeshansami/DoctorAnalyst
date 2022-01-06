@@ -1,30 +1,44 @@
 package com.fyp.fragments
 
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.fyp.R
 import com.fyp.activities.ActivityDashboard
 import com.fyp.interfaces.iOnBackPressed
+import com.fyp.network.models.response.base.BaseResponse
 import com.fyp.utils.Constant
 import com.fyp.utils.SessionManager
+import com.fyp.utils.ToastUtils
+import com.hbl.hblaccountopeningapp.network.ResponseHandlers.callbacks.RegisterCallBack
+import com.hbl.hblaccountopeningapp.network.enums.RetrofitEnums
+import com.hbl.hblaccountopeningapp.network.store.HBLHRStore
 import kotlinx.android.synthetic.main.fragment_signup.*
-import kotlinx.android.synthetic.main.fragment_signup.firstNameTv
-import kotlinx.android.synthetic.main.fragment_signup.mobileTv
 import kotlinx.android.synthetic.main.fragment_update.*
+import kotlinx.android.synthetic.main.fragment_update.cityTv
+import kotlinx.android.synthetic.main.fragment_update.mobileTv
+import kotlinx.android.synthetic.main.fragment_update.spinner
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import java.util.*
 
 
 class FragmentUpdate : Fragment(), iOnBackPressed, View.OnClickListener {
     val myCalendar = Calendar.getInstance()
-//    private var mDatabase: DatabaseReference? = null
+
+    //    private var mDatabase: DatabaseReference? = null
+    private var list = ArrayList<String>()
     private var sessionManager: SessionManager? = null
-//    var firebaseAuth = FirebaseAuth.getInstance()
+
+    //    var firebaseAuth = FirebaseAuth.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,9 +52,26 @@ class FragmentUpdate : Fragment(), iOnBackPressed, View.OnClickListener {
         init()
         var mobile = sessionManager!!.getStringVal(Constant.MOBILE)
         mobileTv.setText(mobile)
-        mobileTv.isEnabled=false
-        mobileTv.alpha=0.5f
-//        getDataFromFirebase()
+        mobileTv.isEnabled = false
+        mobileTv.alpha = 0.5f
+        addQuestInRv()
+    }
+
+
+
+    private fun addQuestInRv() {
+        val questions = (activity as ActivityDashboard).resources!!.getStringArray(R.array.gender)
+        list.clear()
+        for (element in questions) {
+            list.add(element)
+        }
+        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
+            activity as ActivityDashboard,
+            R.layout.quest_list_view, R.id.text1,
+            list
+        )
+        adapter.setDropDownViewResource(R.layout.quest_list_view)
+        spinner.setAdapter(adapter)
     }
 
     fun init() {
@@ -50,149 +81,53 @@ class FragmentUpdate : Fragment(), iOnBackPressed, View.OnClickListener {
     }
 
 
-    fun getDataFromFirebase() {
-        var check = false
-        var fName = ""
-        var lName = ""
-        var mobile = sessionManager!!.getStringVal(Constant.MOBILE)
-        var age = ""
-        val progressDialog =
-            ProgressDialog.show(
-                activity,
-                "Please wait",
-                "Fetching your profile...",
-                true
-            )
-//        val rootRef = FirebaseDatabase.getInstance().reference
-//        val dbRef = rootRef.child("upwork-f2a18-default-rtdb").child("RegisteredUsers")
-//        dbRef!!.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                if (dataSnapshot.exists()) {
-//                    for (data in dataSnapshot.children) {
-//                        if (data.child("mobile").value == mobile) {
-//                            var map: MutableMap<*, *>? = data.getValue(
-//                                MutableMap::class.java
-//                            )
-//                            fName = map!!.get("fName").toString();
-//                            lName =map!!.get("lName").toString();
-//                            mobile = map!!.get("mobile").toString();
-//                            age = map!!.get("age").toString();
-//                            check = true
-//                            break
-//                        } else {
-//                            check = false
-//                        }
-//                    }
-//                    if (check) {
-//                        firstNameTv.setText(fName)
-//                        lastName.setText(lName)
-//                        mobileTv.setText(mobile)
-//                        AgeTv.setText(age)
-//                        progressDialog.dismiss()
-//                    } else {
-//                        Toast.makeText(
-//                            activity,
-//                            resources.getString(R.string.login_err), Toast.LENGTH_LONG
-//                        )
-//                            .show()
-//                        progressDialog.dismiss()
-//                    }
-//                }
-//                for (data in dataSnapshot.children) {
-//
-//                    progressDialog.dismiss()
-//                }
-//            }
-//
-//            override fun onCancelled(databaseError: DatabaseError) {
-//                progressDialog.dismiss()
-//            }
-//        })
-    }
-
-    private fun updateDB() {
-        try {
-            updatePwd()
-        } catch (ex: Exception) {
-            Toast.makeText(
-                activity,
-                ex.message,
-                Toast.LENGTH_LONG
-            ).show()
-        }
-    }
-
-    private fun updatePwd() {
-        var key = ""
-        var check = false
-        var progressDialog = ProgressDialog.show(
-            activity,
-            resources.getString(R.string.please_wait),
-            resources.getString(R.string.updating),
-            true
-        )
-        var fName = firstNameTv.text.toString().trim()
-        var lName = lastName.text.toString().trim()
+    private fun updateUser() {
+        var fName = fullNameTv.text.toString().trim()
+        var city = cityTv.text.toString().trim()
         var mobile = sessionManager!!.getStringVal(Constant.MOBILE)
         var Age = AgeTv.text.toString().trim()
         var mobile2 = mobileTv.text.toString().trim()
-//        val rootRef = FirebaseDatabase.getInstance().reference
-//        val dbRef = rootRef.child("upwork-f2a18-default-rtdb").child("RegisteredUsers")
-//        dbRef.addListenerForSingleValueEvent(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                if (dataSnapshot.exists()) {
-//                    for (d in dataSnapshot.children) {
-//                        if (d.child("mobile").value == mobile) {
-//                            check = true
-//                            key = d.key.toString()
-//                            break
-//                        } else {
-//                            check = false
-//                        }
-//                    }
-//                    if (check) {
-//                        sessionManager!!.setStringVal(Constant.MOBILE, mobile)
-//                        var taskMap: MutableMap<String, Any> = HashMap()
-//                        taskMap["fName"] = fName
-//                        taskMap["lName"] = lName
-//                        taskMap["age"] = Age
-//                        taskMap["mobile"] = mobile2
-//                        dbRef.child(key).updateChildren(taskMap)
-//                        findNavController().navigateUp()
-//                        progressDialog.dismiss()
-//                        Toast.makeText(
-//                            activity as ActivityDashboard,
-//                            resources.getString(R.string.update_succcess), Toast.LENGTH_LONG
-//                        )
-//                    } else {
-//                        Toast.makeText(
-//                            activity,
-//                            resources.getString(R.string.update_failed), Toast.LENGTH_LONG
-//                        )
-//                            .show()
-//                        progressDialog.dismiss()
-//                    }
-//                }
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                progressDialog.dismiss()
-//            } //onCancelled
-//        })
+        (activity as ActivityDashboard).globalClass?.showDialog((activity as ActivityDashboard))
+        val requestBody: RequestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("name", fName)
+            .addFormDataPart("age", Age)
+            .addFormDataPart("gender", spinner.selectedItem.toString().trim())
+            .addFormDataPart("city", city)
+            .addFormDataPart("phone", mobile2)
+            .build()
+        HBLHRStore.instance?.updateAppTime(
+            RetrofitEnums.URL_HBL,
+            requestBody, object : RegisterCallBack {
+                @SuppressLint("WrongConstant")
+                override fun Success(response: BaseResponse) {
+                    findNavController().navigateUp()
+                    ToastUtils.showToastWith(
+                        activity,
+                        resources.getString(R.string.update_succcess)
+                    )
+                    Log.i("Counter", "2")
+                }
+
+                override fun Failure(response: BaseResponse) {
+                    ToastUtils.showToastWith((activity as ActivityDashboard), response.message)
+                    (activity as ActivityDashboard).globalClass?.hideLoader()
+                }
+            })
     }
 
     private fun validation(): Boolean {
-        var fName = firstNameTv.text.toString().trim()
-        var lName = lastName.text.toString().trim()
+        var fName = fullNameTv.text.toString().trim()
+        var lName = cityTv.text.toString().trim()
         var mobile = mobileTv.text.toString().trim()
         var Age = AgeTv.text.toString().trim()
         return if (fName.isNullOrEmpty()) {
-            firstNameTv.error = resources.getString(R.string.fname_err)
-            firstNameTv.requestFocus()
+            fullNameTv.error = resources.getString(R.string.fname_err)
+            fullNameTv.requestFocus()
             false
         } else if (lName.isNullOrEmpty()) {
-            lastName.error = resources.getString(R.string.lname_err)
-            lastName.requestFocus()
+            cityTv.error = resources.getString(R.string.city_err)
+            cityTv.requestFocus()
             false
         } else if (mobile.isNullOrEmpty()) {
             mobileTv.error = resources.getString(R.string.mob_err)
@@ -216,7 +151,7 @@ class FragmentUpdate : Fragment(), iOnBackPressed, View.OnClickListener {
         when (v!!.id) {
             R.id.updateBtn -> {
                 if (validation()) {
-                    updateDB()
+                    updateUser()
                 }
             }
         }

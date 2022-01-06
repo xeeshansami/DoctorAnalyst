@@ -1,5 +1,6 @@
 package com.fyp.fragments
 
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
@@ -15,9 +16,17 @@ import com.fyp.R
 import com.fyp.activities.ActivityDashboard
 import com.fyp.activities.LogActivity
 import com.fyp.interfaces.iOnBackPressed
+import com.fyp.network.models.response.base.BaseResponse
 import com.fyp.utils.Constant
 import com.fyp.utils.SessionManager
+import com.fyp.utils.ToastUtils
+import com.hbl.hblaccountopeningapp.network.ResponseHandlers.callbacks.RegisterCallBack
+import com.hbl.hblaccountopeningapp.network.enums.RetrofitEnums
+import com.hbl.hblaccountopeningapp.network.store.HBLHRStore
 import kotlinx.android.synthetic.main.fragment_account.*
+import kotlinx.android.synthetic.main.fragment_update.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 
 class FragmentMyAccount : Fragment(), View.OnClickListener, iOnBackPressed {
@@ -62,22 +71,41 @@ class FragmentMyAccount : Fragment(), View.OnClickListener, iOnBackPressed {
                 findNavController().navigate(R.id.action_fragmentMyAccount_to_fragmentChangePassword)
             }
             R.id.logoutTv -> {
-                logout()
+                updateAppTime()
             }
         }
     }
 
-    private fun logout() {
-        val progressDialog =
-            ProgressDialog.show(activity, resources.getString(R.string.please_wait) , resources.getString(R.string.login_out_err) , true)
-        Toast.makeText(activity, "Log out", Toast.LENGTH_SHORT).show()
-        sessionManager!!.setStringVal(Constant.MOBILE,"")
-//        firebaseAuth?.signOut()
-        var intent = Intent(activity, LogActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        progressDialog.dismiss()
-        (activity as ActivityDashboard).startActivity(intent)
-        (activity as ActivityDashboard).finish()
+
+    fun updateAppTime() {
+        (activity as ActivityDashboard).globalClass?.showDialog( (activity as ActivityDashboard))
+        val requestBody: RequestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("phone", sessionManager!!.getStringVal(Constant.MOBILE)!!)
+            .addFormDataPart(
+                "completeApplicationTime,",
+                (activity as ActivityDashboard).finalTime
+            )
+            .build()
+        HBLHRStore.instance?.updateAppTime(
+            RetrofitEnums.URL_HBL,
+            requestBody, object : RegisterCallBack {
+                @SuppressLint("WrongConstant")
+                override fun Success(response: BaseResponse) {
+                    Toast.makeText(activity, "Log out", Toast.LENGTH_SHORT).show()
+                    sessionManager!!.setStringVal(Constant.MOBILE,"")
+                    var intent = Intent(activity, LogActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    (activity as ActivityDashboard).startActivity(intent)
+                    (activity as ActivityDashboard).finish()
+                    (activity as ActivityDashboard).globalClass?.hideLoader()
+                }
+
+                override fun Failure(response: BaseResponse) {
+                    ToastUtils.showToastWith( (activity as ActivityDashboard), response.message)
+                    (activity as ActivityDashboard).globalClass?.hideLoader()
+                }
+            })
     }
 
     override fun onBackPressed(): Boolean {

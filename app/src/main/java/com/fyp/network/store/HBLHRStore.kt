@@ -78,5 +78,15 @@ open class HBLHRStore : Application(), IOnConnectionTimeoutListener {
             GlobalClass.applicationContext?.let { RetrofitBuilder.getRetrofitInstance(it,  url!!, Config.API_CONNECT_TIMEOUT) }
         privateInstanceRetrofit?.history(request)?.enqueue(RegisterBaseHR(callback))
     }
+    //TODO updateUser
+    fun updateUser(
+        url: RetrofitEnums?,
+        request: RequestBody,
+        callback: RegisterCallBack
+    ) {
+        var privateInstanceRetrofit: APIInterface? =
+            GlobalClass.applicationContext?.let { RetrofitBuilder.getRetrofitInstance(it,  url!!, Config.API_CONNECT_TIMEOUT) }
+        privateInstanceRetrofit?.updateUser(request)?.enqueue(RegisterBaseHR(callback))
+    }
 
 }

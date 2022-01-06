@@ -51,7 +51,7 @@ object RetrofitBuilder {
         }
         val builder = OkHttpClient.Builder()
             .addInterceptor(interceptor)
-            .addInterceptor(ChuckInterceptor(context))
+//            .addInterceptor(ChuckInterceptor(context))
             .callTimeout(timeout, TimeUnit.SECONDS)
             .connectTimeout(timeout, TimeUnit.SECONDS)
             .readTimeout(timeout, TimeUnit.SECONDS)

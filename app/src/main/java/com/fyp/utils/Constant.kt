@@ -2,6 +2,7 @@ package com.fyp.utils
 
 class Constant {
     companion object{
+        val HISTORY: String?="HISTORY"
         var MOBILE="MOBILE"
         const  val IS_LANGUAGE_EMPTY="IS_LANGUAGE_EMPTY"
         const val LANGUAGE="LANGUAGE"

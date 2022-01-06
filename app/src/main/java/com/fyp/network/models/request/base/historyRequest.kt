@@ -15,60 +15,49 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 
-class LovRequest() : Parcelable {
-    @SerializedName("identifier")
-    var identifier: String = ""
+class historyRequest() : Parcelable {
+    @SerializedName("pageName")
+    var pageName: String = ""
 
-    @SerializedName("condition")
-    var condition: Boolean = false
+    @SerializedName("phone")
+    var phone: String = ""
 
-    @SerializedName("conditionmatrix")
-    var conditionmatrix: String = ""
+    @SerializedName("exerciseName")
+    var exerciseName: String = ""
 
-    @SerializedName("conditionname")
-    var conditionname: String = ""
+    @SerializedName("videoScreenTime")
+    var videoScreenTime: String = ""
 
-    @SerializedName("conditionvalue")
-    var conditionvalue: String = ""
-
-    @SerializedName("CUST_SEGMENT")
-    var CUST_SEGMENT: String = ""
-
-    @SerializedName("BR_TYPE")
-    var BR_TYPE: String = ""
-
-    @SerializedName("gender")
-    var gender: String = ""
+    @SerializedName("videoUrl")
+    var videoUrl: String = ""
 
 
     constructor(parcel: Parcel) : this() {
-        gender = parcel.readString().toString()
-        identifier = parcel.readString().toString()
-        condition = parcel.readByte() != 0.toByte()
-        conditionmatrix = parcel.readString().toString()
-        conditionname = parcel.readString().toString()
-        conditionvalue = parcel.readString().toString()
+        pageName = parcel.readString().toString()
+        phone = parcel.readString().toString()
+        exerciseName = parcel.readString().toString()
+        videoUrl = parcel.readString().toString()
+        videoUrl = parcel.readString().toString()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(gender)
-        parcel.writeString(identifier)
-        parcel.writeByte(if (condition) 1 else 0)
-        parcel.writeString(conditionmatrix)
-        parcel.writeString(conditionname)
-        parcel.writeString(conditionvalue)
+        parcel.writeString(pageName)
+        parcel.writeString(phone)
+        parcel.writeString(exerciseName)
+        parcel.writeString(videoScreenTime)
+        parcel.writeString(videoUrl)
     }
 
     override fun describeContents(): Int {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<LovRequest> {
-        override fun createFromParcel(parcel: Parcel): LovRequest {
-            return LovRequest(parcel)
+    companion object CREATOR : Parcelable.Creator<historyRequest> {
+        override fun createFromParcel(parcel: Parcel): historyRequest {
+            return historyRequest(parcel)
         }
 
-        override fun newArray(size: Int): Array<LovRequest?> {
+        override fun newArray(size: Int): Array<historyRequest?> {
             return arrayOfNulls(size)
         }
     }

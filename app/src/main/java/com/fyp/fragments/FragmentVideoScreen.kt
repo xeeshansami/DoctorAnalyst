@@ -28,6 +28,7 @@ import com.fyp.utils.SessionManager
 import com.fyp.utils.ToastUtils
 import com.hbl.hblaccountopeningapp.network.ResponseHandlers.callbacks.RegisterCallBack
 import com.hbl.hblaccountopeningapp.network.enums.RetrofitEnums
+import com.hbl.hblaccountopeningapp.network.models.request.base.historyRequest
 import com.hbl.hblaccountopeningapp.network.store.HBLHRStore
 import kotlinx.android.synthetic.main.fragment_video_screen.*
 import okhttp3.MultipartBody
@@ -72,11 +73,11 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
     }
 
     override fun onPause() {
-        updateAppTime(
-            obj!![next].videoUrl,
-            obj!![next].heading,
-            obj!![next].text
-        )
+//        updateAppTime(
+//            obj!![next].videoUrl,
+//            obj!![next].heading,
+//            obj!![next].text
+//        )
         super.onPause()
     }
 
@@ -339,10 +340,10 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
             .addFormDataPart("pageName",heading)
             .addFormDataPart("phone",sessionManager!!.getStringVal(Constant.MOBILE)!!)
             .addFormDataPart("exerciseName", heading)
-            .addFormDataPart("videoScreenTime", convertSeconds(finalTime.toInt())+"")
+            .addFormDataPart("videoScreenTime", finalTime)
             .addFormDataPart("videoUrl",videoUrl)
             .build()
-        HBLHRStore.instance?.updateAppTime(
+        HBLHRStore.instance?.history(
             RetrofitEnums.URL_HBL,
             requestBody, object : RegisterCallBack {
                 @SuppressLint("WrongConstant")
@@ -524,11 +525,13 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
 
     override fun onDestroy() {
         counter!!.cancel()
-        updateAppTime(
-            obj!![next].videoUrl,
-            obj!![next].heading,
-            obj!![next].text
-        )
+        var request=historyRequest()
+        request.exerciseName= obj!![next].heading
+        request.phone=  sessionManager!!.getStringVal(Constant.MOBILE)!!
+        request.pageName=  obj!![next].heading
+        request.videoScreenTime=  finalTime
+        request.videoUrl=  obj!![next].videoUrl
+        sessionManager!!.setHistory(request)
         super.onDestroy()
     }
 

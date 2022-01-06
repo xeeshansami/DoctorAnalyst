@@ -25,6 +25,9 @@ interface APIInterface {
     @POST("history.php")
     fun history(@Body body:RequestBody): Call<BaseResponse>
 
+    @POST("updateUser.php")
+    fun updateUser(@Body body:RequestBody): Call<BaseResponse>
+
     companion object {
         const val HEADER_TAG = "@"
         const val HEADER_POSTFIX = ": "

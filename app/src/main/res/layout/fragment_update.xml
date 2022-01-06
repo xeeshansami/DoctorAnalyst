@@ -65,7 +65,7 @@
 
         <EditText
             android:paddingLeft="10dp"
-            android:id="@+id/firstNameTv"
+            android:id="@+id/fullNameTv"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginStart="24dp"
@@ -74,7 +74,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:background="@drawable/bottom_line"
-            android:hint="@string/first_name"
+            android:hint="@string/full_name"
             android:inputType="textPersonName"
             android:text=""
             android:textColor="@color/white"
@@ -84,7 +84,7 @@
             app:layout_constraintTop_toBottomOf="@+id/header" />
         <EditText
             android:paddingLeft="10dp"
-            android:id="@+id/lastName"
+            android:id="@+id/cityTv"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginStart="24dp"
@@ -93,14 +93,14 @@
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:background="@drawable/bottom_line"
-            android:hint="@string/last_name"
+            android:hint="@string/city"
             android:inputType="textPersonName"
             android:text=""
             android:textColor="@color/white"
             android:textColorHint="@color/hint"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/firstNameTv" />
+            app:layout_constraintTop_toBottomOf="@+id/fullNameTv" />
 
         <EditText
             android:paddingLeft="10dp"
@@ -120,7 +120,7 @@
             android:textColorHint="@color/hint"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/lastName" />
+            app:layout_constraintTop_toBottomOf="@+id/cityTv" />
 
         <EditText
             android:paddingLeft="10dp"
@@ -142,7 +142,22 @@
             app:layout_constraintStart_toStartOf="@+id/guideline6"
             app:layout_constraintTop_toBottomOf="@+id/mobileTv" />
 
-
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/spinner_border"
+            android:inputType="textPersonName"
+            android:dropDownSelector="@drawable/border"
+            android:textColor="@color/themeColor"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7"
+            app:layout_constraintStart_toStartOf="@+id/guideline6"
+            app:layout_constraintTop_toBottomOf="@+id/AgeTv" />
 
 
         <Button
@@ -159,6 +174,6 @@
             android:textColor="@color/white"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline6"
-            app:layout_constraintTop_toBottomOf="@+id/AgeTv" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
