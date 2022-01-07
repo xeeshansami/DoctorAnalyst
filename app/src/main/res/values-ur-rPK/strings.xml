@@ -109,15 +109,15 @@
 </string>
     <string name="active_exercise">فعال ورزش
 </string>
-    <string name="bilateral_shoulder_flexion_with_both_hands_interlocked">دو طرفہ کندھے کا موڑ جس میں دونوں ہاتھ آپس میں جڑے ہوئے ہیں۔</string>
-    <string name="shoulder_horizontal_abduction">کندھے کا افقی اغوا</string>
-    <string name="shoulder_abduction">شولڈر ایبڈکش</string>
-    <string name="elbow_flexion_and_extension">کہنی کا موڑ اور توسیع</string>
-    <string name="elbow_pronation_and_supination">کہنی کا تلفظ اور سوپینیشن</string>
-    <string name="wrist_flexion_and_extension">کلائی کا موڑ اور توسیع</string>
-    <string name="extend_elbow">کہنی کو بڑھا دیں۔</string>
-    <string name="forearm_to_box">بازو سے باکس</string>
-    <string name="hand_to_box">باکس میں ہاتھ</string>
+    <string name="bilateral_shoulder_flexion_with_both_hands_interlocked">غیر متاثرہ ہاتھ کی مدد سے شولڈر فلیکشن۔</string>
+    <string name="shoulder_horizontal_abduction">شولڈر ہاریزانٹل ایبڈکشن</string>
+    <string name="shoulder_abduction">شولڈر ایبڈکشن</string>
+    <string name="elbow_flexion_and_extension">کہنی کی فلیکشن ایکسٹنشن</string>
+    <string name="elbow_pronation_and_supination">کہنی کی پرونیشن سوپینیشن</string>
+    <string name="wrist_flexion_and_extension">غیر متاثرہ ہاتھ کی مدد سے کلائی کی فلکیکشن ایکسٹنشن</string>
+    <string name="extend_elbow">ایکسٹنڈ ایلبو</string>
+    <string name="forearm_to_box">فورآرم ٹو باکس</string>
+    <string name="hand_to_box">ہینڈ ٹو باکس</string>
     <string name="stroke_information">فالج کی معلومات</string>
     <string name="excercuse_information">ورزش کی دہرائی </string>
     \n\n•
