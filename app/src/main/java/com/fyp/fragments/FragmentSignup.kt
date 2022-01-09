@@ -67,7 +67,7 @@ class FragmentSignup() : Fragment(), View.OnClickListener, iOnBackPressed {
         (activity as LogActivity).globalClass?.showDialog(activity)
         val requestBody: RequestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
-            .addFormDataPart("namefilhal", firstNameTv.text.toString().trim())
+            .addFormDataPart("name", firstNameTv.text.toString().trim())
             .addFormDataPart("age", age.text.toString().trim())
             .addFormDataPart("phone", mobileTv.text.toString().trim())
             .addFormDataPart("gender", spinner.selectedItem.toString().trim())

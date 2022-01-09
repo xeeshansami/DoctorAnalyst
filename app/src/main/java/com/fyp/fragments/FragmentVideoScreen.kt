@@ -36,8 +36,8 @@ import okhttp3.RequestBody
 import kotlin.collections.set
 
 
-class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
-    var counter:CountDownTimer?=null
+class FragmentVideoScreen : Fragment(), View.OnClickListener{
+    var counter: CountDownTimer? = null
     val globalClass = GlobalClass.applicationContext!!.applicationContext as GlobalClass
     var maxCounter: Long = 1000000
     var diff: Long = 1000
@@ -53,6 +53,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
     var back = 0
     var text = ""
     var finalTime = ""
+    var countVideo=0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -83,12 +84,13 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
 
     override fun onStop() {
         updateAppTime(
-            obj!![next].videoUrl,
-            obj!![next].heading,
-            obj!![next].text
+            obj!![countVideo].videoUrl,
+            obj!![countVideo].heading,
+            obj!![countVideo].text
         )
         super.onStop()
     }
+
     fun convertSeconds(seconds: Int): String? {
         val h = seconds / 3600
         val m = seconds % 3600 / 60
@@ -312,42 +314,50 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                     obj!![next].heading,
                     obj!![next].text
                 )
-
-                counter= object : CountDownTimer(maxCounter, diff) {
-                    override fun onTick(millisUntilFinished: Long) {
-                        val diff: Long = maxCounter - millisUntilFinished
-                        finalTime=(diff / 1000).toString()
-                        Log.i("TickTick",finalTime)
-                        //here you can have your logic to set text to edittext
-                    }
-
-                    override fun onFinish() {
-
-                    }
-                }.start()
-
+                counter()
             }
         } catch (e: IllegalStateException) {
         }
     }
 
+    fun counter() {
+        if (counter != null) {
+            counter!!.cancel()
+            counter!!.onFinish()
+            counter = null
+        }
+        counter =
+            object : CountDownTimer(maxCounter, diff) {
+                override fun onTick(millisUntilFinished: Long) {
+                    val diff: Long = maxCounter - millisUntilFinished
+                    finalTime = (diff / 1000).toString()
+                    Log.i("TickTick", finalTime)
+                    //here you can have your logic to set text to edittext
+                }
+
+                override fun onFinish() {
+                    counter!!.cancel()
+                }
+            }.start()
+    }
 
 
     fun updateAppTime(videoUrl: String, heading: String, text: String) {
         (activity as ActivityDashboard).globalClass?.showDialog(activity)
         val requestBody: RequestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
-            .addFormDataPart("pageName",heading)
-            .addFormDataPart("phone",sessionManager!!.getStringVal(Constant.MOBILE)!!)
+            .addFormDataPart("pageName", heading)
+            .addFormDataPart("phone", sessionManager!!.getStringVal(Constant.MOBILE)!!)
             .addFormDataPart("exerciseName", heading)
             .addFormDataPart("videoScreenTime", finalTime)
-            .addFormDataPart("videoUrl",videoUrl)
+            .addFormDataPart("videoUrl", videoUrl)
             .build()
         HBLHRStore.instance?.history(
             RetrofitEnums.URL_HBL,
             requestBody, object : RegisterCallBack {
                 @SuppressLint("WrongConstant")
                 override fun Success(response: BaseResponse) {
+                    counter()
 //                    ToastUtils.showToastWith(activity as ActivityDashboard, "His", "")
                     (activity as ActivityDashboard).globalClass?.hideLoader()
                 }
@@ -390,44 +400,45 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
     }
 
 
-
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.backBtn -> {
                 if (back in 1..8 &&
                     obj!!.size == 9
                 ) {
+                    updateAppTime(
+                        obj!![back].videoUrl,
+                        obj!![back].heading,
+                        obj!![back].text
+                    )
                     back--
                     next = back
-                    updateAppTime(
-                        obj!![next].videoUrl,
-                        obj!![next].heading,
-                        obj!![next].text
-                    )
+                    countVideo=back;
                     Log.i(
                         "btnClick", "$back, ${
                             obj!!.size
                         }"
                     )
                     webview(
-                        obj!![next].videoUrl,
-                        obj!![next].heading,
-                        obj!![next].text
+                        obj!![back].videoUrl,
+                        obj!![back].heading,
+                        obj!![back].text
                     )
                 } else if (back > 0 && back < 2 &&
                     obj!!.size == 2
                 ) {
                     updateAppTime(
-                        obj!![next].videoUrl,
-                        obj!![next].heading,
-                        obj!![next].text
+                        obj!![back].videoUrl,
+                        obj!![back].heading,
+                        obj!![back].text
                     )
                     back--
                     next = back
+                    countVideo=back;
                     webview(
-                        obj!![next].videoUrl,
-                        obj!![next].heading,
-                        obj!![next].text
+                        obj!![back].videoUrl,
+                        obj!![back].heading,
+                        obj!![back].text
                     )
                     Log.i(
                         "btnClick", "$back, ${
@@ -438,16 +449,17 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                     obj!!.size == 14
                 ) {
                     updateAppTime(
-                        obj!![next].videoUrl,
-                        obj!![next].heading,
-                        obj!![next].text
+                        obj!![back].videoUrl,
+                        obj!![back].heading,
+                        obj!![back].text
                     )
                     back--
                     next = back
+                    countVideo=back;
                     webview(
-                        obj!![next].videoUrl,
-                        obj!![next].heading,
-                        obj!![next].text
+                        obj!![back].videoUrl,
+                        obj!![back].heading,
+                        obj!![back].text
                     )
                     Log.i(
                         "btnClick", "$back, ${
@@ -467,6 +479,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                     )
                     next++
                     back = next
+                    countVideo=next;
                     webview(
                         obj!![next].videoUrl,
                         obj!![next].heading,
@@ -487,6 +500,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                     )
                     next++
                     back = next
+                    countVideo=next;
                     webview(
                         obj!![next].videoUrl,
                         obj!![next].heading,
@@ -507,6 +521,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
                     )
                     next++
                     back = next
+                    countVideo=next;
                     webview(
                         obj!![next].videoUrl,
                         obj!![next].heading,
@@ -525,26 +540,15 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener, iOnBackPressed {
 
     override fun onDestroy() {
         counter!!.cancel()
-        var request=historyRequest()
-        request.exerciseName= obj!![next].heading
-        request.phone=  sessionManager!!.getStringVal(Constant.MOBILE)!!
-        request.pageName=  obj!![next].heading
-        request.videoScreenTime=  finalTime
-        request.videoUrl=  obj!![next].videoUrl
+        var request = historyRequest()
+        request.exerciseName = obj!![countVideo].heading
+        request.phone = sessionManager!!.getStringVal(Constant.MOBILE)!!
+        request.pageName = obj!![countVideo].heading
+        request.videoScreenTime = finalTime
+        request.videoUrl = obj!![countVideo].videoUrl
         sessionManager!!.setHistory(request)
         super.onDestroy()
     }
 
-    override fun onBackPressed(): Boolean {
-        val navController = requireActivity().findNavController(R.id.fragment)
-        return if (navController.currentDestination?.id != R.id.fragmentVideo) {
-            Log.i("onBackPress", "Not Up Finish All Fragment")
-            requireActivity().finish()
-            true
-        } else {
-            Log.i("onBackPress", "Up")
-            navController.popBackStack()
-            true
-        }
-    }
+
 }

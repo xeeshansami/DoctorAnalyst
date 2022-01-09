@@ -76,14 +76,44 @@ class FragmentMyAccount : Fragment(), View.OnClickListener, iOnBackPressed {
         }
     }
 
+    fun updateHistoryAppTime() {
+        var request = sessionManager!!.getHistory()
+        val requestBody: RequestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("pageName", request!!.pageName)
+            .addFormDataPart("phone", request!!.phone)
+            .addFormDataPart("exerciseName", request!!.exerciseName)
+            .addFormDataPart("videoScreenTime", request!!.videoScreenTime)
+            .addFormDataPart("videoUrl", request!!.videoUrl)
+            .build()
+        HBLHRStore.instance?.history(
+            RetrofitEnums.URL_HBL,
+            requestBody, object : RegisterCallBack {
+                @SuppressLint("WrongConstant")
+                override fun Success(response: BaseResponse) {
+//                    ToastUtils.showToastWith(activity as ActivityDashboard, "His", "")
+                    Log.i("Counter", "1")
+                    sessionManager!!.setStringVal(Constant.MOBILE,"")
+                    var intent = Intent(activity, LogActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    (activity as ActivityDashboard).startActivity(intent)
+                    (activity as ActivityDashboard).finish()
+                    (activity as ActivityDashboard).globalClass?.hideLoader()
+                }
 
+                override fun Failure(response: BaseResponse) {
+                    ToastUtils.showToastWith(activity, response.message, "")
+                    (activity as ActivityDashboard).globalClass?.hideLoader();
+                }
+            })
+    }
     fun updateAppTime() {
         (activity as ActivityDashboard).globalClass?.showDialog( (activity as ActivityDashboard))
         val requestBody: RequestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("phone", sessionManager!!.getStringVal(Constant.MOBILE)!!)
             .addFormDataPart(
-                "completeApplicationTime,",
+                "completeApplicationTime",
                 (activity as ActivityDashboard).finalTime
             )
             .build()
@@ -93,12 +123,7 @@ class FragmentMyAccount : Fragment(), View.OnClickListener, iOnBackPressed {
                 @SuppressLint("WrongConstant")
                 override fun Success(response: BaseResponse) {
                     Toast.makeText(activity, "Log out", Toast.LENGTH_SHORT).show()
-                    sessionManager!!.setStringVal(Constant.MOBILE,"")
-                    var intent = Intent(activity, LogActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    (activity as ActivityDashboard).startActivity(intent)
-                    (activity as ActivityDashboard).finish()
-                    (activity as ActivityDashboard).globalClass?.hideLoader()
+                    updateHistoryAppTime()
                 }
 
                 override fun Failure(response: BaseResponse) {

@@ -96,7 +96,7 @@ class FragmentUpdate : Fragment(), iOnBackPressed, View.OnClickListener {
             .addFormDataPart("city", city)
             .addFormDataPart("phone", mobile2)
             .build()
-        HBLHRStore.instance?.updateAppTime(
+        HBLHRStore.instance?.updateUser(
             RetrofitEnums.URL_HBL,
             requestBody, object : RegisterCallBack {
                 @SuppressLint("WrongConstant")

@@ -80,29 +80,35 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
         } else {
             AppLang.AppLang(this, "ur")
         }
-        counter = object : CountDownTimer(maxCounter, diff) {
-            override fun onTick(millisUntilFinished: Long) {
-                val diff: Long = maxCounter - millisUntilFinished
-                finalTime = (diff / 1000).toString()
-                Log.i("TickTick", finalTime)
-                //here you can have your logic to set text to edittext
-            }
-
-            override fun onFinish() {
-
-            }
-        }.start()
-
+        counter()
     }
 
+    fun counter() {
+        if (counter != null) {
+            counter!!.cancel()
+            counter!!.onFinish()
+            counter = null
+        }
+        counter = object : CountDownTimer(maxCounter, diff) {
+                override fun onTick(millisUntilFinished: Long) {
+                    val diff: Long = maxCounter - millisUntilFinished
+                    finalTime = (diff / 1000).toString()
+                    Log.i("TickTick", finalTime)
+                    //here you can have your logic to set text to edittext
+                }
 
+                override fun onFinish() {
+                    counter!!.cancel()
+                }
+            }.start()
+    }
     fun updateAppTime() {
         globalClass?.showDialog(this)
         val requestBody: RequestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("phone", sessionManager!!.getStringVal(Constant.MOBILE)!!)
             .addFormDataPart(
-                "completeApplicationTime,",
+                "completeApplicationTime",
                 finalTime
             )
             .build()
@@ -113,6 +119,7 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
                 override fun Success(response: BaseResponse) {
 //                    ToastUtils.showToastWith(this@ActivityDashboard, response.message)
                     Log.i("Counter", "2")
+                    counter()
                     globalClass?.hideLoader()
                 }
 
