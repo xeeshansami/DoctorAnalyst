@@ -1,6 +1,7 @@
 package com.fyp.fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent.getIntent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.http.SslError
@@ -14,12 +15,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
 import android.widget.FrameLayout
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import com.fyp.R
 import com.fyp.activities.ActivityDashboard
-import com.fyp.activities.LogActivity
-import com.fyp.interfaces.iOnBackPressed
+import com.fyp.activities.AppLang
 import com.fyp.models.videoObjects
 import com.fyp.network.models.response.base.BaseResponse
 import com.fyp.utils.Constant
@@ -33,10 +33,9 @@ import com.hbl.hblaccountopeningapp.network.store.HBLHRStore
 import kotlinx.android.synthetic.main.fragment_video_screen.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import kotlin.collections.set
 
 
-class FragmentVideoScreen : Fragment(), View.OnClickListener{
+class FragmentVideoScreen : Fragment(), View.OnClickListener {
     var counter: CountDownTimer? = null
     val globalClass = GlobalClass.applicationContext!!.applicationContext as GlobalClass
     var maxCounter: Long = 1000000
@@ -53,7 +52,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener{
     var back = 0
     var text = ""
     var finalTime = ""
-    var countVideo=0
+    var countVideo = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,14 +62,26 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener{
         return myView
     }
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
+        if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1) {
+            AppLang.AppLang(activity, "en")
+        } else {
+            AppLang.AppLang(activity, "ur")
+        }
     }
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onResume() {
         super.onResume()
         init()
+        if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1) {
+            AppLang.AppLang(activity, "en")
+        } else {
+            AppLang.AppLang(activity, "ur")
+        }
     }
 
     override fun onPause() {
@@ -399,7 +410,6 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener{
 //        })
     }
 
-
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.backBtn -> {
@@ -413,7 +423,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener{
                     )
                     back--
                     next = back
-                    countVideo=back;
+                    countVideo = back;
                     Log.i(
                         "btnClick", "$back, ${
                             obj!!.size
@@ -434,7 +444,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener{
                     )
                     back--
                     next = back
-                    countVideo=back;
+                    countVideo = back;
                     webview(
                         obj!![back].videoUrl,
                         obj!![back].heading,
@@ -455,7 +465,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener{
                     )
                     back--
                     next = back
-                    countVideo=back;
+                    countVideo = back;
                     webview(
                         obj!![back].videoUrl,
                         obj!![back].heading,
@@ -479,7 +489,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener{
                     )
                     next++
                     back = next
-                    countVideo=next;
+                    countVideo = next;
                     webview(
                         obj!![next].videoUrl,
                         obj!![next].heading,
@@ -500,7 +510,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener{
                     )
                     next++
                     back = next
-                    countVideo=next;
+                    countVideo = next;
                     webview(
                         obj!![next].videoUrl,
                         obj!![next].heading,
@@ -521,7 +531,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener{
                     )
                     next++
                     back = next
-                    countVideo=next;
+                    countVideo = next;
                     webview(
                         obj!![next].videoUrl,
                         obj!![next].heading,
@@ -538,6 +548,7 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener{
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onDestroy() {
         counter!!.cancel()
         var request = historyRequest()
@@ -547,6 +558,11 @@ class FragmentVideoScreen : Fragment(), View.OnClickListener{
         request.videoScreenTime = finalTime
         request.videoUrl = obj!![countVideo].videoUrl
         sessionManager!!.setHistory(request)
+        if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1) {
+            AppLang.AppLang(activity, "en")
+        } else {
+            AppLang.AppLang(activity, "ur")
+        }
         super.onDestroy()
     }
 

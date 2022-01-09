@@ -22,6 +22,7 @@ interface APIInterface {
     @POST("updateAppTime.php")
     fun updateAppTime(@Body body:RequestBody): Call<BaseResponse>
 
+
     @POST("history.php")
     fun history(@Body body:RequestBody): Call<BaseResponse>
 

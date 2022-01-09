@@ -71,11 +71,7 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
         init()
         appTime()
         fullscreenContent = findViewById(R.id.fullscreen_content)
-
-        if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1 || sessionManager!!.getIntVal(
-                Constant.LANGUAGE
-            ) == 0
-        ) {
+        if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1) {
             AppLang.AppLang(this, "en")
         } else {
             AppLang.AppLang(this, "ur")
@@ -172,8 +168,14 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
         return sh + (if (h > 0) " " else "") + sm + (if (m > 0) " " else "") + ss
     }
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onResume() {
         super.onResume()
+        if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1) {
+            AppLang.AppLang(this, "en")
+        } else {
+            AppLang.AppLang(this, "ur")
+        }
         window?.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     }
 

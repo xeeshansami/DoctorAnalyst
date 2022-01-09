@@ -86,6 +86,8 @@ object RetrofitBuilder {
 //                accrefreshtoken =
 //                    GlobalClass.sharedPreferenceManager.loginData.getREFRESHTOKEN().toString()
 //            }
+
+
             val request = builder
 //                .addHeader("os", "ANDROID") // @TODO: add OS method
 //                .addHeader("ip", "1.1.1.1") // @TODO: add IP method
@@ -95,6 +97,7 @@ object RetrofitBuilder {
 //                .addHeader("aoftoken", acctoken) // @TODO: add acc token method
 //                .addHeader("deviceID", GlobalClass.deviceID()) // @TODO: add acc token method
 //                .addHeader("aofrefreshtoken", accrefreshtoken) // @TODO: add acc token method
+//                .addHeader("Content-Type", "application/json; charset=utf-8")
                 .removeHeader(APIInterface.HEADER_TAG)
                 .method(original.method, original.body)
                 .build()

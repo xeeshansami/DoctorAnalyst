@@ -16,9 +16,7 @@ public class AppLang {
         Configuration activityConf = activityRes.getConfiguration();
         Locale newLocale = new Locale(lng);
         activityConf.setLocale(newLocale);
-
         activityRes.updateConfiguration(activityConf, activityRes.getDisplayMetrics());
-
         Resources applicationRes = contex.getApplicationContext().getResources();
         Configuration applicationConf = applicationRes.getConfiguration();
         applicationConf.setLocale(newLocale);

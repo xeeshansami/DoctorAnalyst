@@ -3,17 +3,20 @@ package com.fyp.fragments
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.fyp.R
 import com.fyp.activities.ActivityDashboard
+import com.fyp.activities.AppLang
 import com.fyp.activities.LogActivity
 import com.fyp.interfaces.iOnBackPressed
 import com.fyp.network.models.response.base.BaseResponse
@@ -49,13 +52,28 @@ class FragmentMyAccount : Fragment(), View.OnClickListener, iOnBackPressed {
         init()
     }
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     fun init() {
         sessionManager = SessionManager(activity as ActivityDashboard)
+        if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1) {
+            AppLang.AppLang(activity, "en")
+        } else {
+            AppLang.AppLang(activity, "ur")
+        }
 //        firebaseAuth = FirebaseAuth.getInstance()
         updateAnAccountTv.setOnClickListener(this)
         changePasswordTv.setOnClickListener(this)
         logoutTv.setOnClickListener(this)
         addQuestInRv()
+    }
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    override fun onResume() {
+        super.onResume()
+        if (sessionManager!!.getIntVal(Constant.LANGUAGE) == 1) {
+            AppLang.AppLang(activity, "en")
+        } else {
+            AppLang.AppLang(activity, "ur")
+        }
     }
 
     private fun addQuestInRv() {
