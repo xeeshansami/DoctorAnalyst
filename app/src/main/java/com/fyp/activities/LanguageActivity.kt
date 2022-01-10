@@ -140,11 +140,13 @@ class LanguageActivity : AppCompatActivity(), View.OnClickListener {
             R.id.but2 -> {
                 AppLang.AppLang(this, "en")
                 sessionManager!!.setIntVal(Constant.LANGUAGE, 1)
+                finish()
                 startActivity(Intent(this, ActivityDashboard::class.java))
             }
             R.id.but3 -> {
                 AppLang.AppLang(this, "ur")
                 sessionManager!!.setIntVal(Constant.LANGUAGE, 2)
+                finish()
                 startActivity(Intent(this, ActivityDashboard::class.java))
             }
         }

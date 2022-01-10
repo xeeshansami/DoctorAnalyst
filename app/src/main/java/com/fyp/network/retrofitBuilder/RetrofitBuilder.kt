@@ -97,7 +97,8 @@ object RetrofitBuilder {
 //                .addHeader("aoftoken", acctoken) // @TODO: add acc token method
 //                .addHeader("deviceID", GlobalClass.deviceID()) // @TODO: add acc token method
 //                .addHeader("aofrefreshtoken", accrefreshtoken) // @TODO: add acc token method
-//                .addHeader("Content-Type", "application/json; charset=utf-8")
+                .addHeader("Content-Type", "multipart/form-data;")
+                .addHeader("Accept", "*/*")
                 .removeHeader(APIInterface.HEADER_TAG)
                 .method(original.method, original.body)
                 .build()

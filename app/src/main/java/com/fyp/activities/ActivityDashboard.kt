@@ -145,7 +145,7 @@ class ActivityDashboard : AppCompatActivity(), View.OnClickListener {
                 @SuppressLint("WrongConstant")
                 override fun Success(response: BaseResponse) {
 //                    ToastUtils.showToastWith(this@ActivityDashboard, response.message, "")
-                    updateHistoryAppTime()
+//                    updateHistoryAppTime()
                     globalClass?.hideLoader()
                 }
 
